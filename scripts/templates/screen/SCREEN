@@ -1,0 +1,18 @@
+import React from "react";
+import { SafeAreaView } from "react-native";
+import { Text } from "components";
+import { t } from "utils";
+import styles from "./SCREEN.styles";
+import navigationOptions from "./SCREEN.navigationOptions";
+import { NavStatelessComponent } from "interfaces";
+
+const SCREENScreen: NavStatelessComponent = () => {
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text.Body>{t("SUPPER_TEXT")}</Text.Body>
+    </SafeAreaView>
+  );
+};
+SCREENScreen.navigationOptions = navigationOptions();
+
+export default SCREENScreen;
