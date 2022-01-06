@@ -1,9 +1,9 @@
 import React from "react";
-import { Text, TextStyle, StyleProp } from "react-native";
-import useColorScheme from "hooks/useColorScheme";
-
+import { StyleProp, Text, TextStyle } from "react-native";
+import { useSelector } from "react-redux";
+import { RootState } from "states";
+import { getStyle } from "utils/getstyles";
 import styles from "./Title3.styles";
-import mainStyle from "../styles";
 
 interface Props {
   style?: StyleProp<TextStyle>;
@@ -11,15 +11,16 @@ interface Props {
   darkGray?: boolean;
   lightGray?: boolean;
   green?: boolean;
+  color: "primary" | "secondary";
 }
 
 export default function Title3(props: Props): React.ReactElement {
-  const isDark = useColorScheme() == "dark";
-  const customStyle = isDark
-    ? [styles.defaultDark, props.style]
-    : [styles.defaultLight, props.style];
+  const theme = useSelector((state: RootState) => state.systemTheme.theme);
 
-  return <Text {...props} style={customStyle} />;
+  return <Text {...props} style={getStyle(theme, props.color, styles, props.style)} />;
 }
 
 Title3.displayName = "Title3";
+Title3.defaultProps = {
+  color: "primary",
+};

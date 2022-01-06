@@ -1,4 +1,14 @@
 {
-	"SETTINGS_TITLE": "Wilkommen bei NMF.earth 🌱",
-	"SETTINGS_TEXT": "Wilkommen bei NMF.earth 🌱"
+  "SETTINGS_TITLE": "Wilkommen bei NMF.earth 🌱",
+  "SETTINGS_TEXT": "Wilkommen bei NMF.earth 🌱",
+  "Buttons": {
+    "notification": "notification",
+    "address": "Address",
+    "ROI": "Region of interest",
+    "language": "Language",
+    "darkMode": "Dark mode",
+    "aboutUs": "About Us",
+    "feedback": "Feedback",
+    "privacy": "Privacy"
+  }
 }

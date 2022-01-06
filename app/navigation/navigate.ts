@@ -48,10 +48,15 @@ const openLanguage =
   (props = {}) => {
     navigation.push("Language", props);
   };
+const openNotificationSettings =
+  (navigation: any) =>
+  (props = {}) => {
+    navigation.navigate("NotificationSettings", props);
+  };
 const openNotification =
   (navigation: any) =>
   (props = {}) => {
-    navigation.push("Notification", props);
+    navigation.navigate("Notification", props);
   };
 const openNotificationModal =
   (navigation: any) =>
@@ -71,7 +76,7 @@ const openROI =
 const openSetting =
   (navigation: any) =>
   (props = {}) => {
-    navigation.push("Setting", props);
+    navigation.navigate("Setting", props);
   };
 const openNotFound =
   (navigation: any) =>
@@ -89,6 +94,7 @@ const navigate = (navigation: any) => ({
   openIntro: navigateOneTime(openIntro(navigation)),
   openLanguage: navigateOneTime(openLanguage(navigation)),
   openNotification: navigateOneTime(openNotification(navigation)),
+  openNotificationSettings: navigateOneTime(openNotificationSettings(navigation)),
   openNotificationModal: navigateOneTime(openNotificationModal(navigation)),
   openPrivacy: navigateOneTime(openPrivacy(navigation)),
   openROI: navigateOneTime(openROI(navigation)),

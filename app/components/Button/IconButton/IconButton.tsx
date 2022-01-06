@@ -14,6 +14,8 @@ import {
 // import Button from "../index";
 
 import styles from "./IconButton.styles";
+import { useSelector } from "react-redux";
+import { RootState } from "states";
 
 interface Props {
   iconSrc: string;
@@ -26,6 +28,9 @@ interface Props {
 }
 
 export default function IconButton(props: Props): React.ReactElement {
+  const theme = useSelector((state: RootState) => state.systemTheme.theme);
+
+  const isDark = theme == "dark";
   const customStyle = [styles.default, props.style];
 
   return (

@@ -1,17 +1,14 @@
 import { Text } from "components";
 import React from "react";
 import {
-  StyleProp,
-  Button,
-  ButtonProps,
-  ViewStyle,
-  TouchableWithoutFeedback,
-  View,
   NativeSyntheticEvent,
-  NativeTouchEvent,
+  NativeTouchEvent, StyleProp, TouchableWithoutFeedback,
+  View, ViewStyle
 } from "react-native";
-
+import { useSelector } from "react-redux";
+import { RootState } from "states";
 import styles from "./Default.styles";
+
 
 interface Props {
   style?: StyleProp<ViewStyle>;
@@ -21,9 +18,15 @@ interface Props {
 }
 
 export default function Default(props: Props): React.ReactElement {
-  const customStyle = [styles.default, props.style];
+  const theme = useSelector((state: RootState) => state.systemTheme.theme);
+
   // console.log(props.disabled);
-  if (props.disabled) customStyle.push({ backgroundColor: "grey" });
+  const isDark = theme == "dark";
+  const customStyle = isDark
+    ? [styles.global, styles.defaultDark, props.style]
+    : [styles.global, styles.defaultLight, props.style];
+
+  if (props.disabled) customStyle.push(styles.disable);
 
   return (
     <TouchableWithoutFeedback onPress={(x) => !props.disabled && props.onPress(x)}>

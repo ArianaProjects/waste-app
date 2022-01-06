@@ -11,7 +11,9 @@ import * as Privacy from "screens/Privacy/translations";
 import * as ROI from "screens/ROI/translations";
 import * as Settings from "screens/Settings/translations";
 import * as NotFound from "screens/NotFound/translations";
+import * as NotificationSettings from "screens/NotificationSettings/translations";
 import * as UI from "utils/ui/translations";
+import * as Upcoming from "components/Cards/UpcomingEvent/translations";
 
 const en = {
   ...AboutUs.en,
@@ -27,6 +29,8 @@ const en = {
   ...ROI.en,
   ...Settings.en,
   ...NotFound.en,
+  ...Upcoming.en,
+  ...NotificationSettings.en,
   ...UI.en,
 };
 
@@ -44,6 +48,8 @@ const de = {
   ...ROI.de,
   ...Settings.de,
   ...NotFound.de,
+  ...NotificationSettings.de,
+  ...Upcoming.de,
   ...UI.de,
 };
 
@@ -61,6 +67,8 @@ export interface TranslationKeys
     ROI.TranslationKeys,
     Settings.TranslationKeys,
     NotFound.TranslationKeys,
+    Upcoming.TranslationKeys,
+    NotificationSettings.TranslationKeys,
     UI.TranslationKeys {}
 
 export { en, de };

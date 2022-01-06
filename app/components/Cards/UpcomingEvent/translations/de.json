@@ -1,0 +1,14 @@
+{
+  "WasteType": {
+    "BIO": "BIO",
+    "ELECTRO": "ELECTRO",
+    "GREEN": "GREEN",
+    "PAPER": "PAPER",
+    "SPECIAL": "SPECIAL",
+    "RES": "RES",
+    "PACKAGE": "PACKAGE",
+    "Hazardous": "Hazardous",
+    "Christmas": "Christmas"
+  },
+  "takeOut": "takeOut"
+}

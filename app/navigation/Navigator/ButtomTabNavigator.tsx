@@ -2,34 +2,50 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { RootTabParamList, RootTabScreenProps } from "interfaces";
 import React from "react";
 import { Pressable, useColorScheme } from "react-native";
-import AboutUsScreen from "screens/AboutUs";
-import SettingsScreen from "screens/Settings";
-import { FontAwesome } from "@expo/vector-icons";
+import Icon from "react-native-vector-icons/Ionicons";
+import { useSelector } from "react-redux";
 import CalendarScreen from "screens/Calendar";
+import NotificationScreen from "screens/Notification";
+import SettingsScreen from "screens/Settings";
+import { RootState } from "states";
+import { Colors } from "style";
+import ButtonNavigationStyle from "./ButtonNavigation.style";
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 export function BottomTabNavigator() {
   const colorScheme = useColorScheme();
+  const theme = useSelector((state: RootState) => state.systemTheme.theme);
 
   return (
     <BottomTab.Navigator
       initialRouteName="Calendar"
       screenOptions={{
-        tabBarActiveTintColor: "red",
+        // lazy: true,
+        // unmountOnBlur: true,
+        headerShown: false,
+        tabBarLabelPosition: "beside-icon",
+        tabBarItemStyle: ButtonNavigationStyle.tabBar,
+        tabBarStyle: ButtonNavigationStyle.tabBarContainer,
+        tabBarActiveBackgroundColor: "#E6FFF0",
+        tabBarInactiveBackgroundColor: Colors.background.paper[theme],
+        tabBarActiveTintColor: Colors.primary.dark,
+        tabBarLabelStyle: ButtonNavigationStyle.tabBarLabel,
       }}
     >
       <BottomTab.Screen
         name="Calendar"
         component={CalendarScreen}
-        options={CalendarScreen.navigationOptions}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-calendar-outline" color={color} />,
+        }}
       />
       <BottomTab.Screen
         name="Notification"
-        component={AboutUsScreen}
+        component={NotificationScreen}
         options={{
           title: "Tab Two",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-notifications-sharp" color={color} />,
         }}
       />
       <BottomTab.Screen
@@ -37,7 +53,7 @@ export function BottomTabNavigator() {
         component={SettingsScreen}
         options={({ navigation }: RootTabScreenProps<"Setting">) => ({
           title: "Tab One",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-settings-sharp" color={color} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate("Modal")}
@@ -55,9 +71,9 @@ export function BottomTabNavigator() {
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+// function TabBarIcon(props: { name: string; color: string }) {
+//   return <Icon size={30} style={{ marginBottom: -3 }} {...props} />;
+// }
+function TabBarIcon(props: { name: string; color: string }) {
+  return <Icon size={20} style={{ marginBottom: 0 }} {...props} />;
 }

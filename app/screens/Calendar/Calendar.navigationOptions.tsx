@@ -13,7 +13,7 @@ const navigationOptions = (): BottomTabNavigationOptions => ({
     ...ComponentsStyle.header,
   },
   // headerBackTitleVisible: false,
-  headerTitle: () => <Text.Title1>{t("CALENDAR_TITLE")}</Text.Title1>,
+  headerTitle: () => <Text.Title1> </Text.Title1>,
   // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
 });
 

@@ -33,7 +33,6 @@ const release = Constants.manifest.revisionId || "0.0.0";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
   enableScreens();
 
   let lang = localeExpo.substring(0, 2);
@@ -56,10 +55,10 @@ export default function App() {
             }}
           >
             {__DEV__ ? (
-              <Navigation colorScheme={colorScheme} />
+              <Navigation />
             ) : (
               <StoreReviewChecker>
-                <Navigation colorScheme={colorScheme} />
+                <Navigation />
               </StoreReviewChecker>
             )}
           </LocalizationContext.Provider>
@@ -69,7 +68,6 @@ export default function App() {
   }
   return (
     <SafeAreaProvider>
-      {/* <StatusBar style={colorScheme == "dark" ? "light" : "dark"} /> */}
       {/* <View.Background>{body}</View.Background> */}
       {body}
     </SafeAreaProvider>

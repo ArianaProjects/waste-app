@@ -1,27 +1,43 @@
-import { DarkTheme, DefaultTheme, NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import useColorScheme from "hooks/useColorScheme";
 import { RootStackParamList } from "interfaces";
-import { Appearance, ColorSchemeName } from "react-native";
-import NotFoundScreen from "screens/NotFound";
-import NotificationModalScreen from "screens/NotificationModal";
-import LinkingConfiguration from "./LinkingConfiguration";
+import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import AboutUsScreen from "screens/AboutUs";
+import AddressScreen from "screens/Address";
+import FeedbackScreen from "screens/Feedback";
+import Intro from "screens/Intro";
+import LanguageScreen from "screens/Language";
+import NotificationScreen from "screens/Notification";
+import NotificationSettingsScreen from "screens/NotificationSettings";
+import PrivacyScreen from "screens/Privacy";
+import ROI from "screens/ROI";
+import { RootState } from "states";
+import { actions } from "states/ducks/userPreferences/userPreferences.slice";
+import { ComponentsStyle } from "style";
+import { getAllAppointment } from "../network/Appointment";
 import navigate from "./navigate";
 import { BottomTabNavigator } from "./Navigator/ButtomTabNavigator";
-import * as React from "react";
-import { userPreferences } from "states/ducks";
-import { useSelector } from "react-redux";
-import Intro from "screens/Intro";
-import { ComponentsStyle } from "style";
-import { useEffect } from "react";
-import { RootState } from "states";
+// import { actions } from "states/ducks/userPreferences";
+export default function Navigation() {
+  const colorScheme = useColorScheme();
 
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
-  // console.log(colorScheme, Appearance.getColorScheme());
+  const dispatch = useDispatch();
+  const theme = useSelector((state: RootState) => state.systemTheme.theme);
+  const getPlans = async () => {
+    const plans = await getAllAppointment(1);
+
+    dispatch(actions.changeAppointment(plans));
+  };
+  React.useLayoutEffect(() => {
+    getPlans();
+    // theme === "system" && dispatch(toggleTheme(colorScheme));
+    // alert(theme);
+  }, []);
+
   return (
-    <NavigationContainer
-      linking={LinkingConfiguration}
-      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-    >
+    <NavigationContainer>
       <RootNavigator />
     </NavigationContainer>
   );
@@ -41,9 +57,22 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       {!UP.introDone ? (
-        <Stack.Screen name="Intro" component={Intro} options={Intro.navigationOptions} />
+        <Stack.Screen name="Intro" component={Intro} options={screenOptions} />
       ) : (
-        <Stack.Screen name="Root" component={BottomTabNavigator} options={screenOptions} />
+        <>
+          <Stack.Screen name="Root" component={BottomTabNavigator} options={screenOptions} />
+          <Stack.Screen name="Privacy" component={PrivacyScreen} options={screenOptions} />
+          <Stack.Screen name="Language" component={LanguageScreen} options={screenOptions} />
+          <Stack.Screen
+            name="NotificationSettings"
+            component={NotificationSettingsScreen}
+            options={screenOptions}
+          />
+          <Stack.Screen name="ROI" component={ROI} options={screenOptions} />
+          <Stack.Screen name="Address" component={AddressScreen} options={screenOptions} />
+          <Stack.Screen name="AboutUs" component={AboutUsScreen} options={screenOptions} />
+          <Stack.Screen name="FeedBack" component={FeedbackScreen} options={screenOptions} />
+        </>
       )}
     </Stack.Navigator>
   );

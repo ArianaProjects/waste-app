@@ -22,6 +22,13 @@ declare global {
 export type RootStackParamList = {
   Intro: NavigatorScreenParams<RootTabParamList> | undefined;
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
+  Language: NavigatorScreenParams<RootTabParamList> | undefined;
+  ROI: NavigatorScreenParams<RootTabParamList> | undefined;
+  NotificationSettings: NavigatorScreenParams<RootTabParamList> | undefined;
+  Address: NavigatorScreenParams<RootTabParamList> | undefined;
+  AboutUs: NavigatorScreenParams<RootTabParamList> | undefined;
+  FeedBack: NavigatorScreenParams<RootTabParamList> | undefined;
+  Privacy: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
 };

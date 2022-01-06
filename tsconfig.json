@@ -8,6 +8,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
+    "module": "esnext",
     "baseUrl": ".",
     "paths": {
       "*": ["app/*"],
@@ -16,17 +17,15 @@
       "screens/*": ["app/screens/*"],
       "ducks/*": ["app/states/ducks/*"],
       "states/*": ["app/states/*"],
-      "interfaces/*": ["app/interfaces/*"], 
-      "navigation/*": ["app/navigation/*"], 
-      "style/*": ["app/style/*"], 
+      "interfaces/*": ["app/interfaces/*"],
+      "navigation/*": ["app/navigation/*"],
+      "style/*": ["app/style/*"],
       "utils/*": ["app/utils/*"],
       "hooks/*": ["app/hooks/*"],
-      "network/*": ["app/network/*"],
+      "network/*": ["app/network/*"]
     },
     "strict": true
   },
   "extends": "expo/tsconfig.base",
-  "exclude": [
-    "scripts",
-  ]
+  "exclude": ["scripts"]
 }

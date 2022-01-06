@@ -1,17 +1,7 @@
-import React from "react";
-import { StackNavigationOptions } from "@react-navigation/stack";
+import { NativeStackNavigationOptions } from "@react-navigation/native-stack";
 
-import { Text } from "components";
-import { t } from "utils";
-import { ComponentsStyle } from "style";
-
-const navigationOptions = (): StackNavigationOptions => ({
-  // headerStyle: {
-  // ...ComponentsStyle.header,
-  // },
-  headerShown: false,
-  headerBackTitleVisible: false,
-  // headerTitle: () => <Text.Title1>{t("INTRO_TITLE")}</Text.Title1>,
+const navigationOptions = (): NativeStackNavigationOptions => ({
+  orientation: "portrait",
 });
 
 export default navigationOptions;

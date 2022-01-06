@@ -1,9 +1,8 @@
-import { getAllAppointment } from "network/Appointment";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppointmentInterface } from "interfaces";
 import * as Notifications from "expo-notifications";
-
-import { notif, currentLanguage } from "utils";
+import { AppointmentInterface } from "interfaces";
+import { getAllAppointment } from "network/Appointment";
+import { currentLanguage, notif } from "utils";
 
 export enum WasteType {
   RES,

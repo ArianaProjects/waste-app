@@ -1,18 +1,78 @@
-import React from "react";
-import { SafeAreaView } from "react-native";
-import { Text } from "components";
-import { t } from "utils";
-import styles from "./Language.styles";
-import navigationOptions from "./Language.navigationOptions";
+import { Button, Text, View } from "components";
 import { NavStatelessComponent } from "interfaces";
+import { navigate } from "navigation";
+import React, { useState } from "react";
+import { Animated, SafeAreaView, TouchableWithoutFeedback } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
+import { Colors } from "react-native/Libraries/NewAppScreen";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "states";
+import { userPreferences } from "states/ducks";
+import { t } from "utils";
+import navigationOptions from "./Language.navigationOptions";
+import styles from "./Language.styles";
 
-const LanguageScreen: NavStatelessComponent = () => {
+const LanguageScreen: NavStatelessComponent = (props: any) => {
+  const navigator = navigate(props.navigation);
+  const defaultData = useSelector((state: RootState) => state.userPreferences.language);
+  const dispatch = useDispatch();
+  const [active, setActive] = useState<string>(defaultData);
+  console.log(defaultData);
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text.Body>{t("LANGUAGE_TEXT")}</Text.Body>
+      <Button.TextButton
+        style={{ marginTop: 8 }}
+        onPress={() => {
+          navigator.openSetting();
+        }}
+      >
+        <Icon
+          name="ios-arrow-back-outline"
+          style={{ marginRight: 5 }}
+          size={16}
+          color={Colors.primary.main}
+        />
+        {t("back")}
+      </Button.TextButton>
+
+      <View.Background style={styles.mainContainer}>
+        <Text.Title3>{t("changeLanguage")}</Text.Title3>
+
+        <Animated.ScrollView style={styles.trashCardsContainer}>
+          {AvailableLanguages.map((item) => (
+            <TouchableWithoutFeedback
+              onPress={() => {
+                setActive(item.value);
+              }}
+              key={item.value}
+            >
+              <View.Paper
+                style={[styles.trashCard, active === item.value ? styles.activeTrashCard : {}]}
+              >
+                <Text.Callout>{item.name}</Text.Callout>
+              </View.Paper>
+            </TouchableWithoutFeedback>
+          ))}
+        </Animated.ScrollView>
+      </View.Background>
+      <Button.Default
+        style={styles.button}
+        onPress={() => {
+          dispatch(userPreferences.actions.changeLanguage(active));
+          navigator.openSetting();
+        }}
+      >
+        {t("save")}
+      </Button.Default>
     </SafeAreaView>
   );
 };
 LanguageScreen.navigationOptions = navigationOptions();
 
 export default LanguageScreen;
+
+const AvailableLanguages: { name: string; value: string }[] = [
+  { name: "English", value: "en" },
+  { name: "Deutsche", value: "de" },
+];

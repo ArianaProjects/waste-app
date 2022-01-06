@@ -6,6 +6,11 @@ import {
 } from "states/ducks/userPreferences/userPreferences.slice";
 import { getAllCities } from "network";
 import { getAllPlaces } from "network/place";
+import { t } from "i18n-js";
+import Icon from "react-native-vector-icons/Ionicons";
+import { Colors } from "style";
+import { Image } from "react-native";
+import IntroStyles from "../Intro.styles";
 
 interface placeProps {
   setSelectedPlace: (c: placeStateInterface) => void;
@@ -32,7 +37,7 @@ const Place = (props: placeProps) => {
   const [items, setItems] = useState<{ label: string; value: string }[]>([]);
 
   useEffect(() => {
-    props.selectedCity && getAllPlaces(props.selectedCity.id).then((x) => setPlaces(x));
+    props.selectedCity && getAllPlaces(props.selectedCity.id).then((x: any) => setPlaces(x));
   }, [props.selectedCity]);
   useEffect(() => {
     setItems(transferKeyList(places));
@@ -44,16 +49,26 @@ const Place = (props: placeProps) => {
 
   return (
     <View.Background>
-      <Input.TextPicker onValueChange={onValueChange} items={items} />
-      <Button.Default disabled={!!!props.selectedPlace} onPress={() => props.next(2)}>
-        Next
-      </Button.Default>
-      <Button.Default
+      <Button.TextButton
+        style={{ marginTop: 8 }}
         onPress={() => {
           props.next(0);
         }}
       >
-        Previous
+        <Icon
+          name="ios-arrow-back-outline"
+          style={{ marginRight: 5 }}
+          size={16}
+          color={Colors.primary.main}
+        />
+        {t("back")}
+      </Button.TextButton>
+      <View.Background style={IntroStyles.imageContainer}>
+        <Image source={require("assets/images/place.png")} />
+      </View.Background>
+      <Input.TextPicker label={t("place")} onValueChange={onValueChange} items={items} />
+      <Button.Default disabled={!!!props.selectedPlace} onPress={() => props.next(2)}>
+        {t("next")}
       </Button.Default>
     </View.Background>
   );

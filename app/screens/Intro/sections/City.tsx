@@ -1,7 +1,10 @@
 import { Button, Input, View } from "components";
-import { cityInterface } from "states/ducks/userPreferences/userPreferences.slice";
+import { t } from "i18n-js";
 import { getAllCities } from "network";
 import React, { useEffect, useState } from "react";
+import { Image } from "react-native";
+import { cityInterface } from "states/ducks/userPreferences/userPreferences.slice";
+import IntroStyles from "../Intro.styles";
 
 interface cityProps {
   setSelectedCity: (c: cityInterface | undefined) => void;
@@ -32,17 +35,23 @@ const City = (props: cityProps) => {
   }, [cities]);
   const onValueChange = (value: any, index: number) => {
     const h = cities.find((y) => y.id == value);
-    console.log("ac", h, h != undefined);
+    // console.log("ac", h, h != undefined);
 
     props.setSelectedCity(h);
     setActive(h != undefined);
   };
-
   return (
     <View.Background>
-      <Input.TextPicker onValueChange={onValueChange} items={items} />
-      <Button.Default disabled={!!!props.selectedCity} onPress={() => props.next(1)}>
-        Next
+      <View.Background style={IntroStyles.imageContainer}>
+        <Image source={require("assets/images/city.png")} />
+      </View.Background>
+      <Input.TextPicker label={t("city")} onValueChange={onValueChange} items={items} />
+      <Button.Default
+        disabled={!!!props.selectedCity}
+        style={{ marginVertical: 40 }}
+        onPress={() => props.next(1)}
+      >
+        {t("next")}
       </Button.Default>
     </View.Background>
   );

@@ -10,7 +10,6 @@ const navigationOptions = (): StackNavigationOptions => ({
     ...ComponentsStyle.header,
   },
   headerBackTitleVisible: false,
-  headerTitle: () => <Text.Title1>{t("ADDRESS_TITLE")}</Text.Title1>,
 });
 
 export default navigationOptions;

@@ -1,52 +1,24 @@
+import { fontWeightInterface } from "interfaces/global";
 import { StyleSheet } from "react-native";
 
 import { Font, Colors } from "style";
 
 export default StyleSheet.create({
-  defaultDark: {
-    color: "blue",
-    fontFamily: Font.FontWeight.Black,
-    fontSize: Font.FontSize.Body,
-  },
-  defaultLight: {
-    color: "red",
-    fontFamily: Font.FontWeight.Black,
-    fontSize: Font.FontSize.Body,
-  },
-  secondaryDark: {
-    color: "blue",
-  },
-  secondaryLight: {
-    color: "red",
+  global: {
+    fontWeight: Font.FontWeight.Title3 as fontWeightInterface,
+    fontSize: Font.FontSize.Title3,
+    lineHeight: Font.LineHeight.Title3,
   },
   primaryDark: {
-    color: "blue",
+    color: Colors.text.primary.dark,
   },
   primaryLight: {
-    color: "red",
+    color: Colors.text.primary.light,
   },
-  infoDark: {
-    color: "blue",
+  secondaryDark: {
+    color: Colors.text.secondary.dark,
   },
-  infoLight: {
-    color: "red",
-  },
-  successDark: {
-    color: "blue",
-  },
-  successLight: {
-    color: "red",
-  },
-  errorDark: {
-    color: "blue",
-  },
-  errorLight: {
-    color: "red",
-  },
-  disableDark: {
-    color: "blue",
-  },
-  disableLight: {
-    color: "red",
+  secondaryLight: {
+    color: Colors.text.secondary.light,
   },
 });

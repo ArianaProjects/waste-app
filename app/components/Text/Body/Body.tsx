@@ -1,9 +1,9 @@
 import React from "react";
-import { Text, TextStyle, StyleProp } from "react-native";
-import useColorScheme from "hooks/useColorScheme";
-
+import { StyleProp, Text, TextStyle } from "react-native";
+import { useSelector } from "react-redux";
+import { RootState } from "states";
+import { getStyle } from "utils/getstyles";
 import styles from "./Body.styles";
-import mainStyle from "../styles";
 
 interface Props {
   style?: StyleProp<TextStyle>;
@@ -11,15 +11,17 @@ interface Props {
   darkGray?: boolean;
   lightGray?: boolean;
   green?: boolean;
+  color: "primary" | "secondary";
 }
 
 export default function Body(props: Props): React.ReactElement {
-  const isDark = useColorScheme() == "dark";
-  const customStyle = isDark
-    ? [styles.defaultDark, props.style]
-    : [styles.defaultLight, props.style];
-
-  return <Text {...props} style={customStyle} />;
+  const theme = useSelector((state: RootState) => state.systemTheme.theme);
+  // TODO should add props style to all components
+  return <Text {...props} style={(getStyle(theme, props.color, styles), props.style)} />;
 }
+
+Body.defaultProps = {
+  color: "primary",
+};
 
 Body.displayName = "Body";

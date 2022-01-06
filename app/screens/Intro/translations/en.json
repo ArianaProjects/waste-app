@@ -1,4 +1,8 @@
 {
-	"INTRO_TITLE": "Wilkommen bei NMF.earth 🌱",
-	"INTRO_TEXT": "Wilkommen bei NMF.earth 🌱"
+  "INTRO_TITLE": "Wilkommen bei NMF.earth 🌱",
+  "INTRO_TEXT": "Wilkommen bei NMF.earth 🌱",
+  "city": "lets start with your city",
+  "place": "Your Street",
+  "back": "Back",
+  "next": "Next"
 }

@@ -5,7 +5,7 @@ export default {
     dark: "#008C3A",
   },
   secondary: {
-    main: "#404F6C",
+    main: "#DCDCDC",
     light: "#5A6783",
     dark: "#2B2E46",
   },
@@ -31,12 +31,17 @@ export default {
   },
   background: {
     default: {
-      light: "#FAFAFA",
-      dark: "#252526",
+      light: "#F2F2F7",
+      dark: "#1C1C1E",
     },
     paper: {
-      light: "#F4F4F4",
-      dark: "#3C3C3C",
+      light: "#EAEAEE",
+      dark: "#262626",
     },
+  },
+  text: {
+    primary: { dark: "#F2F2F7", light: "#1C1C1E", disabled: "" },
+    secondary: { dark: "#979797", light: "#7D7D7D", disabled: "" },
+    button: { dark: "", light: "", disabled: "#3C3C4399" },
   },
 };

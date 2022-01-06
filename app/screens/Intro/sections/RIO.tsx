@@ -1,18 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Button, Input, View } from "components";
-import {
-  actions,
-  collectionStateInterface,
-  WastesInterface,
-  WasteType,
-} from "states/ducks/userPreferences/userPreferences.slice";
-import { Alert, ScrollView } from "react-native";
-import { getAllAppointment } from "network/Appointment";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "states";
-import { userPreferences } from "states/ducks";
-import { AppointmentInterface } from "interfaces";
+import { Button, Text, View } from "components";
 import * as Notifications from "expo-notifications";
+import { t } from "i18n-js";
+import { camelCase } from "lodash";
+import React, { useEffect, useState } from "react";
+import { Image, ScrollView, TouchableWithoutFeedback } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
+import { WastesInterface, WasteType } from "states/ducks/userPreferences/userPreferences.slice";
+import { Colors } from "style";
+import IntroStyles from "../Intro.styles";
 
 const notification: Notifications.NotificationRequestInput = {
   content: {
@@ -33,41 +28,104 @@ interface ROIProps {
 }
 
 const ROI = (props: ROIProps) => {
-  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
-  const [ROIs, setROIs] = useState([
-    { iconSrc: "asd", text: "WasteType.BIO", waste: WasteType.BIO },
-    { iconSrc: "asd", text: "WasteType.ELECTRO", waste: WasteType.ELECTRO },
-    { iconSrc: "asd", text: "WasteType.GREEN", waste: WasteType.GREEN },
-    { iconSrc: "asd", text: "WasteType.PAPER", waste: WasteType.PAPER },
-    { iconSrc: "asd", text: "WasteType.SPECIAL", waste: WasteType.SPECIAL },
-    { iconSrc: "asd", text: "WasteType.RES", waste: WasteType.RES },
-    { iconSrc: "asd", text: "WasteType.PACKAGE", waste: WasteType.PACKAGE },
+  console.log(props.selectedROI);
+
+  const [selectedROI, setSelectedROI] = useState<WastesInterface>(props.selectedROI);
+  const [ROIs] = useState([
+    {
+      iconSrc: require("assets/images/trashCans/bio.png"),
+      text: "WasteType.BIO",
+      waste: WasteType.BIO,
+    },
+    {
+      iconSrc: require("assets/images/trashCans/residual.png"),
+      text: "WasteType.ELECTRO",
+      waste: WasteType.ELECTRO,
+    },
+    {
+      iconSrc: require("assets/images/trashCans/green.png"),
+      text: "WasteType.GREEN",
+      waste: WasteType.GREEN,
+    },
+    {
+      iconSrc: require("assets/images/trashCans/paper.png"),
+      text: "WasteType.PAPER",
+      waste: WasteType.PAPER,
+    },
+    {
+      iconSrc: require("assets/images/trashCans/hazardous.png"),
+      text: "WasteType.SPECIAL",
+      waste: WasteType.SPECIAL,
+    },
+    {
+      iconSrc: require("assets/images/trashCans/christmas.png"),
+      text: "WasteType.RES",
+      waste: WasteType.RES,
+    },
+    {
+      iconSrc: require("assets/images/trashCans/packaging.png"),
+      text: "WasteType.PACKAGE",
+      waste: WasteType.PACKAGE,
+    },
   ]);
+  // console.log(selectedROI);
+  useEffect(() => {
+    props.setSelectedROI(selectedROI);
+  }, [selectedROI]);
+
   return (
     <ScrollView>
+      <Button.TextButton
+        style={{ marginTop: 8 }}
+        onPress={() => {
+          props.next(1);
+        }}
+      >
+        <Icon
+          name="ios-arrow-back-outline"
+          style={{ marginRight: 5 }}
+          size={16}
+          color={Colors.primary.main}
+        />
+        {t("back")}
+      </Button.TextButton>
       <View.Background>
-        {ROIs.map((r, i) => {
-          return (
-            <Button.IconButton
-              key={i}
-              iconSrc={r.iconSrc}
-              activate={true}
-              //   activate={props.selectedROI[r.waste]}
-              text={r.text}
-              onPress={() => console.log("s")}
-              id={r.waste}
-            />
-          );
-        })}
+        {/* <Image style={{ width: 100 }} source={require("assets/images/trashCans/bio.svg")} /> */}
+        <ScrollView style={IntroStyles.trashCardsContainer}>
+          {ROIs.map((item, i) => {
+            return (
+              <TouchableWithoutFeedback
+                onPress={() => {
+                  setSelectedROI({ ...selectedROI, [item.waste]: !selectedROI[item.waste] });
+                }}
+                key={i}
+              >
+                <View.Paper
+                  style={[
+                    IntroStyles.trashCard,
+                    // active && IntroStyles.activeTrashCard,
+                    selectedROI[item.waste] && IntroStyles.activeTrashCard,
+                  ]}
+                >
+                  <Icon
+                    name={
+                      selectedROI[item.waste]
+                        ? "ios-radio-button-on-sharp"
+                        : "ios-radio-button-off-sharp"
+                    }
+                    style={{}}
+                    size={30}
+                    color={Colors.primary.main}
+                  />
+                  <Image source={item.iconSrc} />
+                  <Text.Callout>{item.text.split(".").join(" ").toLocaleLowerCase()}</Text.Callout>
+                </View.Paper>
+              </TouchableWithoutFeedback>
+            );
+          })}
+        </ScrollView>
         {/* <Button.Default onPress={() => props.next(2)}>DONE</Button.Default> */}
         <Button.Default onPress={() => props.done()}>DONE</Button.Default>
-        <Button.Default
-          onPress={() => {
-            props.next(1);
-          }}
-        >
-          Previous
-        </Button.Default>
       </View.Background>
     </ScrollView>
   );

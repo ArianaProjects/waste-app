@@ -1,34 +1,40 @@
-import React, { useState } from "react";
-import { StyleProp, TextInput, TextStyle } from "react-native";
-import { Picker, PickerIOS } from "@react-native-picker/picker";
+import { Text } from "components";
+import React from "react";
+import { TextStyle, ViewStyle } from "react-native";
 import RNPickerSelect, { PickerSelectProps } from "react-native-picker-select";
-
+import { useSelector } from "react-redux";
+import { RootState } from "states";
 import styles from "./TextPicker.styles";
 
-interface Props extends PickerSelectProps {}
+interface Props extends PickerSelectProps {
+  label: string;
+  textStyles?: TextStyle;
+}
 
 export default function TextPicker(props: Props) {
-  const customStyle: any = [styles.default, props.style];
-  const [selectedLanguage, setSelectedLanguage] = useState();
+  const theme = useSelector((state: RootState) => state.systemTheme.theme);
 
+  const isDark = theme == "dark";
+  const customStyle: ViewStyle = isDark
+    ? { ...styles.global, ...styles.defaultDark, ...props.style }
+    : { ...styles.global, ...styles.defaultLight, ...props.style };
+
+  const { label, ...newProps } = props;
   return (
-    <RNPickerSelect
-      {...props}
-      textInputProps={
-        {
-          // style: {
-          //   color: "white",
-          // },
-        }
-      }
-      // style={customStyle}
-      pickerProps={{
-        style: {
-          // backgroundColor: "red",
-        },
-      }}
-    />
+    <>
+      <Text.Title2 style={props.textStyles}>{label}</Text.Title2>
+      <RNPickerSelect
+        {...newProps}
+        style={{
+          viewContainer: customStyle,
+          placeholder: theme === "dark" ? styles.placeholderDark : styles.placeholderLight,
+          inputAndroid: theme === "dark" ? styles.inputDark : styles.inputLight,
+          inputIOS: theme === "dark" ? styles.inputDark : styles.inputLight,
+        }}
+      />
+    </>
   );
 }
 
 TextPicker.displayName = "TextPicker";
+TextPicker.defaultProps = { label: "test" };

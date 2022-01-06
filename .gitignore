@@ -334,7 +334,7 @@ package-lock.json
 
 # hidden files with tokens
 secret.ts
-app.json
+# app.json
 
 # Expo
 .expo

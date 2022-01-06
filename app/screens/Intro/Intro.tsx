@@ -1,30 +1,21 @@
+import { View } from "components";
+import { NavStatelessComponent } from "interfaces";
 import React, { useEffect, useRef, useState } from "react";
 import { SafeAreaView } from "react-native";
-import { Text, View } from "components";
-import { t } from "utils";
-import styles from "./Intro.styles";
-import navigationOptions from "./Intro.navigationOptions";
-import { NavStatelessComponent } from "interfaces";
-import { userPreferences } from "states/ducks";
+import AppIntroSlider from "react-native-app-intro-slider";
 import { useDispatch, useSelector } from "react-redux";
-import { Input, Button } from "components";
-import { getAllCities } from "../../network";
 import {
   actions,
   cityInterface,
   placeStateInterface,
   WastesInterface,
-  WasteType,
 } from "states/ducks/userPreferences/userPreferences.slice";
-import { getAllPlaces } from "network/place";
-import { F } from "ramda";
 import { RootState } from "states/rootReducer";
-import AppIntroSlider from "react-native-app-intro-slider";
+import navigationOptions from "./Intro.navigationOptions";
+import { default as IntroStyles, default as styles } from "./Intro.styles";
 import City from "./sections/City";
 import Place from "./sections/Place";
 import ROI from "./sections/RIO";
-import * as Notifications from "expo-notifications";
-import { navigate } from "navigation";
 
 const IntroScreen: NavStatelessComponent = () => {
   const dispatch = useDispatch();
@@ -34,45 +25,39 @@ const IntroScreen: NavStatelessComponent = () => {
   const [selectedPlace, setSelectedPlace] = useState<placeStateInterface>();
   const [selectedROI, setSelectedROI] = useState<WastesInterface>(UP.ROI);
   const [page, setPage] = useState<number>(0);
-  console.log(UP);
+  // console.log("UP", UP);
   const next = (a: number) => {
-    console.log(a);
+    // console.log(a);
     //@ts-ignore
     ref.current?.goToSlide(a);
-    setPage(a);
+    // setPage(a);
   };
   useEffect(() => {
     setSelectedPlace(undefined);
   }, [selectedCity]);
   const slides = [
-    {
-      key: 1,
-      title: "Title 1",
-      text: "Description.\nSay something cool",
-      backgroundColor: "#59b2ab",
-      page: (
-        <City selectedCity={selectedCity} next={(a) => next(a)} setSelectedCity={setSelectedCity} />
-      ),
-    },
-    {
-      key: 2,
-      title: "Title 2",
-      text: "Other cool stuff",
-      backgroundColor: "#febe29",
-      page: (
-        <Place
-          next={(a) => next(a)}
-          selectedCity={selectedCity}
-          selectedPlace={selectedPlace}
-          setSelectedPlace={setSelectedPlace}
-        />
-      ),
-    },
+    // {
+    //   key: 1,
+    //   // title: "Title 1",
+    //   // text: "Description.\nSay something cool",
+    //   // backgroundColor: "green",
+    //   page: (
+    //     <City selectedCity={selectedCity} next={(a) => next(a)} setSelectedCity={setSelectedCity} />
+    //   ),
+    // },
+    // {
+    //   key: 2,
+    //   page: (
+    //     <Place
+    //       next={(a) => next(a)}
+    //       selectedCity={selectedCity}
+    //       selectedPlace={selectedPlace}
+    //       setSelectedPlace={setSelectedPlace}
+    //     />
+    //   ),
+    // },
     {
       key: 3,
-      title: "Rocket guy",
-      text: "I'm already out of descriptions\n\nLorem ipsum bla bla bla",
-      backgroundColor: "#22bcb5",
       page: (
         <ROI
           collectionId={Number(selectedPlace?.collection.id)}
@@ -93,13 +78,7 @@ const IntroScreen: NavStatelessComponent = () => {
   ];
   const userPreferences = useSelector((state: RootState) => state.userPreferences);
   const renderItem = ({ item }: any) => {
-    return (
-      <View.Background>
-        <Text.Body>{item.title}</Text.Body>
-        <Text.Body>{item.text}</Text.Body>
-        {item.page}
-      </View.Background>
-    );
+    return <View.Background>{item.page}</View.Background>;
   };
 
   const onDone = () => {
@@ -122,12 +101,14 @@ const IntroScreen: NavStatelessComponent = () => {
         bottomButton={false}
         dotClickEnabled={false}
         showDoneButton={false}
-        renderItem={renderItem}
         scrollEnabled={false}
+        renderItem={renderItem}
         data={slides}
         onDone={onDone}
+        activeDotStyle={IntroStyles.activeDotStyle}
+        dotStyle={IntroStyles.dotStyle}
       />
-      {/* {userPreferences.city == null ? (
+      {/* {userPrefer ences.city == null ? (
         <City />
       ) : userPreferences.place == null ? (
         <Place />
