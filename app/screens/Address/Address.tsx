@@ -61,7 +61,7 @@ const AddressScreen: NavStatelessComponent = ({ navigation }: any) => {
   console.log(defaultData.place);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View.Background style={styles.container}>
       <Button.TextButton
         style={{ marginTop: 8, marginLeft: 4 }}
         onPress={() => navigator.openSetting()}
@@ -98,7 +98,7 @@ const AddressScreen: NavStatelessComponent = ({ navigation }: any) => {
           {t("save")}
         </Button.Default>
       </View.Background>
-    </SafeAreaView>
+    </View.Background>
   );
 };
 AddressScreen.navigationOptions = navigationOptions();

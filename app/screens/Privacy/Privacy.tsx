@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeAreaView } from "react-native";
-import { Button, Text } from "components";
+import { Button, Text, View } from "components";
 import { t } from "utils";
 import styles from "./Privacy.styles";
 import navigationOptions from "./Privacy.navigationOptions";
@@ -13,7 +13,7 @@ import { Colors } from "style";
 const PrivacyScreen: NavStatelessComponent = (props: any) => {
   const navigator = navigate(props.navigation);
   return (
-    <SafeAreaView style={styles.container}>
+    <View.Background style={styles.container}>
       <Button.TextButton
         style={{ marginTop: 8, marginLeft: 12, marginVertical: 8 }}
         onPress={() => {
@@ -29,7 +29,7 @@ const PrivacyScreen: NavStatelessComponent = (props: any) => {
         {t("back")}
       </Button.TextButton>
       <WebView source={{ uri: "https://www.arianagermany.com/privacy" }} />
-    </SafeAreaView>
+    </View.Background>
   );
 };
 PrivacyScreen.navigationOptions = navigationOptions();

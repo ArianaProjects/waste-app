@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Dimensions, SafeAreaView } from "react-native";
-import { Button, Text } from "components";
+import { Button, Text, View } from "components";
 import { t } from "utils";
 import styles from "./Notification.styles";
 import navigationOptions from "./Notification.navigationOptions";
@@ -19,13 +19,13 @@ const NotificationScreen: NavStatelessComponent = () => {
     getPlans();
   }, []);
   return (
-    <SafeAreaView style={styles.container}>
+    <View.Background style={styles.container}>
       <SwipeUp fullWidth>
         {plan?.map((item, index) => (
           <UpcomingEventCard key={index} remindTime={item.date} wasteType={item.type} />
         ))}
       </SwipeUp>
-    </SafeAreaView>
+    </View.Background>
   );
 };
 NotificationScreen.navigationOptions = navigationOptions();

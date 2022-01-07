@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeAreaView } from "react-native";
-import { Button, Text } from "components";
+import { Button, Text, View } from "components";
 import { t } from "utils";
 import styles from "./AboutUs.styles";
 import navigationOptions from "./AboutUs.navigationOptions";
@@ -14,7 +14,7 @@ const AboutUsScreen: NavStatelessComponent = (props: any) => {
   const navigator = navigate(props.navigation);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View.Background style={styles.container}>
       <Button.TextButton
         style={{ marginTop: 8, marginLeft: 12, marginVertical: 8 }}
         onPress={() => {
@@ -30,7 +30,7 @@ const AboutUsScreen: NavStatelessComponent = (props: any) => {
         {t("back")}
       </Button.TextButton>
       <WebView source={{ uri: "https://www.arianagermany.com" }} />
-    </SafeAreaView>
+    </View.Background>
   );
 };
 AboutUsScreen.navigationOptions = navigationOptions();

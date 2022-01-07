@@ -36,26 +36,26 @@ const IntroScreen: NavStatelessComponent = () => {
     setSelectedPlace(undefined);
   }, [selectedCity]);
   const slides = [
-    // {
-    //   key: 1,
-    //   // title: "Title 1",
-    //   // text: "Description.\nSay something cool",
-    //   // backgroundColor: "green",
-    //   page: (
-    //     <City selectedCity={selectedCity} next={(a) => next(a)} setSelectedCity={setSelectedCity} />
-    //   ),
-    // },
-    // {
-    //   key: 2,
-    //   page: (
-    //     <Place
-    //       next={(a) => next(a)}
-    //       selectedCity={selectedCity}
-    //       selectedPlace={selectedPlace}
-    //       setSelectedPlace={setSelectedPlace}
-    //     />
-    //   ),
-    // },
+    {
+      key: 1,
+      // title: "Title 1",
+      // text: "Description.\nSay something cool",
+      // backgroundColor: "green",
+      page: (
+        <City selectedCity={selectedCity} next={(a) => next(a)} setSelectedCity={setSelectedCity} />
+      ),
+    },
+    {
+      key: 2,
+      page: (
+        <Place
+          next={(a) => next(a)}
+          selectedCity={selectedCity}
+          selectedPlace={selectedPlace}
+          setSelectedPlace={setSelectedPlace}
+        />
+      ),
+    },
     {
       key: 3,
       page: (
@@ -93,7 +93,7 @@ const IntroScreen: NavStatelessComponent = () => {
     }
   };
   return (
-    <SafeAreaView style={styles.container}>
+    <View.Background style={styles.container}>
       <AppIntroSlider
         ref={ref}
         showNextButton={false}
@@ -117,7 +117,7 @@ const IntroScreen: NavStatelessComponent = () => {
       ) : (
         <Text.Body>{t("INTRO_TEXT")}</Text.Body>
       )} */}
-    </SafeAreaView>
+    </View.Background>
   );
 };
 IntroScreen.navigationOptions = navigationOptions();

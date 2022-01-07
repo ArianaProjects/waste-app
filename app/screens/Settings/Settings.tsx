@@ -1,3 +1,4 @@
+import { View } from "components";
 import SettingCard from "components/Cards/SettingCard/SettingCard";
 import SwipeUp from "components/Cards/SwipeUp/SwipeUp";
 import { NavStatelessComponent } from "interfaces";
@@ -12,7 +13,7 @@ const SettingsScreen: NavStatelessComponent = (props: any) => {
   const navigator = navigate(props.navigation);
   console.log("props", navigator);
   return (
-    <SafeAreaView style={styles.container}>
+    <View.Background style={styles.container}>
       <SwipeUp fullWidth>
         <SettingCard
           onPress={() => navigator.openNotificationSettings()}
@@ -57,7 +58,7 @@ const SettingsScreen: NavStatelessComponent = (props: any) => {
           iconName="shield-outline"
         />
       </SwipeUp>
-    </SafeAreaView>
+    </View.Background>
   );
 };
 SettingsScreen.navigationOptions = navigationOptions();

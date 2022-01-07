@@ -37,7 +37,7 @@ const NotificationSettingsScreen: NavStatelessComponent = ({ navigation }: any) 
     navigator.openSetting();
   };
   return (
-    <SafeAreaView style={styles.container}>
+    <View.Background style={styles.container}>
       <Button.TextButton
         style={{ marginTop: 8, marginLeft: 4 }}
         onPress={() => navigator.openSetting()}
@@ -138,7 +138,7 @@ const NotificationSettingsScreen: NavStatelessComponent = ({ navigation }: any) 
       <Button.Default style={styles.button} onPress={handelSave}>
         {t("save")}
       </Button.Default>
-    </SafeAreaView>
+    </View.Background>
   );
 };
 NotificationSettingsScreen.navigationOptions = navigationOptions();

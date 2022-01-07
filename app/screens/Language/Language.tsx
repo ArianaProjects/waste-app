@@ -20,7 +20,7 @@ const LanguageScreen: NavStatelessComponent = (props: any) => {
   console.log(defaultData);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View.Background style={styles.container}>
       <Button.TextButton
         style={{ marginTop: 8 }}
         onPress={() => {
@@ -65,7 +65,7 @@ const LanguageScreen: NavStatelessComponent = (props: any) => {
       >
         {t("save")}
       </Button.Default>
-    </SafeAreaView>
+    </View.Background>
   );
 };
 LanguageScreen.navigationOptions = navigationOptions();

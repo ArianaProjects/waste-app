@@ -66,7 +66,7 @@ const ROIScreen = (props: ROIProps) => {
   };
 
   return (
-    <SafeAreaView style={ROIStyles.container}>
+    <View.Background style={ROIStyles.container}>
       <Button.TextButton
         style={{ marginTop: 8 }}
         onPress={() => {
@@ -120,7 +120,7 @@ const ROIScreen = (props: ROIProps) => {
           <Button.Default onPress={handelSave}>{t("save")}</Button.Default>
         </View.Background>
       </View.Background>
-    </SafeAreaView>
+    </View.Background>
   );
 };
 
