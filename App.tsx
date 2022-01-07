@@ -67,10 +67,10 @@ export default function App() {
     );
   }
   return (
-    <SafeAreaProvider>
-      {/* <View.Background>{body}</View.Background> */}
-      {body}
-    </SafeAreaProvider>
+    // <SafeAreaProvider>
+    // {/* <View.Background>{body}</View.Background> */}
+    { body }
+    // </SafeAreaProvider>
   );
 }
 
