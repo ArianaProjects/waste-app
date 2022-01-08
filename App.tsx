@@ -43,7 +43,7 @@ export default function App() {
   if (!isLoadingComplete) {
     return null;
   } else {
-    body = (
+    return (
       <Provider store={store}>
         <GlobalizeProvider locale={language || defaultLanguage}>
           <LocalizationContext.Provider
@@ -66,12 +66,6 @@ export default function App() {
       </Provider>
     );
   }
-  return (
-    // <SafeAreaProvider>
-    // {/* <View.Background>{body}</View.Background> */}
-    { body }
-    // </SafeAreaProvider>
-  );
 }
 
 const styles = StyleSheet.create({
