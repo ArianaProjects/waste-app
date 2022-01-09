@@ -35,7 +35,7 @@ const release = Constants.manifest.revisionId || "0.0.0";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
-  enableScreens();
+  // enableScreens();
 
   let lang = localeExpo.substring(0, 2);
   const [language, setLanguage] = useState(lang);
@@ -56,7 +56,6 @@ export default function App() {
               setLanguage: setLanguage,
             }}
           >
-            
             <NotificationProvider>
               {__DEV__ ? (
                 <Navigation />
