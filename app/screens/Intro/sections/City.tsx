@@ -26,7 +26,6 @@ const City = (props: cityProps) => {
 
   useEffect(() => {
     getAllCities().then((x) => setCities(x));
-    // console.log(cities);
   }, []);
   useEffect(() => {
     let d: { label: string; value: string }[] = [];
@@ -35,7 +34,6 @@ const City = (props: cityProps) => {
   }, [cities]);
   const onValueChange = (value: any, index: number) => {
     const h = cities.find((y) => y.id == value);
-    // console.log("ac", h, h != undefined);
 
     props.setSelectedCity(h);
     setActive(h != undefined);

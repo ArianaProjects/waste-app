@@ -1,7 +1,6 @@
 import { Button, Text, View } from "components";
 import * as Notifications from "expo-notifications";
 import { t } from "i18n-js";
-import { camelCase } from "lodash";
 import React, { useEffect, useState } from "react";
 import { Image, ScrollView, TouchableWithoutFeedback } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -28,8 +27,6 @@ interface ROIProps {
 }
 
 const ROI = (props: ROIProps) => {
-  // console.log(props.selectedROI);
-
   const [selectedROI, setSelectedROI] = useState<WastesInterface>(props.selectedROI);
   const [ROIs] = useState([
     {
@@ -68,7 +65,6 @@ const ROI = (props: ROIProps) => {
       waste: WasteType.PACKAGE,
     },
   ]);
-  // console.log(selectedROI);
   useEffect(() => {
     props.setSelectedROI(selectedROI);
   }, [selectedROI]);
@@ -90,7 +86,6 @@ const ROI = (props: ROIProps) => {
         {t("back")}
       </Button.TextButton>
       <View.Background>
-        {/* <Image style={{ width: 100 }} source={require("assets/images/trashCans/bio.svg")} /> */}
         <ScrollView style={IntroStyles.trashCardsContainer}>
           {ROIs.map((item, i) => {
             return (
@@ -103,7 +98,6 @@ const ROI = (props: ROIProps) => {
                 <View.Paper
                   style={[
                     IntroStyles.trashCard,
-                    // active && IntroStyles.activeTrashCard,
                     selectedROI[item.waste] && IntroStyles.activeTrashCard,
                   ]}
                 >
@@ -117,15 +111,14 @@ const ROI = (props: ROIProps) => {
                     size={30}
                     color={Colors.primary.main}
                   />
-                  <Image source={item.iconSrc} />
+                  <Image style={{ width: 50, height: 50 }} source={item.iconSrc} />
                   <Text.Callout>{item.text.split(".").join(" ").toLocaleLowerCase()}</Text.Callout>
                 </View.Paper>
               </TouchableWithoutFeedback>
             );
           })}
         </ScrollView>
-        {/* <Button.Default onPress={() => props.next(2)}>DONE</Button.Default> */}
-        <Button.Default onPress={() => props.done()}>DONE</Button.Default>
+        <Button.Default onPress={() => props.done()}>{t("done")}</Button.Default>
       </View.Background>
     </ScrollView>
   );

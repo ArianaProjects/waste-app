@@ -64,13 +64,13 @@ const initialState: initialStateInterface = {
   appointments: null,
 
   ROI: {
-    [WasteType.BIO]: true,
-    [WasteType.ELECTRO]: true,
-    [WasteType.GREEN]: true,
-    [WasteType.PAPER]: true,
-    [WasteType.SPECIAL]: true,
-    [WasteType.RES]: true,
-    [WasteType.PACKAGE]: true,
+    [WasteType.BIO]: false,
+    [WasteType.ELECTRO]: false,
+    [WasteType.GREEN]: false,
+    [WasteType.PAPER]: false,
+    [WasteType.SPECIAL]: false,
+    [WasteType.RES]: false,
+    [WasteType.PACKAGE]: false,
   },
   notificationsConfigs: {
     hour: 9,

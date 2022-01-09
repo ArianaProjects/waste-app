@@ -1,7 +1,6 @@
 import { View } from "components";
 import { NavStatelessComponent } from "interfaces";
 import React, { useEffect, useRef, useState } from "react";
-import { SafeAreaView } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -25,12 +24,9 @@ const IntroScreen: NavStatelessComponent = () => {
   const [selectedPlace, setSelectedPlace] = useState<placeStateInterface>();
   const [selectedROI, setSelectedROI] = useState<WastesInterface>(UP.ROI);
   const [page, setPage] = useState<number>(0);
-  // console.log("UP", UP);
   const next = (a: number) => {
-    // console.log(a);
     //@ts-ignore
     ref.current?.goToSlide(a);
-    // setPage(a);
   };
   useEffect(() => {
     setSelectedPlace(undefined);
@@ -38,9 +34,6 @@ const IntroScreen: NavStatelessComponent = () => {
   const slides = [
     {
       key: 1,
-      // title: "Title 1",
-      // text: "Description.\nSay something cool",
-      // backgroundColor: "green",
       page: (
         <City selectedCity={selectedCity} next={(a) => next(a)} setSelectedCity={setSelectedCity} />
       ),
@@ -83,8 +76,6 @@ const IntroScreen: NavStatelessComponent = () => {
 
   const onDone = () => {
     if (selectedPlace && selectedCity) {
-      dispatch(actions.setNotifications());
-
       dispatch(actions.changePlace(selectedPlace));
       dispatch(actions.changeCity(selectedCity));
       dispatch(actions.changeROI(selectedROI));

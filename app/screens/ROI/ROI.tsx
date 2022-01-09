@@ -59,7 +59,6 @@ const ROIScreen = (props: ROIProps) => {
       waste: WasteType.PACKAGE,
     },
   ]);
-  // console.log(selectedROI);
   const handelSave = () => {
     dispatch(userPreferences.actions.changeROI(selectedROI));
     navigator.openSetting();
@@ -82,7 +81,6 @@ const ROIScreen = (props: ROIProps) => {
         {t("back")}
       </Button.TextButton>
       <View.Background>
-        {/* <Image style={{ width: 100 }} source={require("assets/images/trashCans/bio.svg")} /> */}
         <ScrollView style={ROIStyles.trashCardsContainer}>
           {ROIs.map((item, i) => {
             return (
@@ -95,7 +93,6 @@ const ROIScreen = (props: ROIProps) => {
                 <View.Paper
                   style={[
                     ROIStyles.trashCard,
-                    // active && IntroStyles.activeTrashCard,
                     selectedROI[item.waste] && ROIStyles.activeTrashCard,
                   ]}
                 >
@@ -109,7 +106,7 @@ const ROIScreen = (props: ROIProps) => {
                     size={30}
                     color={Colors.primary.main}
                   />
-                  <Image source={item.iconSrc} />
+                  <Image style={{ width: 50, height: 50 }} source={item.iconSrc} />
                   <Text.Callout>{item.text.split(".").join(" ").toLocaleLowerCase()}</Text.Callout>
                 </View.Paper>
               </TouchableWithoutFeedback>
