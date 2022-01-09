@@ -18,6 +18,7 @@ import { store } from "states";
 import { View } from "components";
 import { userPreferences } from "states/ducks";
 import NotificationProvider from "./app/providers/Notification";
+import { Colors } from "style";
 
 loadCldr(
   // Load the locales you actually need
@@ -56,6 +57,7 @@ export default function App() {
               setLanguage: setLanguage,
             }}
           >
+            <StatusBar backgroundColor={Colors.background.default.light} />
             <NotificationProvider>
               {__DEV__ ? (
                 <Navigation />

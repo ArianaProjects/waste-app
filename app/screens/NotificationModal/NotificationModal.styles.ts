@@ -7,6 +7,7 @@ export default StyleSheet.create({
   container: {
     ...Layout.containerWithPadding,
     justifyContent: "space-between",
+    backgroundColor: Colors.background.paper.light,
   },
   title: {
     color: Colors.primary.dark,

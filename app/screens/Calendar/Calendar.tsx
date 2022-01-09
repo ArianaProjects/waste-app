@@ -114,7 +114,7 @@ const CalendarScreen: NavStatelessComponent = () => {
   };
   return (
     <>
-      <Animated.View style={[styles.container, { marginTop: margin }]}>
+      <Animated.View style={[styles.container, { paddingTop: margin }]}>
         <Calendar
           markingType="multi-dot"
           markedDates={planList}

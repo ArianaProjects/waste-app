@@ -7,7 +7,8 @@ export default StyleSheet.create({
   container: {
     ...Layout.containerWithPadding,
     justifyContent: "space-between",
-    paddingTop: 32,
+    paddingTop: 8,
+    backgroundColor: Colors.background.default.light,
   },
   mainContainer: {
     flex: 1,

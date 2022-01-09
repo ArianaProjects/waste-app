@@ -56,14 +56,14 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const screenOptions = {
   headerShown: false,
 
-  // ...ComponentsStyle.transitionBetweenScreenPresets,
+  ...ComponentsStyle.transitionBetweenScreenPresets,
 };
 
 function RootNavigator() {
   const UP = useSelector((state: RootState) => state.userPreferences);
   return (
     <Stack.Navigator>
-      {UP.introDone ? (
+      {!UP.introDone ? (
         <Stack.Screen name="Intro" component={Intro} options={screenOptions} />
       ) : (
         <>

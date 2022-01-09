@@ -6,6 +6,7 @@ export default StyleSheet.create({
   container: {
     justifyContent: "space-between",
     marginHorizontal: 8,
+    backgroundColor: Colors.background.default.light,
   },
   trashCardsContainer: {
     marginTop: 8,
