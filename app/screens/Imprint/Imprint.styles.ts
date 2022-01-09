@@ -7,7 +7,7 @@ export default StyleSheet.create({
     // ...Layout.containerWithPadding,
     backgroundColor: Colors.background.default.light,
     flex: 1,
-    paddingTop: 8,
+    paddingTop: 32,
     padding: 0,
   },
 });

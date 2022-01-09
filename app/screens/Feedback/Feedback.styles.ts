@@ -6,7 +6,7 @@ export default StyleSheet.create({
   container: {
     ...Layout.containerWithPadding,
     flex: 1,
-    paddingTop: 8,
+    paddingTop: 32,
     paddingHorizontal: 16,
     padding: 0,
     backgroundColor: Colors.background.default.light,

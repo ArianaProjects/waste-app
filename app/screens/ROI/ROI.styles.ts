@@ -5,7 +5,7 @@ import paper from "style/components/Paper/paper";
 export default StyleSheet.create({
   container: {
     justifyContent: "space-between",
-    marginHorizontal: 8,
+    paddingTop: 32,
     backgroundColor: Colors.background.default.light,
   },
   trashCardsContainer: {

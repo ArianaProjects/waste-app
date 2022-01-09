@@ -7,7 +7,7 @@ export default StyleSheet.create({
   container: {
     ...Layout.containerWithPadding,
     justifyContent: "space-between",
-    paddingTop: 8,
+    paddingTop: 32,
     backgroundColor: Colors.background.default.light,
   },
   content: { flex: 1, justifyContent: "center", marginBottom: 150 },
@@ -27,7 +27,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.primary.main,
   },
   inputTime: {
-    width: 120,
+    width: 130,
     marginLeft: 8,
     fontSize: 30,
     color: Colors.text.primary.light,
