@@ -44,7 +44,6 @@ export function BottomTabNavigator() {
         name="Notification"
         component={NotificationScreen}
         options={{
-          title: "Tab Two",
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-notifications-sharp" color={color} />,
         }}
       />
@@ -52,7 +51,6 @@ export function BottomTabNavigator() {
         name="Setting"
         component={SettingsScreen}
         options={({ navigation }: RootTabScreenProps<"Setting">) => ({
-          title: "Tab One",
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-settings-sharp" color={color} />,
           headerRight: () => (
             <Pressable

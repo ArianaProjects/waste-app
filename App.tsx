@@ -4,7 +4,7 @@ import { StyleSheet, Text } from "react-native";
 
 import { locale as localeExpo } from "expo-localization";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 
 import { loadCldr, GlobalizeProvider } from "react-native-globalize";
 import { enableScreens } from "react-native-screens";
@@ -16,6 +16,8 @@ import StoreReviewChecker from "components/StoreReviewChecker";
 import Constants from "expo-constants";
 import { store } from "states";
 import { View } from "components";
+import { userPreferences } from "states/ducks";
+import NotificationProvider from "./app/providers/Notification";
 
 loadCldr(
   // Load the locales you actually need
@@ -37,7 +39,7 @@ export default function App() {
 
   let lang = localeExpo.substring(0, 2);
   const [language, setLanguage] = useState(lang);
-  const [locale, setLocale] = useState(localeExpo);
+  const [locale, setLocale] = useState("de-DE");
   let body = <View.Background>EMPTY</View.Background>;
 
   if (!isLoadingComplete) {
@@ -54,13 +56,16 @@ export default function App() {
               setLanguage: setLanguage,
             }}
           >
-            {__DEV__ ? (
-              <Navigation />
-            ) : (
-              <StoreReviewChecker>
+            
+            <NotificationProvider>
+              {__DEV__ ? (
                 <Navigation />
-              </StoreReviewChecker>
-            )}
+              ) : (
+                <StoreReviewChecker>
+                  <Navigation />
+                </StoreReviewChecker>
+              )}
+            </NotificationProvider>
           </LocalizationContext.Provider>
         </GlobalizeProvider>
       </Provider>

@@ -58,7 +58,7 @@ const AddressScreen: NavStatelessComponent = ({ navigation }: any) => {
     dispatch(userPreferences.actions.changePlace(place));
     navigator.openSetting();
   };
-  console.log(defaultData.place);
+  // console.log(defaultData.place);
 
   return (
     <View.Background style={styles.container}>

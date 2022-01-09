@@ -1,14 +1,18 @@
 {
   "WasteType": {
-    "BIO": "BIO",
-    "ELECTRO": "ELECTRO",
-    "GREEN": "GREEN",
-    "PAPER": "PAPER",
-    "SPECIAL": "SPECIAL",
-    "RES": "RES",
-    "PACKAGE": "PACKAGE",
-    "Hazardous": "Hazardous",
-    "Christmas": "Christmas"
+    "BIO": "Bio Waste",
+    "ELECTRO": "electro Waste",
+    "GREEN": "Green Waste",
+    "PAPER": "Paper Waste",
+    "SPECIAL": "Special Waste",
+    "RES": "Res Waste",
+    "PACKAGE": "Package Waste",
+    "Hazardous": "Hazardous Waste",
+    "Christmas": "Christmas Waste"
   },
-  "takeOut": "takeOut"
+  "takeOut": "take Out",
+  "in": "in",
+  "day": "Days",
+  "dayAgo": "Days ago",
+  "today": "Today"
 }

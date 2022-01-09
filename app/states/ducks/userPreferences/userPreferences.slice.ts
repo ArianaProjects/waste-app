@@ -1,7 +1,9 @@
+import i18n from "i18n-js";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import * as Notifications from "expo-notifications";
 import { AppointmentInterface } from "interfaces";
 import { getAllAppointment } from "network/Appointment";
+import { Alert } from "react-native";
 import { currentLanguage, notif } from "utils";
 
 export enum WasteType {
@@ -13,7 +15,12 @@ export enum WasteType {
   PACKAGE,
   ELECTRO,
 }
-
+export interface NotificationsConfigs {
+  hour: number;
+  minutes: number;
+  // repeat: false;
+  daySooner: number;
+}
 export interface cityInterface {
   id: string;
   country: string;
@@ -44,6 +51,7 @@ export interface initialStateInterface {
   place: placeStateInterface | null;
   ROI: WastesInterface;
   appointments: AppointmentInterface[] | null;
+  notificationsConfigs: NotificationsConfigs;
 }
 
 const initialState: initialStateInterface = {
@@ -54,6 +62,7 @@ const initialState: initialStateInterface = {
   city: null,
   place: null,
   appointments: null,
+
   ROI: {
     [WasteType.BIO]: true,
     [WasteType.ELECTRO]: true,
@@ -63,24 +72,20 @@ const initialState: initialStateInterface = {
     [WasteType.RES]: true,
     [WasteType.PACKAGE]: true,
   },
+  notificationsConfigs: {
+    hour: 9,
+    minutes: 30,
+    // repeat: false,
+    daySooner: 0,
+  },
 };
 
 const userPreferences = createSlice({
   name: "userPreferences",
   initialState,
   reducers: {
-    setNotifications(state) {
-      async () => {};
-      const appointments: AppointmentInterface[] | null = null;
-      getAllAppointment(Number(state.place?.collection.id)).then((x) => (state.appointments = x));
-
-      (async () => {
-        const { status } = await Notifications.requestPermissionsAsync();
-        if (status == "granted") {
-          await notif.addListNotification(state.appointments);
-        }
-        const all = await Notifications.getAllScheduledNotificationsAsync();
-      })();
+    changeNotificationsConfigs(state, action: PayloadAction<NotificationsConfigs>) {
+      state.notificationsConfigs = action.payload;
     },
     toggleNotifications(state, action: PayloadAction<boolean>) {
       state.activatedNotifications = action.payload;
@@ -116,20 +121,20 @@ const {
   changeCity,
   changePlace,
   changeROI,
+  changeNotificationsConfigs,
   changeAppointment,
-  setNotifications,
   changeIntroDone,
 } = userPreferences.actions;
 
 export const actions = {
   toggleNotifications,
+  changeNotificationsConfigs,
   changeLanguage,
   incrementTimesStarted,
   changeCity,
   changePlace,
   changeROI,
   changeAppointment,
-  setNotifications,
   changeIntroDone,
 };
 

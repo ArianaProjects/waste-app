@@ -77,7 +77,8 @@ const UpcomingEventCard = (props: Props) => {
     } else {
       setIsPass(true);
       const differenceMs = Math.abs(date2.getTime() - date1.getTime());
-      return Math.round(differenceMs / ONE_DAY).toFixed(0);
+      const day = Math.round(differenceMs / ONE_DAY).toFixed(0);
+      return day;
     }
 
     // Convert back to days and return
@@ -104,7 +105,9 @@ const UpcomingEventCard = (props: Props) => {
         <Text.Callout>
           {t("takeOut")} {t(ROIs.find((i) => i.waste === props.wasteType)?.text || "")}
         </Text.Callout>
-        {isPass ? (
+        {daysLeft === "0" ? (
+          <Text.Callout style={{ color: Colors.text.secondary[theme] }}>{t("today")}</Text.Callout>
+        ) : isPass ? (
           <Text.Callout style={{ color: Colors.text.secondary[theme] }}>
             {daysLeft && daysLeft}
             {"  "}

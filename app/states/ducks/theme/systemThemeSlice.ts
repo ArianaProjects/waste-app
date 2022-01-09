@@ -1,10 +1,4 @@
-import { getAllAppointment } from "apis/Appointment";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppointmentInterface } from "interfaces";
-import * as Notifications from "expo-notifications";
-
-import { notif, currentLanguage } from "utils";
-import { useColorScheme } from "react-native";
+import { createSlice } from "@reduxjs/toolkit";
 
 interface initialStateInterface {
   theme: "dark" | "light";

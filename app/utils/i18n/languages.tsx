@@ -2,7 +2,6 @@ import { locale } from "expo-localization";
 
 const supportedLanguages = {
   // Key-value pairs
-  // State the name of the language in its own language :)
   en: "English",
   de: "Deutsch",
 };

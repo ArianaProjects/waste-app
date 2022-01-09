@@ -1,6 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import useColorScheme from "hooks/useColorScheme";
+import I18n from "i18n-js";
 import { RootStackParamList } from "interfaces";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,27 +10,31 @@ import AddressScreen from "screens/Address";
 import FeedbackScreen from "screens/Feedback";
 import Intro from "screens/Intro";
 import LanguageScreen from "screens/Language";
-import NotificationScreen from "screens/Notification";
 import NotificationSettingsScreen from "screens/NotificationSettings";
 import PrivacyScreen from "screens/Privacy";
 import ROI from "screens/ROI";
 import { RootState } from "states";
 import { actions } from "states/ducks/userPreferences/userPreferences.slice";
 import { ComponentsStyle } from "style";
+import { withLocalization } from "utils";
 import { getAllAppointment } from "../network/Appointment";
 import navigate from "./navigate";
 import { BottomTabNavigator } from "./Navigator/ButtomTabNavigator";
 // import { actions } from "states/ducks/userPreferences";
-export default function Navigation() {
+function Navigation() {
   const colorScheme = useColorScheme();
 
   const dispatch = useDispatch();
-  const theme = useSelector((state: RootState) => state.systemTheme.theme);
+  const language = useSelector((state: RootState) => state.userPreferences.language);
   const getPlans = async () => {
     const plans = await getAllAppointment(1);
 
     dispatch(actions.changeAppointment(plans));
   };
+  React.useEffect(() => {
+    // Change language here:
+    I18n.locale = language === "en" ? "en-US" : "de-DE";
+  }, [language]);
   React.useLayoutEffect(() => {
     getPlans();
     // theme === "system" && dispatch(toggleTheme(colorScheme));
@@ -79,3 +84,4 @@ function RootNavigator() {
 }
 
 export { navigate };
+export default withLocalization(Navigation);

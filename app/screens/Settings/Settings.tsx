@@ -11,7 +11,7 @@ import styles from "./Settings.styles";
 
 const SettingsScreen: NavStatelessComponent = (props: any) => {
   const navigator = navigate(props.navigation);
-  console.log("props", navigator);
+  // console.log("props", navigator);
   return (
     <View.Background style={styles.container}>
       <SwipeUp fullWidth>

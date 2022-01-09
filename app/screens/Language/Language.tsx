@@ -17,7 +17,7 @@ const LanguageScreen: NavStatelessComponent = (props: any) => {
   const defaultData = useSelector((state: RootState) => state.userPreferences.language);
   const dispatch = useDispatch();
   const [active, setActive] = useState<string>(defaultData);
-  console.log(defaultData);
+  // console.log(defaultData);
 
   return (
     <View.Background style={styles.container}>

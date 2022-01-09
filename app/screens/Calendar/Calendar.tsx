@@ -1,12 +1,14 @@
+import { Button } from "components";
 import SwipeUp from "components/Cards/SwipeUp/SwipeUp";
 import UpcomingEventCard from "components/Cards/UpcomingEvent/UpcomingEventCard";
+import * as Notifications from "expo-notifications";
 import { AppointmentInterface, NavStatelessComponent } from "interfaces";
-import { merge } from "lodash";
 import { getAllAppointment } from "network/Appointment";
 import React, { Suspense, useEffect, useRef, useState } from "react";
-import { Animated, SafeAreaView } from "react-native";
+import { Animated } from "react-native";
 import { Calendar } from "react-native-calendars";
 import { MarkingProps } from "react-native-calendars/src/calendar/day/marking";
+import { DateData } from "react-native-calendars/src/types";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useSelector } from "react-redux";
 import { RootState } from "states";
@@ -14,7 +16,6 @@ import { WasteType } from "states/ducks/userPreferences/userPreferences.slice";
 import { Colors, Font } from "style";
 import navigationOptions from "./Calendar.navigationOptions";
 import styles from "./Calendar.styles";
-import { DateData } from "react-native-calendars/src/types";
 const NotificationModalScreen = React.lazy(() => import("screens/NotificationModal"));
 
 type MarkedDatesType = {
@@ -22,6 +23,9 @@ type MarkedDatesType = {
 };
 const CalendarScreen: NavStatelessComponent = () => {
   const theme = useSelector((state: RootState) => state.systemTheme.theme);
+  const data = useSelector((state: RootState) => state.userPreferences.notificationsConfigs);
+  // console.log("datadatadatadatadatadatadata", data);
+
   const margin = useRef(new Animated.Value(150)).current;
   // const plan = useSelector((state: RootState) => state.userPreferences.appointments);
   const nextWeek = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toString();
@@ -29,9 +33,8 @@ const CalendarScreen: NavStatelessComponent = () => {
   const [planList, setPlanList] = useState<MarkedDatesType>();
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>();
-
-  // TODO show modal
-  const [showModal, setShowModal] = useState(true);
+  const [trashCanType, setTrashCanType] = useState<WasteType>();
+  const [showModal, setShowModal] = useState(false);
   type trashColorsType = {
     [key in WasteType]: string;
   };
@@ -77,6 +80,17 @@ const CalendarScreen: NavStatelessComponent = () => {
       setPlanList(d);
     });
   }, [plan]);
+
+  const lastNotificationResponse = Notifications.useLastNotificationResponse();
+
+  useEffect(() => {
+    // console.log(lastNotificationResponse);
+
+    if (lastNotificationResponse) {
+      setTrashCanType(lastNotificationResponse.notification.request.content.data.type as WasteType);
+      setShowModal(true);
+    }
+  }, [lastNotificationResponse]);
 
   useEffect(() => {
     open
@@ -148,8 +162,19 @@ const CalendarScreen: NavStatelessComponent = () => {
           ))}
         </SwipeUp>
       </Animated.View>
+
+      {/* <Button.Default
+        onPress={async () => console.log(await Notifications.getAllScheduledNotificationsAsync())}
+      >
+        check
+      </Button.Default> */}
+      {/* <Button.Default onPress={() => plan && notif.addListNotification(plan)}>press</Button.Default> */}
       <Suspense fallback={<></>}>
-        <NotificationModalScreen trashCanType={2} setShow={setShowModal} show={showModal} />
+        <NotificationModalScreen
+          trashCanType={trashCanType || 1}
+          setShow={setShowModal}
+          show={showModal}
+        />
       </Suspense>
     </>
   );

@@ -28,7 +28,7 @@ interface ROIProps {
 }
 
 const ROI = (props: ROIProps) => {
-  console.log(props.selectedROI);
+  // console.log(props.selectedROI);
 
   const [selectedROI, setSelectedROI] = useState<WastesInterface>(props.selectedROI);
   const [ROIs] = useState([

@@ -1,41 +1,49 @@
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Button, Text, View } from "components";
 import { t } from "i18n-js";
-import { AppointmentInterface, NavStatelessComponent } from "interfaces";
+import { NavStatelessComponent } from "interfaces";
+import { navigate } from "navigation";
 import React, { useEffect, useState } from "react";
-import { Pressable, SafeAreaView, Switch } from "react-native";
+import { Pressable, Switch } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "states";
+import { userPreferences } from "states/ducks";
 import { Colors } from "style";
-import { getAllAppointment } from "network/Appointment";
 import navigationOptions from "./NotificationSettings.navigationOptions";
 import styles from "./NotificationSettings.styles";
-import { navigate } from "navigation";
 
 const NotificationSettingsScreen: NavStatelessComponent = ({ navigation }: any) => {
+  // get redux data
   const dispatch = useDispatch();
   const defaultData = useSelector((state: RootState) => state.userPreferences);
 
+  // set data for dispatch to redux
+  const [daySooner, setDaySooner] = useState(defaultData.notificationsConfigs.daySooner);
+  const [hour, setHour] = useState(defaultData.notificationsConfigs.hour);
+  const [minutes, setMinutes] = useState(defaultData.notificationsConfigs.minutes);
+
   const navigator = navigate(navigation);
-  const [plan, setPlan] = useState<AppointmentInterface[]>();
-  const [remindTime, setRemindTime] = useState(new Date(2022, 1, 4, 9, 30, 0, 0));
-  const [show, setShow] = useState(false);
-  const [switchValue, setSwitchValue] = useState(false);
   const theme = useSelector((state: RootState) => state.systemTheme.theme);
 
-  const getPlans = async () => {
-    const plans = await getAllAppointment(1);
-    setPlan(plans.filter((i) => i.date.getDate() <= new Date().getDate()));
-  };
-  useEffect(() => {
-    getPlans();
-  }, []);
-  // {/* TODO put new changes */}
+  // set values
+  const [remindTime, setRemindTime] = useState(new Date(2022, 1, 4, hour, minutes, 0, 0));
+  const [show, setShow] = useState(false);
+  const [switchValue, setSwitchValue] = useState(defaultData.activatedNotifications);
+
   const handelSave = () => {
+    dispatch(
+      userPreferences.actions.changeNotificationsConfigs({
+        daySooner: daySooner,
+        hour: hour,
+        minutes: minutes,
+      })
+    );
+    dispatch(userPreferences.actions.toggleNotifications(switchValue));
     navigator.openSetting();
   };
+
   return (
     <View.Background style={styles.container}>
       <Button.TextButton
@@ -73,14 +81,15 @@ const NotificationSettingsScreen: NavStatelessComponent = ({ navigation }: any) 
 
           <View.Background style={styles.inputContainer}>
             <RNPickerSelect
-              value={1}
+              value={daySooner}
+              placeholder={days.find((i) => i.value === daySooner)}
               style={{
                 inputIOS: styles.input,
-
+                placeholder: styles.input,
                 inputAndroid: styles.input,
               }}
               onValueChange={(e) => {
-                console.log(e);
+                setDaySooner(e);
               }}
               items={days}
             />
@@ -92,12 +101,12 @@ const NotificationSettingsScreen: NavStatelessComponent = ({ navigation }: any) 
           <Pressable onPress={() => setShow(true)}>
             <View.Paper style={styles.timeContainer}>
               <Text.Title3>
-                {remindTime.getHours() > 12
+                {remindTime.getHours() > 13
                   ? remindTime.getHours() - 12 + ":" + remindTime.getMinutes()
                   : remindTime.getHours() + ":" + remindTime.getMinutes()}
               </Text.Title3>
               <View.Background style={styles.timeAM_PM}>
-                <Text.Title3>{remindTime.getHours() <= 12 ? "AM" : "PM"}</Text.Title3>
+                <Text.Title3>{remindTime.getHours() < 12 ? "AM" : "PM"}</Text.Title3>
               </View.Background>
             </View.Paper>
           </Pressable>
@@ -108,17 +117,21 @@ const NotificationSettingsScreen: NavStatelessComponent = ({ navigation }: any) 
               testID="dateTimePicker"
               value={remindTime}
               mode={"time"}
-              is24Hour={false}
+              // is24Hour={false}
               onTouchCancel={() => {}}
               onChange={(e: any) => {
+                // console.log(e);
                 e.nativeEvent.timestamp && setRemindTime(new Date(e.nativeEvent.timestamp));
+                e.nativeEvent.timestamp &&
+                  setMinutes(new Date(e.nativeEvent.timestamp).getMinutes());
+                e.nativeEvent.timestamp && setHour(new Date(e.nativeEvent.timestamp).getHours());
                 setShow(false);
               }}
             />
           )}
         </View.Paper>
         {/* repeat times */}
-        <View.Paper style={styles.card}>
+        {/* <View.Paper style={styles.card}>
           <Text.Title3>{t("Repeat")}</Text.Title3>
           <View.Background style={styles.inputContainer}>
             <RNPickerSelect
@@ -133,7 +146,7 @@ const NotificationSettingsScreen: NavStatelessComponent = ({ navigation }: any) 
               items={times}
             />
           </View.Background>
-        </View.Paper>
+        </View.Paper> */}
       </View.Background>
       <Button.Default style={styles.button} onPress={handelSave}>
         {t("save")}
@@ -146,6 +159,7 @@ NotificationSettingsScreen.displayName = "NotificationSettingsScreen";
 export default NotificationSettingsScreen;
 
 const days = [
+  { value: 0, label: "0 " + t("day") },
   { value: 1, label: "1 " + t("day") },
   { value: 2, label: "2 " + t("day") },
   { value: 4, label: "4 " + t("day") },
@@ -153,11 +167,11 @@ const days = [
   { value: 6, label: "6 " + t("day") },
   { value: 7, label: "7 " + t("day") },
 ];
-const times = [
-  { value: 1, label: "1 " + t("time") },
-  { value: 2, label: "2 " + t("time") },
-  { value: 4, label: "4 " + t("time") },
-  { value: 5, label: "5 " + t("time") },
-  { value: 6, label: "6 " + t("time") },
-  { value: 7, label: "7 " + t("time") },
-];
+// const times = [
+//   { value: 1, label: "1 " + t("time") },
+//   { value: 2, label: "2 " + t("time") },
+//   { value: 4, label: "4 " + t("time") },
+//   { value: 5, label: "5 " + t("time") },
+//   { value: 6, label: "6 " + t("time") },
+//   { value: 7, label: "7 " + t("time") },
+// ];

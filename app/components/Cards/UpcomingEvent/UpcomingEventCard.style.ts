@@ -10,7 +10,7 @@ export default StyleSheet.create({
     marginBottom: 16,
     flexDirection: "row",
   },
-  icon: { width: 45},
+  icon: { width: 45, height: 50 },
   textContainer: {},
   text: {},
 });
