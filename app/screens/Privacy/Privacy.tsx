@@ -1,14 +1,13 @@
-import React from "react";
-import { SafeAreaView } from "react-native";
-import { Button, Text, View } from "components";
-import { t } from "utils";
-import styles from "./Privacy.styles";
-import navigationOptions from "./Privacy.navigationOptions";
+import { Button, View } from "components";
 import { NavStatelessComponent } from "interfaces";
-import WebView from "react-native-webview";
 import { navigate } from "navigation";
+import React from "react";
 import Icon from "react-native-vector-icons/Ionicons";
+import WebView from "react-native-webview";
 import { Colors } from "style";
+import { t } from "utils";
+import navigationOptions from "./Privacy.navigationOptions";
+import styles from "./Privacy.styles";
 
 const PrivacyScreen: NavStatelessComponent = (props: any) => {
   const navigator = navigate(props.navigation);

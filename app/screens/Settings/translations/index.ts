@@ -13,6 +13,7 @@ interface TranslationKeys {
   aboutUs: string;
   feedback: string;
   privacy: string;
+  imprint: string;
 }
 
 export { en, de, TranslationKeys };

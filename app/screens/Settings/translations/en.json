@@ -1,13 +1,13 @@
 {
-	"SETTINGS_TITLE": "Wilkommen bei NMF.earth 🌱",
-	"SETTINGS_TEXT": "Wilkommen bei NMF.earth 🌱",
-	  "notification": "notification",
-	  "address": "Address",
-	  "ROI": "Region of interest",
-	  "language": "Language",
-	  "darkMode": "Dark mode",
-	  "aboutUs": "About Us",
-	  "feedback": "Feedback",
-	  "privacy": "Privacy"
-  }
-  
+  "SETTINGS_TITLE": "Wilkommen bei NMF.earth 🌱",
+  "SETTINGS_TEXT": "Wilkommen bei NMF.earth 🌱",
+  "notification": "notification",
+  "address": "Address",
+  "ROI": "Region of interest",
+  "language": "Language",
+  "darkMode": "Dark mode",
+  "aboutUs": "About Us",
+  "feedback": "Feedback",
+  "privacy": "Privacy",
+  "imprint": "imprint"
+}

@@ -7,7 +7,6 @@ export default StyleSheet.create({
   global: {
     fontWeight: Font.FontWeight.Title1 as fontWeightInterface,
     fontSize: Font.FontSize.Title1,
-    lineHeight: Font.LineHeight.Title1,
   },
   primaryDark: {
     color: Colors.text.primary.dark,

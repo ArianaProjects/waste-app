@@ -1,11 +1,11 @@
 import React from "react";
-import { StyleProp, TextInput, TextStyle } from "react-native";
+import { StyleProp, TextInput, TextInputProps, TextStyle } from "react-native";
 import { useSelector } from "react-redux";
 import { RootState } from "states";
 
 import styles from "./Text.styles";
 
-interface Props {
+interface Props extends TextInputProps {
   style?: StyleProp<TextStyle>;
 }
 

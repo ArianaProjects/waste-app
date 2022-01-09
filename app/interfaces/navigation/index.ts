@@ -27,8 +27,9 @@ export type RootStackParamList = {
   NotificationSettings: NavigatorScreenParams<RootTabParamList> | undefined;
   Address: NavigatorScreenParams<RootTabParamList> | undefined;
   AboutUs: NavigatorScreenParams<RootTabParamList> | undefined;
-  FeedBack: NavigatorScreenParams<RootTabParamList> | undefined;
+  Feedback: NavigatorScreenParams<RootTabParamList> | undefined;
   Privacy: NavigatorScreenParams<RootTabParamList> | undefined;
+  Imprint: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
 };

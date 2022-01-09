@@ -1,4 +1,3 @@
-import { Button } from "components";
 import SwipeUp from "components/Cards/SwipeUp/SwipeUp";
 import UpcomingEventCard from "components/Cards/UpcomingEvent/UpcomingEventCard";
 import * as Notifications from "expo-notifications";
@@ -14,6 +13,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "states";
 import { WasteType } from "states/ducks/userPreferences/userPreferences.slice";
 import { Colors, Font } from "style";
+import setOpacity from "utils/setOpacity";
 import navigationOptions from "./Calendar.navigationOptions";
 import styles from "./Calendar.styles";
 const NotificationModalScreen = React.lazy(() => import("screens/NotificationModal"));
@@ -127,18 +127,26 @@ const CalendarScreen: NavStatelessComponent = () => {
               color={Colors.primary.dark}
             />
           )}
+          hideExtraDays
           onDayPress={HandelDayPress}
           theme={{
+            "stylesheet.day.basic": {
+              today: {
+                width: 45,
+                backgroundColor: setOpacity(Colors.primary.main, 0.2),
+                borderRadius: 4,
+              },
+            },
             "stylesheet.calendar.header": {
               // @ts-ignore
               dayHeader: {
                 color: Colors.text.secondary[theme],
               },
             },
+            textDayStyle: { borderRadius: 0 },
             monthTextColor: Colors.primary.dark,
             textMonthFontSize: Font.FontSize.Title1,
             textMonthFontWeight: "900",
-            textDisabledColor: Colors.background.default[theme],
             dayTextColor: Colors.text.primary[theme],
             arrowColor: Colors.primary.dark,
             calendarBackground: Colors.background.default[theme],

@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AboutUsScreen from "screens/AboutUs";
 import AddressScreen from "screens/Address";
 import FeedbackScreen from "screens/Feedback";
+import ImprintScreen from "screens/Imprint";
 import Intro from "screens/Intro";
 import LanguageScreen from "screens/Language";
 import NotificationSettingsScreen from "screens/NotificationSettings";
@@ -66,7 +67,10 @@ function RootNavigator() {
       ) : (
         <>
           <Stack.Screen name="Root" component={BottomTabNavigator} options={screenOptions} />
+          <Stack.Screen name="Feedback" component={FeedbackScreen} options={screenOptions} />
           <Stack.Screen name="Privacy" component={PrivacyScreen} options={screenOptions} />
+          <Stack.Screen name="Imprint" component={ImprintScreen} options={screenOptions} />
+
           <Stack.Screen name="Language" component={LanguageScreen} options={screenOptions} />
           <Stack.Screen
             name="NotificationSettings"
@@ -76,7 +80,6 @@ function RootNavigator() {
           <Stack.Screen name="ROI" component={ROI} options={screenOptions} />
           <Stack.Screen name="Address" component={AddressScreen} options={screenOptions} />
           <Stack.Screen name="AboutUs" component={AboutUsScreen} options={screenOptions} />
-          <Stack.Screen name="FeedBack" component={FeedbackScreen} options={screenOptions} />
         </>
       )}
     </Stack.Navigator>

@@ -31,12 +31,12 @@ const openCalendar =
 const openFeedback =
   (navigation: any) =>
   (props = {}) => {
-    navigation.push("Feedback", props);
+    navigation.navigate("Feedback", props);
   };
 const openImprint =
   (navigation: any) =>
   (props = {}) => {
-    navigation.push("Imprint", props);
+    navigation.navigate("Imprint", props);
   };
 const openIntro =
   (navigation: any) =>
