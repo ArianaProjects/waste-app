@@ -1,20 +1,13 @@
-import { WasteType } from "states/ducks/userPreferences/userPreferences.slice";
 import { AppointmentInterface } from "interfaces";
-import wait from "utils/wait";
-import { AxiosInstance } from "network";
 import moment from "moment";
+import { WasteType } from "states/ducks/userPreferences/userPreferences.slice";
+import wait from "utils/wait";
 
 export async function getAllAppointment(collectionId: number): Promise<AppointmentInterface[]> {
   // return (await AxiosInstance.get("city")).data as AppointmentInterface[];
 
-  // console.log("start");
   wait(1000);
-  // console.log("done");
   return new Promise(function (resolve, reject) {
-    const now = new Date();
-    const later = new Date(now);
-    const d = later.setDate(now.getSeconds() + 10);
-
     resolve(
       [
         {

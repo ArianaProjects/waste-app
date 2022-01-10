@@ -1,3 +1,4 @@
+import { trashColorsType } from "interfaces/global";
 import { WasteType } from "states/ducks/userPreferences/userPreferences.slice";
 export const ROIs = [
   {
@@ -36,3 +37,12 @@ export const ROIs = [
     waste: WasteType.PACKAGE,
   },
 ];
+export const trashColors: trashColorsType = {
+  "0": "#C0C0C0",
+  "1": "#A9631F",
+  "2": "#6BDFED",
+  "3": "#27CC83",
+  "4": "#FF513B",
+  "5": "#F6D56A",
+  "6": "#0E825B",
+};

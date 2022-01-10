@@ -1,3 +1,5 @@
+import { WasteType } from "states/ducks/userPreferences/userPreferences.slice";
+
 export type fontWeightInterface =
   | "400"
   | "600"
@@ -10,3 +12,6 @@ export type fontWeightInterface =
   | "700"
   | "800"
   | "900";
+export type trashColorsType = {
+  [key in WasteType]: string;
+};

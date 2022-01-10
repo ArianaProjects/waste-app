@@ -1,5 +1,6 @@
 import SwipeUp from "components/Cards/SwipeUp/SwipeUp";
 import UpcomingEventCard from "components/Cards/UpcomingEvent/UpcomingEventCard";
+import { trashColors } from "constant/ROITypes";
 import * as Notifications from "expo-notifications";
 import { AppointmentInterface, NavStatelessComponent } from "interfaces";
 import { getAllAppointment } from "network/Appointment";
@@ -23,11 +24,8 @@ type MarkedDatesType = {
 };
 const CalendarScreen: NavStatelessComponent = () => {
   const theme = useSelector((state: RootState) => state.systemTheme.theme);
-  const data = useSelector((state: RootState) => state.userPreferences.notificationsConfigs);
-  // console.log("datadatadatadatadatadatadata", data);
 
   const margin = useRef(new Animated.Value(150)).current;
-  // const plan = useSelector((state: RootState) => state.userPreferences.appointments);
   const nextWeek = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toString();
   const [plan, setPlan] = useState<AppointmentInterface[]>();
   const [planList, setPlanList] = useState<MarkedDatesType>();
@@ -38,15 +36,7 @@ const CalendarScreen: NavStatelessComponent = () => {
   type trashColorsType = {
     [key in WasteType]: string;
   };
-  const trashColors: trashColorsType = {
-    "0": "#C0C0C0",
-    "1": "#A9631F",
-    "2": "#6BDFED",
-    "3": "#27CC83",
-    "4": "#FF513B",
-    "5": "#F6D56A",
-    "6": "#0E825B",
-  };
+
   const getPlans = async () => {
     const plans = await getAllAppointment(1);
     setPlan(plans.filter((i) => i.date.getDate() >= new Date().getDate()));

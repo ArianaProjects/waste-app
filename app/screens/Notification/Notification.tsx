@@ -1,27 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { Dimensions, SafeAreaView } from "react-native";
-import { Button, Text, View } from "components";
-import { t } from "utils";
-import styles from "./Notification.styles";
-import navigationOptions from "./Notification.navigationOptions";
-import { AppointmentInterface, NavStatelessComponent } from "interfaces";
+import { View } from "components";
 import SwipeUp from "components/Cards/SwipeUp/SwipeUp";
 import UpcomingEventCard from "components/Cards/UpcomingEvent/UpcomingEventCard";
-import { getAllAppointment } from "network/Appointment";
+import { AppointmentInterface, NavStatelessComponent } from "interfaces";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "states";
+import navigationOptions from "./Notification.navigationOptions";
+import styles from "./Notification.styles";
 
 const NotificationScreen: NavStatelessComponent = () => {
-  const [plan, setPlan] = useState<AppointmentInterface[]>();
-  const getPlans = async () => {
-    const plans = await getAllAppointment(1);
-    setPlan(plans.filter((i) => i.date.getDate() <= new Date().getDate()));
-  };
+  const plan = useSelector((state: RootState) => state.userPreferences.appointments);
+  const [data, setData] = useState<AppointmentInterface[]>();
   useEffect(() => {
-    getPlans();
-  }, []);
+    setData(plan?.filter((i) => i.date.getDate() <= new Date().getDate()));
+  }, [plan]);
   return (
     <View.Background style={styles.container}>
       <SwipeUp fullWidth>
-        {plan?.map((item, index) => (
+        {data?.map((item, index) => (
           <UpcomingEventCard key={index} remindTime={item.date} wasteType={item.type} />
         ))}
       </SwipeUp>

@@ -1,10 +1,6 @@
-import i18n from "i18n-js";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import * as Notifications from "expo-notifications";
 import { AppointmentInterface } from "interfaces";
-import { getAllAppointment } from "network/Appointment";
-import { Alert } from "react-native";
-import { currentLanguage, notif } from "utils";
+import { currentLanguage } from "utils";
 
 export enum WasteType {
   RES,

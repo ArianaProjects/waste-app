@@ -11,8 +11,8 @@ interface LocalizationContextProps {
 }
 
 const LocalizationContext = React.createContext({
-  language: "de",
-  locale: "de-DE",
+  language: "en",
+  locale: "en-US",
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setLanguage: (language: string) => {
     //do nothing.

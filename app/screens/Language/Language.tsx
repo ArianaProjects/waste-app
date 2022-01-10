@@ -1,4 +1,6 @@
 import { Button, Text, View } from "components";
+import { locale } from "expo-localization";
+import I18n, { currentLocale } from "i18n-js";
 import { NavStatelessComponent } from "interfaces";
 import { navigate } from "navigation";
 import React, { useState } from "react";
@@ -8,7 +10,7 @@ import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "states";
 import { userPreferences } from "states/ducks";
-import { t } from "utils";
+import { currentLanguage, t } from "utils";
 import navigationOptions from "./Language.navigationOptions";
 import styles from "./Language.styles";
 
@@ -17,7 +19,7 @@ const LanguageScreen: NavStatelessComponent = (props: any) => {
   const defaultData = useSelector((state: RootState) => state.userPreferences.language);
   const dispatch = useDispatch();
   const [active, setActive] = useState<string>(defaultData);
-  // console.log(defaultData);
+  // console.log(defaultData, I18n.locale, currentLanguage, locale);
 
   return (
     <View.Background style={styles.container}>
@@ -60,6 +62,7 @@ const LanguageScreen: NavStatelessComponent = (props: any) => {
         style={styles.button}
         onPress={() => {
           dispatch(userPreferences.actions.changeLanguage(active));
+          I18n.locale = active;
           navigator.openSetting();
         }}
       >
