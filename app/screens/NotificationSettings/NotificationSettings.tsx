@@ -3,7 +3,7 @@ import { Button, Text, View } from "components";
 import { t } from "i18n-js";
 import { NavStatelessComponent } from "interfaces";
 import { navigate } from "navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Pressable, Switch } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -43,7 +43,9 @@ const NotificationSettingsScreen: NavStatelessComponent = ({ navigation }: any) 
     dispatch(userPreferences.actions.toggleNotifications(switchValue));
     navigator.openSetting();
   };
-
+  React.useEffect(() => {
+    setShow(false);
+  }, [remindTime]);
   return (
     <View.Background style={styles.container}>
       <Button.TextButton
@@ -82,7 +84,6 @@ const NotificationSettingsScreen: NavStatelessComponent = ({ navigation }: any) 
           <View.Background style={styles.inputContainer}>
             <RNPickerSelect
               value={daySooner}
-              placeholder={days.find((i) => i.value === daySooner)}
               style={{
                 inputIOS: styles.input,
                 placeholder: styles.input,
@@ -117,15 +118,13 @@ const NotificationSettingsScreen: NavStatelessComponent = ({ navigation }: any) 
               testID="dateTimePicker"
               value={remindTime}
               mode={"time"}
-              // is24Hour={false}
               onTouchCancel={() => {}}
               onChange={(e: any) => {
-                // console.log(e);
                 e.nativeEvent.timestamp && setRemindTime(new Date(e.nativeEvent.timestamp));
                 e.nativeEvent.timestamp &&
                   setMinutes(new Date(e.nativeEvent.timestamp).getMinutes());
                 e.nativeEvent.timestamp && setHour(new Date(e.nativeEvent.timestamp).getHours());
-                setShow(false);
+                !e.nativeEvent.timestamp && setShow(false);
               }}
             />
           )}

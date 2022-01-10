@@ -19,14 +19,15 @@ const NotificationProvider = (props: Props) => {
     let appointments = await getAllAppointment(Number(data.place?.collection.id));
     dispatch(userPreferences.actions.changeAppointment(appointments));
   };
+
   useEffect(() => {
     getData();
     // filter appointment base on user selected roi
-    let appointments = data.appointments?.filter((item) =>
-      Object.keys(data.ROI)
+    let appointments = data.appointments?.filter((item) => {
+      return Object.keys(data.ROI)
         .filter((i: string, index: WasteType) => data.ROI[index])
-        .includes(item.type.toString())
-    );
+        .includes(item.type.toString());
+    });
     // delete old notifications
     appointments && notify.deleteAllNotifications();
     // set new notifications

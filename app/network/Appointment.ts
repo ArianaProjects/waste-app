@@ -19,62 +19,32 @@ export async function getAllAppointment(collectionId: number): Promise<Appointme
       [
         {
           id: "123a2_2323_23123_123333",
-          date: moment(new Date()).add(10, "second").toDate(),
+          date: moment(new Date()).add(0, "day").toDate(),
           type: WasteType.BIO,
         },
         {
           id: "123a2_2323_23123_123333",
-          date: moment(new Date()).add(20, "second").toDate(),
+          date: moment(new Date()).add(1, "day").toDate(),
 
           type: WasteType.GREEN,
         },
         {
           id: "123a2_2323_23123_123333",
-          date: moment(new Date()).add(30, "second").toDate(),
+          date: moment(new Date()).add(2, "day").toDate(),
 
           type: WasteType.ELECTRO,
         },
         {
           id: "123a2_2323_23123_123333",
-          date: moment(new Date()).add(40, "second").toDate(),
+          date: moment(new Date()).add(3, "day").toDate(),
 
-          type: WasteType.ELECTRO,
+          type: WasteType.PACKAGE,
         },
         {
           id: "123a2_2323_23123_123333",
-          date: moment(new Date()).add(100, "second").toDate(),
+          date: moment(new Date()).add(4, "day").toDate(),
 
-          type: WasteType.ELECTRO,
-        },
-        {
-          id: "123a2_2323_23123_123333",
-          date: moment(new Date()).add(100, "second").toDate(),
-
-          type: WasteType.ELECTRO,
-        },
-        {
-          id: "123a2_2323_23123_123333",
-          date: moment(new Date()).add(100, "day").toDate(),
-
-          type: WasteType.ELECTRO,
-        },
-        {
-          id: "123a2_2323_23123_123333",
-          date: moment(new Date()).add(100, "day").toDate(),
-
-          type: WasteType.PAPER,
-        },
-        {
-          id: "123a2_2323_23123_123333",
-          date: moment(new Date()).add(100, "day").toDate(),
-
-          type: WasteType.SPECIAL,
-        },
-        {
-          id: "123a2_2323_23123_123333",
-          date: moment(new Date()).add(100, "day").toDate(),
-
-          type: WasteType.ELECTRO,
+          type: WasteType.RES,
         },
       ].sort((a, b) => a.date.getTime() - b.date.getTime())
     );

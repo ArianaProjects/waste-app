@@ -1,3 +1,4 @@
+import moment from "moment";
 import { AppointmentInterface } from "interfaces";
 import * as Notifications from "expo-notifications";
 import { Alert } from "react-native";
@@ -11,12 +12,12 @@ function notificationData(
   appointment: AppointmentInterface,
   configs: NotificationsConfigs
 ): Notifications.NotificationRequestInput {
-  let date: Date = new Date(appointment.date);
-  date =
-    configs.daySooner !== 0 ? new Date(date.setDate(date.getDate() - configs.daySooner)) : date;
-  date = new Date(date.setHours(configs.hour));
-  date = new Date(date.setMinutes(configs.minutes));
-  date = new Date(date.setSeconds(0));
+  const date: Date = moment(appointment.date)
+    .subtract(configs.daySooner, "day")
+    .hour(configs.hour)
+    .minutes(configs.minutes)
+    .seconds(0)
+    .toDate();
   let info: Notifications.NotificationContentInput = {};
   switch (appointment.type) {
     case WasteType.BIO:
@@ -24,6 +25,7 @@ function notificationData(
         title: t("UI_WASTE_TYPE_BIO"),
         body: t("UI_WASTE_TYPE_BIO_DESCRIPTION"),
         data: { type: appointment.type },
+        sound: true,
       };
       break;
     case WasteType.ELECTRO:
@@ -31,6 +33,7 @@ function notificationData(
         title: t("UI_WASTE_TYPE_ELECTRO"),
         body: t("UI_WASTE_TYPE_ELECTRO_DESCRIPTION"),
         data: { type: appointment.type },
+        sound: true,
       };
       break;
     case WasteType.GREEN:
@@ -38,6 +41,7 @@ function notificationData(
         title: t("UI_WASTE_TYPE_GREEN"),
         body: t("UI_WASTE_TYPE_GREEN_DESCRIPTION"),
         data: { type: appointment.type },
+        sound: true,
       };
       break;
     case WasteType.PAPER:
@@ -45,6 +49,7 @@ function notificationData(
         title: t("UI_WASTE_TYPE_PAPER"),
         body: t("UI_WASTE_TYPE_PAPER_DESCRIPTION"),
         data: { type: appointment.type },
+        sound: true,
       };
       break;
     case WasteType.SPECIAL:
@@ -52,6 +57,7 @@ function notificationData(
         title: t("UI_WASTE_TYPE_SPECIAL"),
         body: t("UI_WASTE_TYPE_SPECIAL_DESCRIPTION"),
         data: { type: appointment.type },
+        sound: true,
       };
       break;
     case WasteType.RES:
@@ -59,6 +65,7 @@ function notificationData(
         title: t("UI_WASTE_TYPE_RES"),
         body: t("UI_WASTE_TYPE_RES_DESCRIPTION"),
         data: { type: appointment.type },
+        sound: true,
       };
       break;
     case WasteType.PACKAGE:
@@ -66,6 +73,7 @@ function notificationData(
         title: t("UI_WASTE_TYPE_PACKAGE"),
         body: t("UI_WASTE_TYPE_PACKAGE_DESCRIPTION"),
         data: { type: appointment.type },
+        sound: true,
       };
       break;
 
@@ -78,7 +86,7 @@ function notificationData(
       // hour: appointment.date.getHours(),
       // minute: appointment.date.getMinutes() + 1,
       // repeats: true,
-      date: new Date(appointment.date),
+      date: date,
     },
   };
 }

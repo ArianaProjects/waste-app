@@ -1,17 +1,17 @@
 {
   "expo": {
-    "userInterfaceStyle": "light",
     "plugins": [
       [
         "expo-notifications",
         {
+          "icon": "./assets/notification.png",
           "color": "#ffffff",
           "sounds": ["./assets/sounds/notification.wav"]
         }
       ]
     ],
     "name": "Abfall",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "slug": "Abfall",
     "version": "0.0.1",
     "orientation": "portrait",
@@ -27,6 +27,10 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
+    },
+    "notification": {
+      "color": "#ffffff",
+      "icon": "./assets/notification.png"
     },
     "android": {
       "adaptiveIcon": {
