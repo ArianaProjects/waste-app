@@ -1,6 +1,7 @@
 import { Text, View } from "components";
 import React, { useState } from "react";
-import { Animated, Pressable, Switch } from "react-native";
+import { Switch } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { useSelector } from "react-redux";
 import { RootState } from "states";
@@ -17,14 +18,12 @@ interface Props {
 export default function SettingCard(props: Props) {
   const theme = useSelector((state: RootState) => state.systemTheme.theme);
   const [switchValue, setSwitchValue] = useState(props.switchValue || false);
-  const onPressIn = () => {};
-  const onPressOut = () => {
-    props.switchMode ? () => {} : props.onPress();
+  const onPressIn = () => {
+    props.onPress();
   };
-  const AnimatedTouchable = Animated.createAnimatedComponent(Pressable);
 
   return (
-    <AnimatedTouchable onPress={onPressIn} onPressOut={onPressOut}>
+    <TouchableOpacity onPress={onPressIn}>
       <View.Paper style={styles.container}>
         <Icon name={props.iconName} color={Colors.secondary[theme]} size={25} style={styles.icon} />
         <Text.Callout>{props.text}</Text.Callout>
@@ -43,7 +42,7 @@ export default function SettingCard(props: Props) {
           />
         )}
       </View.Paper>
-    </AnimatedTouchable>
+    </TouchableOpacity>
   );
 }
 

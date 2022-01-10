@@ -13,6 +13,7 @@ export default StyleSheet.create({
     // minHeight: 130,
   },
   mainContainer: {
+    backgroundColor: Colors.background.default.light,
     position: "absolute",
     margin: "auto",
     bottom: 0,

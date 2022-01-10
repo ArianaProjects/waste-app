@@ -42,7 +42,7 @@
     "react-native": "0.64.3",
     "react-native-app-intro-slider": "^4.0.4",
     "react-native-calendars": "^1.1274.0",
-    "react-native-gesture-handler": "^2.1.0",
+    "react-native-gesture-handler": "^1.10.3",
     "react-native-globalize": "^4.5.1",
     "react-native-picker-select": "^8.0.4",
     "react-native-ratings": "^8.1.0",
