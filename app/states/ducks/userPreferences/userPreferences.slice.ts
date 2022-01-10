@@ -51,7 +51,7 @@ export interface initialStateInterface {
 }
 
 const initialState: initialStateInterface = {
-  activatedNotifications: false,
+  activatedNotifications: true,
   introDone: false,
   language: currentLanguage,
   timesStarted: 0,

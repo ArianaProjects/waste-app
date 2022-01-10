@@ -33,7 +33,7 @@ export default StyleSheet.create({
     color: Colors.text.primary.light,
   },
   input: {
-    width: 110,
+    width: 130,
     marginLeft: 8,
     color: Colors.text.primary.light,
   },
