@@ -7,8 +7,9 @@ import Navigation from "navigation";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { loadCldr } from "react-native-globalize";
-import { Provider } from "react-redux";
-import { store } from "states";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import { RootState, store } from "states";
+import { userPreferences } from "states/ducks";
 import { Colors } from "style";
 import NotificationProvider from "./app/providers/Notification";
 

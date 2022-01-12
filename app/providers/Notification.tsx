@@ -12,6 +12,7 @@ type Props = {
 const NotificationProvider = (props: Props) => {
   // get data from redux
   const data = useSelector((state: RootState) => state.userPreferences);
+
   const dispatch = useDispatch();
 
   // get update appointment
@@ -21,29 +22,31 @@ const NotificationProvider = (props: Props) => {
   };
 
   useEffect(() => {
+    console.log("data is here ", data.ROI);
+    if (!data.notificationsConfigs) {
+      dispatch(userPreferences.actions.InitialNotificationsConfigs());
+    }
+    if (!data.ROI) {
+      dispatch(userPreferences.actions.InitialROI());
+    }
+    console.log("data is here ", data.ROI);
+    console.log("data is here ", data.notificationsConfigs);
     getData();
     // filter appointment base on user selected roi
-    let appointments = data.appointments?.filter((item) => {
-      return Object.keys(data.ROI)
-        .filter((i: string, index: WasteType) => data.ROI[index])
-        .includes(item.type.toString());
-    });
+    let appointments =
+      data.appointments &&
+      data.appointments?.filter((item) => {
+        return Object.keys(data.ROI)
+          .filter((i: string, index: WasteType) => data.ROI[index])
+          .includes(item.type.toString());
+      });
     // delete old notifications
     appointments && notify.deleteAllNotifications();
     // set new notifications
-
     appointments &&
       data.activatedNotifications &&
       notify.addListNotification(appointments, data.notificationsConfigs);
-  }, [
-    data.activatedNotifications,
-    data.notificationsConfigs.daySooner,
-    data.notificationsConfigs.hour,
-    data.notificationsConfigs.minutes,
-    data.place,
-    data.city,
-    data.ROI,
-  ]);
+  }, [data.activatedNotifications, data.notificationsConfigs, data.place, data.city, data.ROI]);
 
   return props.children;
 };
