@@ -7,6 +7,7 @@ import Navigation from "navigation";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { loadCldr } from "react-native-globalize";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 import { store } from "states";
 import { Colors } from "style";
@@ -36,9 +37,10 @@ export default function App() {
     return null;
   } else {
     return (
-      <Provider store={store}>
-        {/* <GlobalizeProvider locale={language || defaultLanguage}> */}
-        {/* <LocalizationContext.Provider
+      <SafeAreaProvider >
+        <Provider store={store}>
+          {/* <GlobalizeProvider locale={language || defaultLanguage}> */}
+          {/* <LocalizationContext.Provider
             value={{
               locale: locale || defaultLocale,
               setLocale: setLocale,
@@ -46,19 +48,20 @@ export default function App() {
               setLanguage: setLanguage,
             }}
           > */}
-        <StatusBar backgroundColor={Colors.background.default.light} />
-        <NotificationProvider>
-          {__DEV__ ? (
-            <Navigation />
-          ) : (
-            <StoreReviewChecker>
+          <StatusBar backgroundColor={Colors.background.default.light} />
+          <NotificationProvider>
+            {__DEV__ ? (
               <Navigation />
-            </StoreReviewChecker>
-          )}
-        </NotificationProvider>
-        {/* </LocalizationContext.Provider> */}
-        {/* </GlobalizeProvider> */}
-      </Provider>
+            ) : (
+              <StoreReviewChecker>
+                <Navigation />
+              </StoreReviewChecker>
+            )}
+          </NotificationProvider>
+          {/* </LocalizationContext.Provider> */}
+          {/* </GlobalizeProvider> */}
+        </Provider>
+      </SafeAreaProvider>
     );
   }
 }
