@@ -23,15 +23,12 @@ export function BottomTabNavigator() {
       <BottomTab.Navigator
         initialRouteName="Calendar"
         screenOptions={{
-          // lazy: true,
-          // unmountOnBlur: true,
-
           headerShown: false,
           tabBarLabelPosition: "beside-icon",
           tabBarItemStyle: ButtonNavigationStyle.tabBar,
           tabBarStyle: ButtonNavigationStyle.tabBarContainer,
           tabBarActiveBackgroundColor: "#E6FFF0",
-          tabBarInactiveBackgroundColor: Colors.background.paper[theme],
+          tabBarInactiveBackgroundColor: Colors.background.paper[theme],  
           tabBarActiveTintColor: Colors.primary.dark,
           tabBarLabelStyle: ButtonNavigationStyle.tabBarLabel,
         }}
