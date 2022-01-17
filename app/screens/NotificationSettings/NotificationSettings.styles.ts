@@ -7,7 +7,6 @@ export default StyleSheet.create({
   container: {
     ...Layout.containerWithPadding,
     justifyContent: "space-between",
-    paddingTop: 32,
     backgroundColor: Colors.background.default.light,
   },
   content: { flex: 1, justifyContent: "center", marginBottom: 150 },
@@ -50,6 +49,6 @@ export default StyleSheet.create({
     borderRadius: paper.borderRadius / 2,
   },
   button: {
-    marginBottom: 50,
+    marginBottom: 32,
   },
 });

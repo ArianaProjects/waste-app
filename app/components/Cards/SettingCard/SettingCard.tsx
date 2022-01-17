@@ -28,18 +28,22 @@ export default function SettingCard(props: Props) {
         <Icon name={props.iconName} color={Colors.secondary[theme]} size={25} style={styles.icon} />
         <Text.Callout>{props.text}</Text.Callout>
         {props.switchMode && (
-          <Switch
-            disabled
-            style={{ flex: 1, height: 30 }}
-            shouldRasterizeIOS
-            trackColor={{ false: Colors.text.secondary[theme], true: Colors.text.secondary[theme] }}
-            thumbColor={switchValue ? Colors.primary.main : Colors.background.default[theme]}
-            ios_backgroundColor={Colors.background.default[theme]}
-            onValueChange={(value) => {
-              setSwitchValue(value);
-            }}
-            value={switchValue}
-          />
+          <View.Paper style={{ flex: 1 }}>
+            <Switch
+              disabled
+              style={{ height: 30 }}
+              trackColor={{
+                false: Colors.text.secondary[theme],
+                true: Colors.text.secondary[theme],
+              }}
+              thumbColor={switchValue ? Colors.primary.main : Colors.background.default[theme]}
+              ios_backgroundColor={Colors.background.default[theme]}
+              onValueChange={(value) => {
+                setSwitchValue(value);
+              }}
+              value={switchValue}
+            />
+          </View.Paper>
         )}
       </View.Paper>
     </TouchableOpacity>

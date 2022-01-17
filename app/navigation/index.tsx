@@ -2,6 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { RootStackParamList } from "interfaces";
 import * as React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import AboutUsScreen from "screens/AboutUs";
 import AddressScreen from "screens/Address";
@@ -14,16 +15,19 @@ import PrivacyScreen from "screens/Privacy";
 import ROI from "screens/ROI";
 import { RootState } from "states";
 import { userPreferences } from "states/ducks";
-import { ComponentsStyle } from "style";
+import { Colors, ComponentsStyle } from "style";
 import { withLocalization } from "utils";
 import navigate from "./navigate";
 import { BottomTabNavigator } from "./Navigator/ButtomTabNavigator";
 // import { actions } from "states/ducks/userPreferences";
 function Navigation() {
+  const theme = useSelector((state: RootState) => state.systemTheme.theme);
   return (
-    <NavigationContainer>
-      <RootNavigator />
-    </NavigationContainer>
+    <SafeAreaView style={{ flex: 1, backgroundColor: Colors.background.default[theme] }}>
+      <NavigationContainer>
+        <RootNavigator />
+      </NavigationContainer>
+    </SafeAreaView>
   );
 }
 /**

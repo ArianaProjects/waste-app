@@ -67,7 +67,7 @@ const ROIScreen = (props: ROIProps) => {
   return (
     <View.Background style={ROIStyles.container}>
       <Button.TextButton
-        style={{ marginTop: 8 }}
+        style={{ marginTop: 8, marginLeft: 8 }}
         onPress={() => {
           navigator.openSetting();
         }}
@@ -80,43 +80,39 @@ const ROIScreen = (props: ROIProps) => {
         />
         {t("back")}
       </Button.TextButton>
-      <View.Background>
-        <ScrollView style={ROIStyles.trashCardsContainer}>
-          {ROIs.map((item, i) => {
-            return (
-              <TouchableWithoutFeedback
-                onPress={() => {
-                  setSelectedROI({ ...selectedROI, [item.waste]: !selectedROI[item.waste] });
-                }}
-                key={i}
+
+      <ScrollView style={ROIStyles.trashCardsContainer}>
+        {ROIs.map((item, i) => {
+          return (
+            <TouchableWithoutFeedback
+              onPress={() => {
+                setSelectedROI({ ...selectedROI, [item.waste]: !selectedROI[item.waste] });
+              }}
+              key={i}
+            >
+              <View.Paper
+                style={[ROIStyles.trashCard, selectedROI[item.waste] && ROIStyles.activeTrashCard]}
               >
-                <View.Paper
-                  style={[
-                    ROIStyles.trashCard,
-                    selectedROI[item.waste] && ROIStyles.activeTrashCard,
-                  ]}
-                >
-                  <Icon
-                    name={
-                      selectedROI[item.waste]
-                        ? "ios-radio-button-on-sharp"
-                        : "ios-radio-button-off-sharp"
-                    }
-                    style={{}}
-                    size={30}
-                    color={Colors.primary.main}
-                  />
-                  <Image style={{ width: 50, height: 50 }} source={item.iconSrc} />
-                  <Text.Callout>{item.text.split(".").join(" ").toLocaleLowerCase()}</Text.Callout>
-                </View.Paper>
-              </TouchableWithoutFeedback>
-            );
-          })}
-        </ScrollView>
-        <View.Background style={ROIStyles.button}>
-          <Button.Default onPress={handelSave}>{t("save")}</Button.Default>
-        </View.Background>
-      </View.Background>
+                <Icon
+                  name={
+                    selectedROI[item.waste]
+                      ? "ios-radio-button-on-sharp"
+                      : "ios-radio-button-off-sharp"
+                  }
+                  style={{}}
+                  size={30}
+                  color={Colors.primary.main}
+                />
+                <Image style={{ width: 50, height: 50 }} source={item.iconSrc} />
+                <Text.Callout>{item.text.split(".").join(" ").toLocaleLowerCase()}</Text.Callout>
+              </View.Paper>
+            </TouchableWithoutFeedback>
+          );
+        })}
+      </ScrollView>
+      <Button.Default style={ROIStyles.button} onPress={handelSave}>
+        {t("save")}
+      </Button.Default>
     </View.Background>
   );
 };

@@ -20,51 +20,50 @@ export function BottomTabNavigator() {
   const theme = useSelector((state: RootState) => state.systemTheme.theme);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: Colors.background.paper[theme] }}>
-      <BottomTab.Navigator
-        initialRouteName="Calendar"
-        screenOptions={{
-          headerShown: false,
-          tabBarLabelPosition: "beside-icon",
-          tabBarItemStyle: ButtonNavigationStyle.tabBar,
-          tabBarStyle: ButtonNavigationStyle.tabBarContainer,
-          tabBarActiveBackgroundColor: "#E6FFF0",
-          tabBarInactiveBackgroundColor: Colors.background.paper[theme],
-          tabBarActiveTintColor: Colors.primary.dark,
-          tabBarLabelStyle: ButtonNavigationStyle.tabBarLabel,
+    <BottomTab.Navigator
+      initialRouteName="Calendar"
+      screenOptions={{
+        headerShown: false,
+        headerShadowVisible: false,
+        tabBarLabelPosition: "beside-icon",
+        tabBarItemStyle: ButtonNavigationStyle.tabBar,
+        tabBarStyle: ButtonNavigationStyle.tabBarContainer,
+        tabBarActiveBackgroundColor: "#E6FFF0",
+        tabBarInactiveBackgroundColor: Colors.background.paper[theme],
+        tabBarActiveTintColor: Colors.primary.dark,
+        tabBarLabelStyle: ButtonNavigationStyle.tabBarLabel,
+      }}
+    >
+      <BottomTab.Screen
+        name="Calendar"
+        component={CalendarScreen}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-calendar-outline" color={color} />,
         }}
-      >
-        <BottomTab.Screen
-          name="Calendar"
-          component={CalendarScreen}
-          options={{
-            tabBarIcon: ({ color }) => <TabBarIcon name="ios-calendar-outline" color={color} />,
-          }}
-        />
-        <BottomTab.Screen
-          name="Notification"
-          component={NotificationScreen}
-          options={{
-            tabBarIcon: ({ color }) => <TabBarIcon name="ios-notifications-sharp" color={color} />,
-          }}
-        />
-        <BottomTab.Screen
-          name="Setting"
-          component={SettingsScreen}
-          options={({ navigation }: RootTabScreenProps<"Setting">) => ({
-            tabBarIcon: ({ color }) => <TabBarIcon name="ios-settings-sharp" color={color} />,
-            headerRight: () => (
-              <Pressable
-                onPress={() => navigation.navigate("Modal")}
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.5 : 1,
-                })}
-              ></Pressable>
-            ),
-          })}
-        />
-      </BottomTab.Navigator>
-    </SafeAreaView>
+      />
+      <BottomTab.Screen
+        name="Notification"
+        component={NotificationScreen}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-notifications-sharp" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Setting"
+        component={SettingsScreen}
+        options={({ navigation }: RootTabScreenProps<"Setting">) => ({
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-settings-sharp" color={color} />,
+          headerRight: () => (
+            <Pressable
+              onPress={() => navigation.navigate("Modal")}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1,
+              })}
+            ></Pressable>
+          ),
+        })}
+      />
+    </BottomTab.Navigator>
   );
 }
 
@@ -75,5 +74,5 @@ export function BottomTabNavigator() {
 //   return <Icon size={30} style={{ marginBottom: -3 }} {...props} />;
 // }
 function TabBarIcon(props: { name: string; color: string }) {
-  return <Icon size={20} style={{ marginBottom: 0 }} {...props} />;
+  return <Icon size={20} style={{ alignSelf: "center" }} {...props} />;
 }

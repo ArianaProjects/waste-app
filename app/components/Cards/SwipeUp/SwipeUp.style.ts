@@ -11,6 +11,7 @@ export default StyleSheet.create({
     borderRightWidth: 1,
     borderColor: Colors.primary.light,
     // minHeight: 130,
+    marginHorizontal: -2,
   },
   mainContainer: {
     backgroundColor: Colors.background.default.light,

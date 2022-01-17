@@ -3,6 +3,7 @@ import { ROIs } from "constant/ROITypes";
 import { t } from "i18n-js";
 import React, { useEffect, useState } from "react";
 import { Image } from "react-native";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { useSelector } from "react-redux";
 import { RootState } from "states";
 import { WasteType } from "states/ducks/userPreferences/userPreferences.slice";
@@ -14,13 +15,14 @@ interface Props {
   remindTime: Date;
   wasteType: WasteType;
   active?: boolean;
+  showModal?: (WasteType: WasteType) => void;
 }
 
 const UpcomingEventCard = (props: Props) => {
   const theme = useSelector((state: RootState) => state.systemTheme.theme);
   const [isPass, setIsPass] = useState(false);
   const [daysLeft, setDaysLeft] = useState<string>();
-  
+
   useEffect(() => {
     const d = days_left(props.remindTime);
 
@@ -49,42 +51,49 @@ const UpcomingEventCard = (props: Props) => {
     // Convert back to days and return
   };
   return (
-    <View.Paper
-      style={[
-        styles.container,
-        {
-          backgroundColor: props.active
-            ? setOpacity(Colors.primary.light, 0.2)
-            : Colors.background.paper[theme],
-        },
-      ]}
-    >
-      <Image source={ROIs.find((i) => i.waste === props.wasteType)?.iconSrc} style={styles.icon} />
+    <TouchableWithoutFeedback onPress={() => props.showModal && props.showModal(props.wasteType)}>
       <View.Paper
-        style={{
-          flexDirection: "column",
-          justifyContent: "center",
-          backgroundColor: "transparent",
-        }}
+        style={[
+          styles.container,
+          {
+            backgroundColor: props.active
+              ? setOpacity(Colors.primary.light, 0.2)
+              : Colors.background.paper[theme],
+          },
+        ]}
       >
-        <Text.Callout>
-          {t("takeOut")} {t(ROIs.find((i) => i.waste === props.wasteType)?.text || "")}
-        </Text.Callout>
-        {daysLeft === "0" ? (
-          <Text.Callout style={{ color: Colors.text.secondary[theme] }}>{t("today")}</Text.Callout>
-        ) : isPass ? (
-          <Text.Callout style={{ color: Colors.text.secondary[theme] }}>
-            {daysLeft && daysLeft}
-            {"  "}
-            {t("dayAgo")}
+        <Image
+          source={ROIs.find((i) => i.waste === props.wasteType)?.iconSrc}
+          style={styles.icon}
+        />
+        <View.Paper
+          style={{
+            flexDirection: "column",
+            justifyContent: "center",
+            backgroundColor: "transparent",
+          }}
+        >
+          <Text.Callout>
+            {t("takeOut")} {t(ROIs.find((i) => i.waste === props.wasteType)?.text || "")}
           </Text.Callout>
-        ) : (
-          <Text.Callout style={{ color: Colors.text.secondary[theme] }}>
-            {t("in")} {daysLeft && daysLeft} {t("day")}
-          </Text.Callout>
-        )}
+          {daysLeft === "0" ? (
+            <Text.Callout style={{ color: Colors.text.secondary[theme] }}>
+              {t("today")}
+            </Text.Callout>
+          ) : isPass ? (
+            <Text.Callout style={{ color: Colors.text.secondary[theme] }}>
+              {daysLeft && daysLeft}
+              {"  "}
+              {t("dayAgo")}
+            </Text.Callout>
+          ) : (
+            <Text.Callout style={{ color: Colors.text.secondary[theme] }}>
+              {t("in")} {daysLeft && daysLeft} {t("day")}
+            </Text.Callout>
+          )}
+        </View.Paper>
       </View.Paper>
-    </View.Paper>
+    </TouchableWithoutFeedback>
   );
 };
 UpcomingEventCard.displayName = "UpcomingEventCard";

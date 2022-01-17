@@ -9,6 +9,7 @@ import { Animated } from "react-native";
 import { Calendar } from "react-native-calendars";
 import { MarkingProps } from "react-native-calendars/src/calendar/day/marking";
 import { DateData } from "react-native-calendars/src/types";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useSelector } from "react-redux";
 import { RootState } from "states";
@@ -24,6 +25,7 @@ type MarkedDatesType = {
 };
 const CalendarScreen: NavStatelessComponent = () => {
   const theme = useSelector((state: RootState) => state.systemTheme.theme);
+  const settings = useSelector((state: RootState) => state.userPreferences);
 
   const margin = useRef(new Animated.Value(150)).current;
   const nextWeek = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toString();
@@ -33,17 +35,20 @@ const CalendarScreen: NavStatelessComponent = () => {
   const [active, setActive] = useState<string>();
   const [trashCanType, setTrashCanType] = useState<WasteType>();
   const [showModal, setShowModal] = useState(false);
-  type trashColorsType = {
-    [key in WasteType]: string;
+
+  const showModalHandler = (trashcanType: WasteType) => {
+    setTrashCanType(trashcanType);
+    setShowModal(true);
   };
 
   const getPlans = async () => {
+    // TODO fit it late (1)
     const plans = await getAllAppointment(1);
     setPlan(plans.filter((i) => i.date.getDate() >= new Date().getDate()));
   };
   useEffect(() => {
     getPlans();
-  }, []);
+  }, [settings]);
 
   useEffect(() => {
     if (!plan) return;
@@ -74,11 +79,10 @@ const CalendarScreen: NavStatelessComponent = () => {
   const lastNotificationResponse = Notifications.useLastNotificationResponse();
 
   useEffect(() => {
-    // console.log(lastNotificationResponse);
-
     if (lastNotificationResponse) {
-      setTrashCanType(lastNotificationResponse.notification.request.content.data.type as WasteType);
-      setShowModal(true);
+      showModalHandler(
+        lastNotificationResponse.notification.request.content.data.type as WasteType
+      );
     }
   }, [lastNotificationResponse]);
 
@@ -105,68 +109,79 @@ const CalendarScreen: NavStatelessComponent = () => {
   return (
     <>
       <Animated.View style={[styles.container, { paddingTop: margin }]}>
-        <Calendar
-          markingType="multi-dot"
-          markedDates={planList}
-          enableSwipeMonths
-          maxDate={open ? nextWeek : undefined}
-          renderArrow={(direction) => (
-            <Icon
-              name={direction === "left" ? "ios-caret-back-sharp" : "ios-caret-forward-sharp"}
-              size={20}
-              color={Colors.primary.dark}
-            />
-          )}
-          hideExtraDays
-          onDayPress={HandelDayPress}
-          theme={{
-            "stylesheet.day.basic": {
-              today: {
-                width: 45,
-                backgroundColor: setOpacity(Colors.primary.main, 0.2),
-                borderRadius: 4,
-              },
-            },
-            "stylesheet.calendar.header": {
-              // @ts-ignore
-              dayHeader: {
-                color: Colors.text.secondary[theme],
-              },
-            },
-            textDayStyle: { borderRadius: 0 },
-            monthTextColor: Colors.primary.dark,
-            textMonthFontSize: Font.FontSize.Title1,
-            textMonthFontWeight: "900",
-            dayTextColor: Colors.text.primary[theme],
-            arrowColor: Colors.primary.dark,
-            calendarBackground: Colors.background.default[theme],
-            todayBackgroundColor: Colors.primary.main,
-            todayTextColor: Colors.text.primary.light,
+        <TouchableWithoutFeedback
+          onPress={() => {
+            open && setOpen(false);
           }}
-        />
+        >
+          <Calendar
+            markingType="multi-dot"
+            markedDates={planList}
+            enableSwipeMonths
+            maxDate={open ? nextWeek : undefined}
+            renderArrow={(direction) => (
+              <Icon
+                name={direction === "left" ? "ios-caret-back-sharp" : "ios-caret-forward-sharp"}
+                size={20}
+                color={Colors.primary.dark}
+              />
+            )}
+            hideExtraDays
+            onDayPress={HandelDayPress}
+            theme={{
+              "stylesheet.day.basic": {
+                today: {
+                  width: 45,
+                  backgroundColor: setOpacity(Colors.primary.main, 0.2),
+                  borderRadius: 4,
+                },
+              },
+              "stylesheet.calendar.header": {
+                // @ts-ignore
+                dayHeader: {
+                  color: Colors.text.secondary[theme],
+                },
+              },
+              textDayStyle: { borderRadius: 0 },
+              monthTextColor: Colors.primary.dark,
+              textMonthFontSize: Font.FontSize.Title1,
+              textMonthFontWeight: "900",
+              dayTextColor: Colors.text.primary[theme],
+              arrowColor: Colors.primary.dark,
+              calendarBackground: Colors.background.default[theme],
+              todayBackgroundColor: Colors.primary.main,
+              todayTextColor: Colors.text.primary.light,
+            }}
+          />
+        </TouchableWithoutFeedback>
 
         <SwipeUp
           onOpen={() => setOpen(true)}
           onClose={() => (setOpen(false), setActive(""))}
           open={open}
         >
-          {plan?.map((item, index) => (
-            <UpcomingEventCard
-              active={new Date(active || "").getDate() === item.date.getDate()}
-              key={index}
-              remindTime={item.date}
-              wasteType={item.type}
-            />
-          ))}
+          {open
+            ? plan?.map((item, index) => (
+                <UpcomingEventCard
+                  active={new Date(active || "").getDate() === item.date.getDate()}
+                  key={index}
+                  showModal={showModalHandler}
+                  remindTime={item.date}
+                  wasteType={item.type}
+                />
+              ))
+            : plan && (
+                <UpcomingEventCard
+                  active={new Date(active || "").getDate() === plan[0].date.getDate()}
+                  key={0}
+                  showModal={showModalHandler}
+                  remindTime={plan[0].date}
+                  wasteType={plan[0].type}
+                />
+              )}
         </SwipeUp>
       </Animated.View>
 
-      {/* <Button.Default
-        onPress={async () => console.log(await Notifications.getAllScheduledNotificationsAsync())}
-      >
-        check
-      </Button.Default> */}
-      {/* <Button.Default onPress={() => plan && notif.addListNotification(plan)}>press</Button.Default> */}
       <Suspense fallback={<></>}>
         <NotificationModalScreen
           trashCanType={trashCanType || 1}

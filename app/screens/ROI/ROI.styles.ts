@@ -4,14 +4,15 @@ import paper from "style/components/Paper/paper";
 
 export default StyleSheet.create({
   container: {
+    flex: 1,
     justifyContent: "space-between",
-    paddingTop: 32,
     backgroundColor: Colors.background.default.light,
+    marginHorizontal: 8,
   },
   trashCardsContainer: {
     marginTop: 8,
-    height: 650,
-    overflow: "scroll",
+
+    maxHeight: 650,
   },
   trashCard: {
     flexDirection: "row",
@@ -36,6 +37,6 @@ export default StyleSheet.create({
     elevation: 12,
   },
   button: {
-    marginTop: 24,
+    marginBottom: 32,
   },
 });

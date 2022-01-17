@@ -14,7 +14,7 @@ const FeedbackScreen: NavStatelessComponent = (props: any) => {
   return (
     <View.Background style={styles.container}>
       <Button.TextButton
-        style={{ marginTop: 8, marginLeft: 12, marginVertical: 8 }}
+        style={{ marginTop: 8 }}
         onPress={() => {
           navigator.openSetting();
         }}

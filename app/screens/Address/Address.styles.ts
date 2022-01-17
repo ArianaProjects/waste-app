@@ -7,7 +7,6 @@ export default StyleSheet.create({
     ...Layout.containerWithPadding,
     justifyContent: "space-between",
     backgroundColor: Colors.background.default.light,
-    paddingTop: 32,
   },
   inputs: { marginTop: 16, marginLeft: 8 },
   imageContainer: { justifyContent: "center", flexDirection: "row" },
@@ -15,5 +14,5 @@ export default StyleSheet.create({
     justifyContent: "center",
     flex: 1,
   },
-  button: { marginTop: 32 },
+  button: { marginBottom: 32 },
 });

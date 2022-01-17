@@ -94,10 +94,10 @@ const AddressScreen: NavStatelessComponent = ({ navigation }: any) => {
             items={placesList}
           />
         </View.Background>
-        <Button.Default style={styles.button} onPress={handelSave}>
-          {t("save")}
-        </Button.Default>
       </View.Background>
+      <Button.Default style={styles.button} onPress={handelSave}>
+        {t("save")}
+      </Button.Default>
     </View.Background>
   );
 };

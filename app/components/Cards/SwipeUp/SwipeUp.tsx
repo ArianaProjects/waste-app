@@ -23,7 +23,7 @@ export default function SwipeUp(props: Props) {
   // const isDark = theme == "dark";
   const [currentHeight, setCurrentHeight] = useState<number>();
   let ScreenHeight = Dimensions.get("window").height;
-  const height = useRef(new Animated.Value(180)).current;
+  const height = useRef(new Animated.Value(150)).current;
 
   const maximize = () => {
     Animated.timing(height, {
@@ -36,7 +36,7 @@ export default function SwipeUp(props: Props) {
 
   const minimize = () => {
     Animated.timing(height, {
-      toValue: 180,
+      toValue: 150,
       duration: 180,
       useNativeDriver: false,
     }).start();
@@ -60,7 +60,7 @@ export default function SwipeUp(props: Props) {
       onLayout={(event) => {
         setCurrentHeight(event.nativeEvent.layout.height);
       }}
-      hitSlop={{ top: 50 }}
+      hitSlop={{ top: 80 }}
       style={styles.mainContainer}
       onSwipeUp={() => !props.fullWidth && maximize()}
       onSwipeDown={() => !props.fullWidth && minimize()}
@@ -77,8 +77,9 @@ export default function SwipeUp(props: Props) {
           <Indicator style={styles.indicator} color={Colors.text.secondary[theme]} />
         )}
         <Animated.ScrollView
+          alwaysBounceVertical={true}
           // scrollToOverflowEnabled
-          // scrollEnabled={props.fullWidth ? true : currentHeight !== 180}
+          scrollEnabled={props.fullWidth ? true : props.open}
           style={{ height: 500, paddingVertical: 8, marginTop: props.fullWidth ? 40 : 0 }}
         >
           {props.children}
