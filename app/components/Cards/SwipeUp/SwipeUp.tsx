@@ -78,7 +78,7 @@ export default function SwipeUp(props: Props) {
         )}
         <Animated.ScrollView
           // scrollToOverflowEnabled
-          scrollEnabled={props.fullWidth ? true : currentHeight !== 180}
+          // scrollEnabled={props.fullWidth ? true : currentHeight !== 180}
           style={{ height: 500, paddingVertical: 8, marginTop: props.fullWidth ? 40 : 0 }}
         >
           {props.children}

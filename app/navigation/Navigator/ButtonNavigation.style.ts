@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
-
-import { Colors, Font, Layout } from "style";
+import { Colors, Font } from "style";
 import paper from "style/components/Paper/paper";
 
 export default StyleSheet.create({
@@ -11,7 +10,7 @@ export default StyleSheet.create({
     fontWeight: "bold",
   },
   tabBarContainer: {
-    height: 60,
+    // height: 60,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: Colors.secondary.main,

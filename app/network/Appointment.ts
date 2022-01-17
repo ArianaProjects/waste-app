@@ -23,6 +23,24 @@ export async function getAllAppointment(collectionId: number): Promise<Appointme
         },
         {
           id: "123a2_2323_23123_123333",
+          date: moment(new Date()).add(1, "day").toDate(),
+
+          type: WasteType.GREEN,
+        },
+        {
+          id: "123a2_2323_23123_123333",
+          date: moment(new Date()).add(1, "day").toDate(),
+
+          type: WasteType.GREEN,
+        },
+        {
+          id: "123a2_2323_23123_123333",
+          date: moment(new Date()).add(1, "day").toDate(),
+
+          type: WasteType.GREEN,
+        },
+        {
+          id: "123a2_2323_23123_123333",
           date: moment(new Date()).add(2, "day").toDate(),
 
           type: WasteType.ELECTRO,

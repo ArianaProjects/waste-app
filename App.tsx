@@ -1,4 +1,3 @@
-import StoreReviewChecker from "components/StoreReviewChecker";
 import Constants from "expo-constants";
 import { locale as localeExpo } from "expo-localization";
 import { StatusBar } from "expo-status-bar";
@@ -37,31 +36,13 @@ export default function App() {
     return null;
   } else {
     return (
-      <SafeAreaProvider>
-        <Provider store={store}>
-          {/* <GlobalizeProvider locale={language || defaultLanguage}> */}
-          {/* <LocalizationContext.Provider
-            value={{
-              locale: locale || defaultLocale,
-              setLocale: setLocale,
-              language: language || defaultLanguage,
-              setLanguage: setLanguage,
-            }}
-          > */}
-          <StatusBar backgroundColor={Colors.background.default.light} />
+      <Provider store={store}>
+        <SafeAreaProvider>
           <NotificationProvider>
-            {__DEV__ ? (
-              <Navigation />
-            ) : (
-              <StoreReviewChecker>
-                <Navigation />
-              </StoreReviewChecker>
-            )}
+            <Navigation />
           </NotificationProvider>
-          {/* </LocalizationContext.Provider> */}
-          {/* </GlobalizeProvider> */}
-        </Provider>
-      </SafeAreaProvider>
+        </SafeAreaProvider>
+      </Provider>
     );
   }
 }
