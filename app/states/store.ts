@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { Action } from "redux";
-import { persistReducer, persistStore } from "redux-persist";
+import { PersistConfig, persistReducer, persistStore } from "redux-persist";
 import { ThunkAction } from "redux-thunk";
 import rootReducer, { RootState } from "./rootReducer";
 import AsyncStorage from "@react-native-async-storage/async-storage";

@@ -20,6 +20,10 @@ const NotificationSettingsScreen: NavStatelessComponent = ({ navigation }: any) 
   const defaultData = useSelector((state: RootState) => state.userPreferences);
 
   // set data for dispatch to redux
+  // const [daySooner, setDaySooner] = useState(1);
+  // const [hour, setHour] = useState(1);
+  // const [minutes, setMinutes] = useState(1);
+  // // set data for dispatch to redux
   const [daySooner, setDaySooner] = useState(defaultData.notificationsConfigs.daySooner);
   const [hour, setHour] = useState(defaultData.notificationsConfigs.hour);
   const [minutes, setMinutes] = useState(defaultData.notificationsConfigs.minutes);

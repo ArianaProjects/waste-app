@@ -37,7 +37,7 @@ export default function App() {
     return null;
   } else {
     return (
-      <SafeAreaProvider >
+      <SafeAreaProvider>
         <Provider store={store}>
           {/* <GlobalizeProvider locale={language || defaultLanguage}> */}
           {/* <LocalizationContext.Provider

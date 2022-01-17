@@ -107,6 +107,24 @@ const userPreferences = createSlice({
     changeIntroDone(state, action: PayloadAction<boolean>) {
       state.introDone = action.payload;
     },
+    InitialNotificationsConfigs(state) {
+      state.notificationsConfigs = {
+        hour: 9,
+        minutes: 30,
+        daySooner: 0,
+      };
+    },
+    InitialROI(state) {
+      state.ROI = {
+        [WasteType.BIO]: false,
+        [WasteType.ELECTRO]: false,
+        [WasteType.GREEN]: false,
+        [WasteType.PAPER]: false,
+        [WasteType.SPECIAL]: false,
+        [WasteType.RES]: false,
+        [WasteType.PACKAGE]: false,
+      };
+    },
   },
 });
 
@@ -120,6 +138,8 @@ const {
   changeNotificationsConfigs,
   changeAppointment,
   changeIntroDone,
+  InitialNotificationsConfigs,
+  InitialROI,
 } = userPreferences.actions;
 
 export const actions = {
@@ -132,6 +152,8 @@ export const actions = {
   changeROI,
   changeAppointment,
   changeIntroDone,
+  InitialNotificationsConfigs,
+  InitialROI,
 };
 
 export const namespace = userPreferences.name;
