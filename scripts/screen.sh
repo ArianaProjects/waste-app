@@ -16,7 +16,8 @@ TEMPLATES_PATH=./scripts/templates/screen
 # new line' ./app/utils/i18n/resources.ts > ./app/utils/i18n/resources2.ts
 
 
-for SCREEN in AboutUs Address Calendar Feedback Imprint Language Notification NotificationModal Privacy ROI Settings NotFound; do
+for SCREEN in Delete; do
+# for SCREEN in AboutUs Address Calendar Feedback Imprint Language Notification NotificationModal Privacy ROI Settings NotFound; do
 # for SCREEN in  IntroCity IntroPlace IntroROI AboutUs Address Calendar Feedback Imprint Intro Language Notification NotificationModal Privacy ROI Settings NotFound; do
 SUPPER=${SCREEN^^}
 

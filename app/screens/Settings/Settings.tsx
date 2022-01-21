@@ -63,6 +63,11 @@ const SettingsScreen: NavStatelessComponent = (props: any) => {
             text={t("imprint") || ""}
             iconName="privacy-tip"
           />
+          <SettingCard
+            onPress={() => navigator.openDelete()}
+            text={t("DELETE_TITLE") || ""}
+            iconName="privacy-tip"
+          />
 
           <View.Paper style={styles.ownerContainer}>
             <Text.Callout style={{ marginLeft: 8 }}>Powered By:</Text.Callout>

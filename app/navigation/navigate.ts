@@ -18,6 +18,11 @@ const openAboutUs =
   (props = {}) => {
     navigation.push("AboutUs", props);
   };
+const openDelete =
+  (navigation: any) =>
+  (props = {}) => {
+    navigation.push("Delete", props);
+  };
 const openAddress =
   (navigation: any) =>
   (props = {}) => {
@@ -100,6 +105,7 @@ const navigate = (navigation: any) => ({
   openROI: navigateOneTime(openROI(navigation)),
   openSetting: navigateOneTime(openSetting(navigation)),
   openNotFound: navigateOneTime(openNotFound(navigation)),
+  openDelete: navigateOneTime(openDelete(navigation)),
 });
 
 export default navigate;

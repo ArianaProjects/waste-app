@@ -11,9 +11,13 @@ export default StyleSheet.create({
   defaultLight: {
     backgroundColor: Colors.background.paper.light,
     color: Colors.text.primary.light,
+    height: 50,
+    marginHorizontal: 8,
   },
   defaultDark: {
     backgroundColor: Colors.background.paper.dark,
     color: Colors.text.primary.dark,
+    height: 50,
+    marginHorizontal: 8,
   },
 });

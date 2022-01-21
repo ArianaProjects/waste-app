@@ -9,6 +9,6 @@ export const getStyle = (
   // let data = styles.global;
   const t: keyof typeof styles = (variant + capitalize(theme)) as keyof typeof styles;
 
-  const data = { ...styles.global, ...styles[t], ...defaultValue };
+  const data = { ...styles.global, ...defaultValue, ...styles[t] };
   return data;
 };

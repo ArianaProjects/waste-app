@@ -35,6 +35,8 @@ export default StyleSheet.create({
     width: 130,
     marginLeft: 8,
     color: Colors.text.primary.light,
+    height: 50,
+    marginHorizontal: 8,
   },
   timeContainer: {
     flexDirection: "row",

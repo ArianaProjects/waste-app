@@ -44,6 +44,7 @@
     "react-native-calendars": "^1.1274.0",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-globalize": "^4.5.1",
+    "react-native-modal": "^13.0.0",
     "react-native-picker-select": "^8.0.4",
     "react-native-ratings": "^8.1.0",
     "react-native-render-html": "^6.3.1",
@@ -65,6 +66,7 @@
     "@types/lodash.throttle": "^4.1.6",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.64.12",
+    "@types/xdate": "^0.8.32",
     "typescript": "~4.3.5"
   },
   "private": false

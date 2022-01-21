@@ -21,16 +21,19 @@ export default function SettingCard(props: Props) {
   const onPressIn = () => {
     props.onPress();
   };
-
-  return (
-    <TouchableOpacity onPress={onPressIn}>
+  if (props.switchMode)
+    return (
       <View.Paper style={styles.container}>
         <Icon name={props.iconName} color={Colors.secondary[theme]} size={25} style={styles.icon} />
         <Text.Callout>{props.text}</Text.Callout>
         {props.switchMode && (
-          <View.Paper style={{ flex: 1 }}>
+          <View.Paper
+            style={{
+              flex: 1,
+              alignItems: "flex-end",
+            }}
+          >
             <Switch
-              disabled
               style={{ height: 30 }}
               trackColor={{
                 false: Colors.text.secondary[theme],
@@ -45,6 +48,13 @@ export default function SettingCard(props: Props) {
             />
           </View.Paper>
         )}
+      </View.Paper>
+    );
+  return (
+    <TouchableOpacity disabled={props.switchMode} onPress={onPressIn}>
+      <View.Paper style={styles.container}>
+        <Icon name={props.iconName} color={Colors.secondary[theme]} size={25} style={styles.icon} />
+        <Text.Callout style={{ flexGrow: 1, width: 250 }}>{props.text}</Text.Callout>
       </View.Paper>
     </TouchableOpacity>
   );

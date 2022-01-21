@@ -12,6 +12,7 @@ import * as ROI from "screens/ROI/translations";
 import * as Settings from "screens/Settings/translations";
 import * as NotFound from "screens/NotFound/translations";
 import * as NotificationSettings from "screens/NotificationSettings/translations";
+import * as Delete from "screens/Delete/translations";
 import * as UI from "utils/ui/translations";
 import * as Upcoming from "components/Cards/UpcomingEvent/translations";
 
@@ -32,6 +33,7 @@ const en = {
   ...Upcoming.en,
   ...NotificationSettings.en,
   ...UI.en,
+  ...Delete.en,
 };
 
 const de = {
@@ -51,6 +53,7 @@ const de = {
   ...NotificationSettings.de,
   ...Upcoming.de,
   ...UI.de,
+  ...Delete.de,
 };
 
 export interface TranslationKeys
@@ -69,6 +72,7 @@ export interface TranslationKeys
     NotFound.TranslationKeys,
     Upcoming.TranslationKeys,
     NotificationSettings.TranslationKeys,
+    Delete.TranslationKeys,
     UI.TranslationKeys {}
 
 export { en, de };

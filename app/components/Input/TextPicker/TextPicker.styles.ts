@@ -24,8 +24,12 @@ export default StyleSheet.create({
   },
   inputDark: {
     color: Colors.text.primary.dark,
+    height: 50,
+    marginHorizontal: 8,
   },
   inputLight: {
     color: Colors.text.primary.light,
+    height: 50,
+    marginHorizontal: 8,
   },
 });

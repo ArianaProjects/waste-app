@@ -37,11 +37,9 @@ export default function App() {
   } else {
     return (
       <Provider store={store}>
-        <SafeAreaProvider>
-          <NotificationProvider>
-            <Navigation />
-          </NotificationProvider>
-        </SafeAreaProvider>
+        <NotificationProvider>
+          <Navigation />
+        </NotificationProvider>
       </Provider>
     );
   }

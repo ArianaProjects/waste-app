@@ -10,7 +10,8 @@ export interface NavStatelessComponent extends React.FC {
   navigationOptions?:
     | NativeStackNavigationOptions
     | StackNavigationOptions
-    | BottomTabNavigationOptions;
+    | BottomTabNavigationOptions
+    | any;
 }
 
 declare global {
@@ -30,6 +31,7 @@ export type RootStackParamList = {
   Feedback: NavigatorScreenParams<RootTabParamList> | undefined;
   Privacy: NavigatorScreenParams<RootTabParamList> | undefined;
   Imprint: NavigatorScreenParams<RootTabParamList> | undefined;
+  Delete: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
 };

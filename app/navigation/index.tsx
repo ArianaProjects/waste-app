@@ -1,11 +1,13 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StatusBar } from "expo-status-bar";
 import { RootStackParamList } from "interfaces";
 import * as React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import AboutUsScreen from "screens/AboutUs";
 import AddressScreen from "screens/Address";
+import DeleteScreen from "screens/Delete";
 import FeedbackScreen from "screens/Feedback";
 import ImprintScreen from "screens/Imprint";
 import Intro from "screens/Intro";
@@ -24,6 +26,7 @@ function Navigation() {
   const theme = useSelector((state: RootState) => state.systemTheme.theme);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.background.default[theme] }}>
+      <StatusBar style={theme == "dark" ? "light" : "dark"} />
       <NavigationContainer>
         <RootNavigator />
       </NavigationContainer>
@@ -63,6 +66,11 @@ function RootNavigator() {
           <Stack.Screen name="ROI" component={ROI} options={screenOptions} />
           <Stack.Screen name="Address" component={AddressScreen} options={screenOptions} />
           <Stack.Screen name="AboutUs" component={AboutUsScreen} options={screenOptions} />
+          <Stack.Screen
+            name="Delete"
+            component={DeleteScreen}
+            options={DeleteScreen.navigationOptions}
+          />
         </>
       )}
     </Stack.Navigator>

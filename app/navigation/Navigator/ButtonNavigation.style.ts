@@ -5,16 +5,16 @@ import paper from "style/components/Paper/paper";
 export default StyleSheet.create({
   tabBarLabel: {
     marginLeft: 12,
-    marginTop: 0,
     fontSize: Font.FontSize.Caption1,
     fontWeight: "bold",
+    lineHeight: 20,
   },
   tabBarContainer: {
     alignItems: "center",
     paddingHorizontal: 8,
     justifyContent: "center",
     shadowColor: "transparent",
-    backgroundColor: Colors.secondary.main,
+    backgroundColor: Colors.background.default["light"],
   },
   tabBar: {
     borderRadius: paper.borderRadius,

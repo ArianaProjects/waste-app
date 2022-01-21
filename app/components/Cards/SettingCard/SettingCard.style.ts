@@ -11,6 +11,7 @@ export default StyleSheet.create({
     marginVertical: 8,
     borderRadius: paper.borderRadius,
     alignItems: "center",
+    display: "flex",
   },
   icon: { marginRight: 8 },
   indicator: { alignSelf: "center", marginTop: 16, marginBottom: 40 },
