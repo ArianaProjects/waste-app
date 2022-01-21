@@ -26,6 +26,7 @@ export default function TextPicker(props: Props) {
       <RNPickerSelect
         {...newProps}
         style={{
+          inputIOSContainer: theme === "dark" ? styles.inputDark : styles.inputLight,
           viewContainer: customStyle,
           placeholder: theme === "dark" ? styles.placeholderDark : styles.placeholderLight,
           inputAndroid: theme === "dark" ? styles.inputDark : styles.inputLight,
