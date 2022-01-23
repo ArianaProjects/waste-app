@@ -1,8 +1,10 @@
-import { View } from "components";
+import { Text, View } from "components";
 import SwipeUp from "components/Cards/SwipeUp/SwipeUp";
 import UpcomingEventCard from "components/Cards/UpcomingEvent/UpcomingEventCard";
 import { AppointmentInterface, NavStatelessComponent } from "interfaces";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
+import { ScrollView } from "react-native-gesture-handler";
 import { useSelector } from "react-redux";
 import { RootState } from "states";
 import navigationOptions from "./Notification.navigationOptions";
@@ -12,15 +14,16 @@ const NotificationScreen: NavStatelessComponent = () => {
   const plan = useSelector((state: RootState) => state.userPreferences.appointments);
   const [data, setData] = useState<AppointmentInterface[]>();
   useEffect(() => {
-    setData(plan?.filter((i) => i.date.getDate() <= new Date().getDate()));
+    setData(plan?.filter((i) => moment(i.date).isBefore()));
   }, [plan]);
+
   return (
     <View.Background style={styles.container}>
-      <SwipeUp fullWidth>
+      <ScrollView scrollEnabled>
         {data?.map((item, index) => (
           <UpcomingEventCard key={index} remindTime={item.date} wasteType={item.type} />
         ))}
-      </SwipeUp>
+      </ScrollView>
     </View.Background>
   );
 };

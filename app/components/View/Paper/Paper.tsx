@@ -7,7 +7,7 @@ import styles from "./Paper.styles";
 
 interface Props {
   style?: StyleProp<ViewStyle>;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 function Paper(props: Props): React.ReactElement {

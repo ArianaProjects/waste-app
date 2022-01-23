@@ -8,7 +8,7 @@ import styles from "./Background.styles";
 
 interface Props extends ViewProps {
   style?: StyleProp<ViewStyle>;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export default function Background(props: Props): React.ReactElement {

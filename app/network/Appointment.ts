@@ -12,7 +12,7 @@ export async function getAllAppointment(collectionId: number): Promise<Appointme
       [
         {
           id: "123a2_2323_23123_123333",
-          date: moment(new Date()).add(0, "day").toDate(),
+          date: moment(new Date()).add(10, "day").toDate(),
           type: WasteType.BIO,
         },
         {
@@ -25,19 +25,19 @@ export async function getAllAppointment(collectionId: number): Promise<Appointme
           id: "123a2_2323_23123_123333",
           date: moment(new Date()).add(1, "day").toDate(),
 
-          type: WasteType.GREEN,
+          type: WasteType.ELECTRO,
         },
         {
           id: "123a2_2323_23123_123333",
           date: moment(new Date()).add(1, "day").toDate(),
 
-          type: WasteType.GREEN,
+          type: WasteType.PAPER,
         },
         {
           id: "123a2_2323_23123_123333",
           date: moment(new Date()).add(1, "day").toDate(),
 
-          type: WasteType.GREEN,
+          type: WasteType.RES,
         },
         {
           id: "123a2_2323_23123_123333",
@@ -53,7 +53,7 @@ export async function getAllAppointment(collectionId: number): Promise<Appointme
         },
         {
           id: "123a2_2323_23123_123333",
-          date: moment(new Date()).add(4, "day").toDate(),
+          date: moment(new Date()).subtract(4, "day").toDate(),
 
           type: WasteType.RES,
         },

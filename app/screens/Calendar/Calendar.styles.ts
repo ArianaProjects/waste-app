@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { Colors, Layout } from "style";
+import { Colors, Font, Layout } from "style";
 
 export default StyleSheet.create({
   container: {
@@ -22,5 +22,24 @@ export default StyleSheet.create({
     height: 15,
     flex: 1,
     paddingTop: 30,
+  },
+  knob: {
+    width: 100,
+    height: 7,
+    backgroundColor: Colors.primary.main,
+    marginTop: 12,
+    borderRadius: 8,
+  },
+  notFound: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  notFoundImage: { width: 300, height: 300, resizeMode: "contain" },
+  notFoundText: {
+    fontSize: Font.FontSize.Title2,
+    color: Colors.primary.dark,
+    fontWeight: "bold",
+    marginTop: 16,
   },
 });

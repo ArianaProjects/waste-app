@@ -8,12 +8,12 @@ import { Colors } from "../colors";
 export default StyleSheet.create({
   containerNoPadding: {
     flex: 1,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.background.default.light,
   },
   containerWithPadding: {
     flex: 1,
     paddingHorizontal: Layout.PADDING_HORIZONTAL,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.background.default.light,
   },
   androidNavTitle: {
     paddingLeft: platform.isAndroid ? 6 : 0,

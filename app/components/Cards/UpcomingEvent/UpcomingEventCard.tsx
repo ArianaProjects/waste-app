@@ -1,6 +1,7 @@
 import { Text, View } from "components";
 import { ROIs } from "constant/ROITypes";
 import { t } from "i18n-js";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Image } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
@@ -25,6 +26,8 @@ const UpcomingEventCard = (props: Props) => {
 
   useEffect(() => {
     const d = days_left(props.remindTime);
+    const e = moment(props.remindTime).isBefore();
+    console.log(e);
 
     d && setDaysLeft(d);
   }, [props.remindTime]);

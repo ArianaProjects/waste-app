@@ -17,7 +17,13 @@ interface Props {
 export default function Title3(props: Props): React.ReactElement {
   const theme = useSelector((state: RootState) => state.systemTheme.theme);
 
-  return <Text {...props} style={getStyle(theme, props.color, styles, props.style)} />;
+  return (
+    <Text
+      allowFontScaling={false}
+      {...props}
+      style={getStyle(theme, props.color, styles, props.style)}
+    />
+  );
 }
 
 Title3.displayName = "Title3";

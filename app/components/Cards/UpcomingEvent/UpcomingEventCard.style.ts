@@ -7,7 +7,7 @@ export default StyleSheet.create({
     marginHorizontal: 12,
     borderRadius: paper.borderRadius,
     padding: 8,
-    marginBottom: 16,
+    marginTop: 16,
     flexDirection: "row",
   },
   icon: { width: 45, height: 50 },
