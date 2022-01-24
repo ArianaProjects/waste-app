@@ -22,7 +22,7 @@ export default function TextPicker(props: Props) {
   const { label, ...newProps } = props;
   return (
     <>
-      <Text.Title2 style={props.textStyles}>{label}</Text.Title2>
+      <Text.Title2 style={[props.textStyles, styles.text]}>{label}</Text.Title2>
       <RNPickerSelect
         {...newProps}
         style={{

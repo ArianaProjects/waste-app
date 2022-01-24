@@ -32,4 +32,5 @@ export default StyleSheet.create({
     height: 50,
     marginHorizontal: 8,
   },
+  text: { marginLeft: 8 },
 });

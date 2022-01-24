@@ -32,6 +32,15 @@ const IntroScreen: NavStatelessComponent = () => {
     ref.current?.goToSlide(a);
     // setPage(a);
   };
+
+  const onDone = () => {
+    if (selectedPlace && selectedCity) {
+      dispatch(actions.changePlace(selectedPlace));
+      dispatch(actions.changeCity(selectedCity));
+      dispatch(actions.changeROI(selectedROI));
+      dispatch(actions.changeIntroDone(true));
+    }
+  };
   useEffect(() => {
     setSelectedPlace(undefined);
   }, [selectedCity]);
@@ -81,14 +90,6 @@ const IntroScreen: NavStatelessComponent = () => {
     return <View.Background>{item.page}</View.Background>;
   };
 
-  const onDone = () => {
-    if (selectedPlace && selectedCity) {
-      dispatch(actions.changePlace(selectedPlace));
-      dispatch(actions.changeCity(selectedCity));
-      dispatch(actions.changeROI(selectedROI));
-      dispatch(actions.changeIntroDone(true));
-    }
-  };
   return (
     <View.Background style={styles.container}>
       <AppIntroSlider

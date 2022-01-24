@@ -9,5 +9,9 @@
   "aboutUs": "About Us",
   "feedback": "Feedback",
   "privacy": "Privacy",
-  "imprint": "imprint"
+  "imprint": "imprint",
+  "deleteData": "Delete Data",
+  "areYouSure": "All Application Data will lost are you sure?",
+  "yes": "Yes",
+  "no": "No"
 }

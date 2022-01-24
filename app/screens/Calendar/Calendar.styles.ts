@@ -26,7 +26,7 @@ export default StyleSheet.create({
   knob: {
     width: 100,
     height: 7,
-    backgroundColor: Colors.primary.main,
+    backgroundColor: Colors.primary.dark,
     marginTop: 12,
     borderRadius: 8,
   },

@@ -23,14 +23,14 @@ export default function Default(props: Props): React.ReactElement {
   // console.log(props.disabled);
   const isDark = theme == "dark";
   const customStyle = isDark
-    ? [styles.global, styles.defaultDark, props.style]
-    : [styles.global, styles.defaultLight, props.style];
+    ? [props.style, styles.global, styles.defaultDark]
+    : [props.style, styles.global, styles.defaultLight];
 
   if (props.disabled) customStyle.push(styles.disable);
 
   return (
     <TouchableWithoutFeedback onPress={(x) => !props.disabled && props.onPress(x)}>
-      <View style={customStyle}>
+      <View style={[...customStyle, props.style]}>
         <Text.Body>{props.children}</Text.Body>
       </View>
     </TouchableWithoutFeedback>

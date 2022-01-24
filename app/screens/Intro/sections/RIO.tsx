@@ -28,6 +28,7 @@ interface ROIProps {
 
 const ROI = (props: ROIProps) => {
   const [selectedROI, setSelectedROI] = useState<WastesInterface>(props.selectedROI);
+
   const [ROIs] = useState([
     {
       iconSrc: require("assets/images/trashCans/bio.png"),
@@ -70,7 +71,7 @@ const ROI = (props: ROIProps) => {
   }, [selectedROI]);
 
   return (
-    <ScrollView>
+    <View.Background>
       <Button.TextButton
         style={{ marginTop: 8 }}
         onPress={() => {
@@ -86,7 +87,7 @@ const ROI = (props: ROIProps) => {
         {t("back")}
       </Button.TextButton>
       <View.Background>
-        <ScrollView style={IntroStyles.trashCardsContainer}>
+        <ScrollView showsVerticalScrollIndicator={false} style={IntroStyles.trashCardsContainer}>
           {ROIs.map((item, i) => {
             return (
               <TouchableWithoutFeedback
@@ -118,9 +119,15 @@ const ROI = (props: ROIProps) => {
             );
           })}
         </ScrollView>
-        <Button.Default onPress={() => props.done()}>{t("done")}</Button.Default>
+        <Button.Default
+          onPress={() => {
+            props.done();
+          }}
+        >
+          {t("done")}
+        </Button.Default>
       </View.Background>
-    </ScrollView>
+    </View.Background>
   );
 };
 

@@ -17,7 +17,7 @@ interface Props {
 export default function LargeTitle(props: Props): React.ReactElement {
   const theme = useSelector((state: RootState) => state.systemTheme.theme);
 
-  return <Text {...props} style={(getStyle(theme, props.color, styles), props.style)} />;
+  return <Text {...props} style={[getStyle(theme, props.color, styles), props.style]} />;
 }
 
 LargeTitle.displayName = "LargeTitle";

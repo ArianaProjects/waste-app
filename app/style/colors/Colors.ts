@@ -31,7 +31,7 @@ export default {
   },
   background: {
     default: {
-      light: "#F2F2F7",
+      light: "#fdfdfd",
       dark: "#1C1C1E",
     },
     paper: {

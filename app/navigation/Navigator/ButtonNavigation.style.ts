@@ -4,15 +4,17 @@ import paper from "style/components/Paper/paper";
 
 export default StyleSheet.create({
   tabBarLabel: {
-    marginLeft: 12,
-    fontSize: Font.FontSize.Caption1,
+    marginLeft: 16,
+    fontSize: Font.FontSize.Footnote,
     fontWeight: "bold",
-    lineHeight: 20,
   },
   tabBarContainer: {
     alignItems: "center",
     paddingHorizontal: 8,
     justifyContent: "center",
+    height: 45,
+    paddingBottom: 8,
+    paddingTop: 4,
     shadowColor: "transparent",
     backgroundColor: Colors.background.default["light"],
   },
@@ -20,9 +22,12 @@ export default StyleSheet.create({
     borderRadius: paper.borderRadius,
     alignItems: "center",
     justifyContent: "center",
-    flexDirection: "row",
-    height: 35,
+    // flexDirection: "row",
+    backgroundColor: "transparent",
+    height: 40,
+    width: 100,
+
     alignSelf: "center",
-    marginHorizontal: 4,
+    marginHorizontal: 8,
   },
 });

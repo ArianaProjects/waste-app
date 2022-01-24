@@ -43,9 +43,9 @@ const FontSizeSmallDevice = {
   Callout: 16,
   Body: 17,
   HeadLine: 17,
-  Title3: 20,
-  Title2: 40,
-  Title1: 28,
+  Title3: 16,
+  Title2: 20,
+  Title1: 26,
   LargeTitle: 34,
 };
 const LineHeight = {

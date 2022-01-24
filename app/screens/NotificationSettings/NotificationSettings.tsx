@@ -88,13 +88,14 @@ const NotificationSettingsScreen: NavStatelessComponent = ({ navigation }: any) 
           <View.Background style={styles.inputContainer}>
             <RNPickerSelect
               value={daySooner}
+              placeholder={{ value: 0, label: "0 " + t("day") }}
               style={{
                 inputIOS: styles.input,
                 placeholder: styles.input,
                 inputAndroid: styles.input,
               }}
               onValueChange={(e) => {
-                setDaySooner(e);
+                e ? setDaySooner(e) : setDaySooner(0);
               }}
               items={days}
             />
@@ -162,7 +163,6 @@ NotificationSettingsScreen.displayName = "NotificationSettingsScreen";
 export default NotificationSettingsScreen;
 
 const days = [
-  { value: 0, label: "0 " + t("day") },
   { value: 1, label: "1 " + t("day") },
   { value: 2, label: "2 " + t("day") },
   { value: 4, label: "4 " + t("day") },

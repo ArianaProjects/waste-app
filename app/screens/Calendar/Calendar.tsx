@@ -113,7 +113,6 @@ const CalendarScreen: NavStatelessComponent = () => {
       <Agenda
         items={agendaItems}
         markedDates={planList}
-        selected={moment(new Date()).add(3, "day").toJSON().split("T")[0]}
         pastScrollRange={2}
         futureScrollRange={12}
         renderItem={({ name, day }) => {
@@ -145,10 +144,21 @@ const CalendarScreen: NavStatelessComponent = () => {
           todayTextColor: Colors.primary.dark,
           todayBackgroundColor: setOpacity(Colors.primary.main, 0.2),
           agendaTodayColor: Colors.text.secondary.light,
+          calendarBackground: Colors.background.default.light,
         }}
         style={{}}
       />
-
+      <View.Background
+        style={{
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 1,
+          },
+          shadowOpacity: 0.2,
+          shadowRadius: 1.41,
+        }}
+      />
       <Suspense fallback={<></>}>
         <NotificationModalScreen
           trashCanType={trashCanType || 1}

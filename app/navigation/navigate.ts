@@ -38,11 +38,6 @@ const openFeedback =
   (props = {}) => {
     navigation.navigate("Feedback", props);
   };
-const openImprint =
-  (navigation: any) =>
-  (props = {}) => {
-    navigation.navigate("Imprint", props);
-  };
 const openIntro =
   (navigation: any) =>
   (props = {}) => {
@@ -95,7 +90,6 @@ const navigate = (navigation: any) => ({
   openAddress: navigateOneTime(openAddress(navigation)),
   openCalendar: navigateOneTime(openCalendar(navigation)),
   openFeedback: navigateOneTime(openFeedback(navigation)),
-  openImprint: navigateOneTime(openImprint(navigation)),
   openIntro: navigateOneTime(openIntro(navigation)),
   openLanguage: navigateOneTime(openLanguage(navigation)),
   openNotification: navigateOneTime(openNotification(navigation)),

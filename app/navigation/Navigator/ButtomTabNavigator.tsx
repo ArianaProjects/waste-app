@@ -1,9 +1,8 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import styles from "components/Button/styles";
+import { Text } from "components";
 import { RootTabParamList, RootTabScreenProps } from "interfaces";
 import React from "react";
 import { Pressable, useColorScheme } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useSelector } from "react-redux";
 import CalendarScreen from "screens/Calendar";
@@ -11,6 +10,7 @@ import NotificationScreen from "screens/Notification";
 import SettingsScreen from "screens/Settings";
 import { RootState } from "states";
 import { Colors } from "style";
+import setOpacity from "utils/setOpacity";
 import ButtonNavigationStyle from "./ButtonNavigation.style";
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
@@ -22,16 +22,36 @@ export function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Calendar"
-      screenOptions={{
-        headerShown: false,
-        headerShadowVisible: false,
-        tabBarLabelPosition: "beside-icon",
-        tabBarItemStyle: ButtonNavigationStyle.tabBar,
-        tabBarStyle: ButtonNavigationStyle.tabBarContainer,
-        tabBarActiveBackgroundColor: "#E6FFF0",
-        tabBarInactiveBackgroundColor: Colors.background.paper[theme],
-        tabBarActiveTintColor: Colors.primary.dark,
-        tabBarLabelStyle: ButtonNavigationStyle.tabBarLabel,
+      screenOptions={({ route }) => {
+        return {
+          headerShown: false,
+          headerShadowVisible: false,
+          tabBarLabelPosition: "beside-icon",
+          tabBarLabel: (e) => {
+            return (
+              e.focused && (
+                <Text.Caption1
+                  style={[
+                    ButtonNavigationStyle.tabBarLabel,
+                    {
+                      color: e.focused ? Colors.primary.dark : Colors.text.secondary.light,
+                    },
+                  ]}
+                >
+                  {route.name}
+                </Text.Caption1>
+              )
+            );
+          },
+          tabBarItemStyle: ButtonNavigationStyle.tabBar,
+          tabBarStyle: ButtonNavigationStyle.tabBarContainer,
+          tabBarActiveBackgroundColor: "#E6FFF0",
+          tabBarInactiveBackgroundColor: Colors.background.paper[theme],
+          tabBarInactiveTintColor: setOpacity(Colors.text.secondary.light, 0.7),
+          tabBarActiveTintColor: Colors.primary.dark,
+
+          tabBarLabelStyle: ButtonNavigationStyle.tabBarLabel,
+        };
       }}
     >
       <BottomTab.Screen
@@ -74,5 +94,5 @@ export function BottomTabNavigator() {
 //   return <Icon size={30} style={{ marginBottom: -3 }} {...props} />;
 // }
 function TabBarIcon(props: { name: string; color: string }) {
-  return <Icon size={20} style={{ alignSelf: "center" }} {...props} />;
+  return <Icon size={25} style={{ alignSelf: "center" }} {...props} />;
 }

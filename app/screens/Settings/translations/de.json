@@ -2,12 +2,16 @@
   "SETTINGS_TITLE": "Wilkommen bei NMF.earth 🌱",
   "SETTINGS_TEXT": "Wilkommen bei NMF.earth 🌱",
   "notification": "notification",
-  "address": "1111111111111",
-  "ROI": "Region of 222222222222222222222",
-  "language": "wwwwwwwwwwwwwwwwwwwww",
+  "address": "Address",
+  "ROI": "Region of interest",
+  "language": "Language",
   "darkMode": "Dark mode",
   "aboutUs": "About Us",
   "feedback": "Feedback",
   "privacy": "Privacy",
-  "imprint": "imprint"
+  "imprint": "imprint",
+  "deleteData": "Delete Data",
+  "areYouSure": "all Application Data will lost are you sure?",
+  "yes": "Yes",
+  "no": "No"
 }

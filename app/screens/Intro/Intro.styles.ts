@@ -8,12 +8,10 @@ export default StyleSheet.create({
     ...Layout.containerWithPadding,
     justifyContent: "space-between",
     backgroundColor: Colors.background.default.light,
-    marginTop: 8,
   },
   imageContainer: {
     justifyContent: "center",
-    width: 400,
-    alignItems: "center",
+    alignSelf: "center",
     marginVertical: 100,
   },
   activeDotStyle: {
@@ -28,7 +26,7 @@ export default StyleSheet.create({
   },
   trashCardsContainer: {
     marginTop: 8,
-    height: 650,
+    height: "80%",
     overflow: "scroll",
   },
   trashCard: {

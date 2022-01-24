@@ -21,7 +21,7 @@ export default function Title1(props: Props): React.ReactElement {
     <Text
       {...props}
       allowFontScaling={false}
-      style={getStyle(theme, props.color, styles, props.style)}
+      style={[getStyle(theme, props.color, styles), props.style]}
     />
   );
 }
