@@ -10,7 +10,6 @@ import { Image } from "react-native";
 import { Agenda, AgendaSchedule } from "react-native-calendars";
 import { MarkingProps } from "react-native-calendars/src/calendar/day/marking";
 import { useSelector } from "react-redux";
-import NotificationModalScreen from "screens/NotificationModal";
 import { RootState } from "states";
 import { WasteType } from "states/ducks/userPreferences/userPreferences.slice";
 import { Colors } from "style";
@@ -18,6 +17,7 @@ import { t } from "utils";
 import setOpacity from "utils/setOpacity";
 import navigationOptions from "./Calendar.navigationOptions";
 import CalendarStyles from "./Calendar.styles";
+const NotificationModalScreen = React.lazy(() => import("screens/NotificationModal"));
 
 type MarkedDatesType = {
   [key: string]: MarkingProps;
@@ -125,6 +125,7 @@ const CalendarScreen: NavStatelessComponent = () => {
           );
         }}
         initialNumToRender={1}
+        contentContainerStyle={{}}
         ItemSeparatorComponent={(e) => <View.Background>{e}</View.Background>}
         showOnlySelectedDayItems
         showClosingKnob
@@ -145,24 +146,14 @@ const CalendarScreen: NavStatelessComponent = () => {
           todayBackgroundColor: setOpacity(Colors.primary.main, 0.2),
           agendaTodayColor: Colors.text.secondary.light,
           calendarBackground: Colors.background.default.light,
-        }}
-        style={{}}
-      />
-      <View.Background
-        style={{
-          shadowColor: "#000",
-          shadowOffset: {
-            width: 0,
-            height: 1,
-          },
-          shadowOpacity: 0.2,
-          shadowRadius: 1.41,
+          // @ts-ignore
         }}
       />
+
       <Suspense fallback={<></>}>
         <NotificationModalScreen
           trashCanType={trashCanType || 1}
-          setShow={setShowModal}
+          closeShow={() => setShowModal(false)}
           show={showModal}
         />
       </Suspense>

@@ -12,6 +12,7 @@ export default StyleSheet.create({
   title: {
     color: Colors.primary.dark,
     fontSize: 30,
+    textAlign: "center",
     lineHeight: 30,
     fontWeight: "bold",
     marginBottom: 24,

@@ -36,6 +36,7 @@ export default StyleSheet.create({
     marginLeft: 8,
     color: Colors.text.primary.light,
     height: 50,
+    justifyContent: "center",
     marginHorizontal: 8,
   },
   timeContainer: {

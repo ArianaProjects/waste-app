@@ -4,7 +4,7 @@ import { t } from "i18n-js";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Image } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { TouchableOpacity, TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { useSelector } from "react-redux";
 import { RootState } from "states";
 import { WasteType } from "states/ducks/userPreferences/userPreferences.slice";
@@ -54,7 +54,10 @@ const UpcomingEventCard = (props: Props) => {
     // Convert back to days and return
   };
   return (
-    <TouchableWithoutFeedback onPress={() => props.showModal && props.showModal(props.wasteType)}>
+    <TouchableOpacity
+      disabled={isPass}
+      onPress={() => props.showModal && props.showModal(props.wasteType)}
+    >
       <View.Paper
         style={[
           styles.container,
@@ -96,7 +99,7 @@ const UpcomingEventCard = (props: Props) => {
           )}
         </View.Paper>
       </View.Paper>
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
   );
 };
 UpcomingEventCard.displayName = "UpcomingEventCard";

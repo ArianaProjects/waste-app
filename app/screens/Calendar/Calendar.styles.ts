@@ -35,7 +35,11 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  notFoundImage: { width: 300, height: 300, resizeMode: "contain" },
+  notFoundImage: {
+    width: 300,
+    height: 300,
+    resizeMode: "contain",
+  },
   notFoundText: {
     fontSize: Font.FontSize.Title2,
     color: Colors.primary.dark,

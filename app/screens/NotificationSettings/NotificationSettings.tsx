@@ -45,17 +45,14 @@ const NotificationSettingsScreen: NavStatelessComponent = ({ navigation }: any) 
       })
     );
     dispatch(userPreferences.actions.toggleNotifications(switchValue));
-    navigator.openSetting();
+    navigator.goBack();
   };
   React.useEffect(() => {
     setShow(false);
   }, [remindTime]);
   return (
     <View.Background style={styles.container}>
-      <Button.TextButton
-        style={{ marginTop: 8, marginLeft: 4 }}
-        onPress={() => navigator.openSetting()}
-      >
+      <Button.TextButton style={{ marginTop: 8, marginLeft: 4 }} onPress={() => navigator.goBack()}>
         <Icon
           name="ios-arrow-back-outline"
           style={{ marginRight: 5 }}

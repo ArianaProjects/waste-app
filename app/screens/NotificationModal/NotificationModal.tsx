@@ -1,28 +1,32 @@
-import React from "react";
-import { View as V, Modal, SafeAreaView, Image } from "react-native";
 import { Button, Text, View } from "components";
-import { t } from "utils";
-import styles from "./NotificationModal.styles";
-import navigationOptions from "./NotificationModal.navigationOptions";
-import { NavStatelessComponent } from "interfaces";
 import { ROIs } from "constant/ROITypes";
+import React from "react";
+import { Image, Modal, Pressable, View as V } from "react-native";
 import { WasteType } from "states/ducks/userPreferences/userPreferences.slice";
+import ButtonStyle from "../../components/Button/default/Default.styles";
+import { t } from "utils";
+import navigationOptions from "./NotificationModal.navigationOptions";
+import styles from "./NotificationModal.styles";
+import { useSelector } from "react-redux";
+import { RootState } from "states";
 interface Props {
   show: boolean;
-  setShow: (status: boolean) => void;
+  closeShow: () => void;
   trashCanType: WasteType;
 }
 const NotificationModalScreen = (props: Props) => {
+  const theme = useSelector((state: RootState) => state.systemTheme.theme);
+
   return (
     <Modal
       animationType="fade"
       transparent={true}
       visible={props.show}
       onRequestClose={() => {
-        props.setShow(false);
+        props.closeShow();
       }}
     >
-      <V
+      <View.Background
         style={{
           justifyContent: "center",
           flex: 1,
@@ -45,13 +49,23 @@ const NotificationModalScreen = (props: Props) => {
               style={styles.image}
               source={ROIs.find((i) => i.waste === props.trashCanType)?.iconSrc}
             />
-            <Text.Title3 style={styles.desc}>{t("NOTIFICATIONMODAL_TEXT")} </Text.Title3>
+            <Text.Title3 style={styles.desc}>
+              {t("NOTIFICATIONMODAL_TEXT") +
+                // @ts-ignore
+                t(ROIs.find((i) => i.waste === props.trashCanType)?.text)}{" "}
+            </Text.Title3>
           </View.Paper>
-          <Button.Default style={styles.button} onPress={() => props.setShow(false)}>
-            {t("done")}{" "}
-          </Button.Default>
+          <Pressable
+            style={[
+              ButtonStyle.global,
+              theme === "dark" ? ButtonStyle.defaultDark : ButtonStyle.defaultLight,
+            ]}
+            onPress={() => props.closeShow()}
+          >
+            <Text.Caption1>{t("done")} </Text.Caption1>
+          </Pressable>
         </View.Paper>
-      </V>
+      </View.Background>
     </Modal>
   );
 };

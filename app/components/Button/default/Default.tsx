@@ -5,15 +5,16 @@ import {
   NativeTouchEvent, StyleProp, TouchableWithoutFeedback,
   View, ViewStyle
 } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { GestureResponderEvent } from "react-native-modal";
 import { useSelector } from "react-redux";
 import { RootState } from "states";
 import styles from "./Default.styles";
 
-
 interface Props {
   style?: StyleProp<ViewStyle>;
   children: React.ReactNode;
-  onPress: (ev: NativeSyntheticEvent<NativeTouchEvent>) => void;
+  onPress: () => void;
   disabled?: boolean;
 }
 
@@ -29,11 +30,15 @@ export default function Default(props: Props): React.ReactElement {
   if (props.disabled) customStyle.push(styles.disable);
 
   return (
-    <TouchableWithoutFeedback onPress={(x) => !props.disabled && props.onPress(x)}>
+    <TouchableOpacity
+      onPress={() => {
+        !props.disabled && props.onPress();
+      }}
+    >
       <View style={[...customStyle, props.style]}>
         <Text.Body>{props.children}</Text.Body>
       </View>
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
   );
 }
 
