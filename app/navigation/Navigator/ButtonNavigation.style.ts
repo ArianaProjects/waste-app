@@ -8,7 +8,7 @@ export default StyleSheet.create({
     fontSize: Font.FontSize.Footnote,
     fontWeight: "bold",
   },
-  tabBarContainer: {
+  tabBarContainerLight: {
     alignItems: "center",
     paddingHorizontal: 8,
     justifyContent: "center",
@@ -16,7 +16,17 @@ export default StyleSheet.create({
     paddingBottom: 8,
     paddingTop: 4,
     shadowColor: "transparent",
-    backgroundColor: Colors.background.default["light"],
+    backgroundColor: Colors.background.default.light,
+  },
+  tabBarContainerDark: {
+    alignItems: "center",
+    paddingHorizontal: 8,
+    justifyContent: "center",
+    height: 45,
+    paddingBottom: 8,
+    paddingTop: 4,
+    shadowColor: "transparent",
+    backgroundColor: Colors.background.default.dark,
   },
   tabBar: {
     borderRadius: paper.borderRadius,

@@ -17,12 +17,13 @@ import styles from "./Language.styles";
 const LanguageScreen: NavStatelessComponent = (props: any) => {
   const navigator = navigate(props.navigation);
   const defaultData = useSelector((state: RootState) => state.userPreferences.language);
+  const { theme } = useSelector((state: RootState) => state.systemTheme);
   const dispatch = useDispatch();
   const [active, setActive] = useState<string>(defaultData);
   // console.log(defaultData, I18n.locale, currentLanguage, locale);
 
   return (
-    <View.Background style={styles.container}>
+    <View.Background style={theme === "dark" ? styles.containerDark : styles.containerLight}>
       <Button.TextButton
         style={{ marginTop: 8 }}
         onPress={() => {

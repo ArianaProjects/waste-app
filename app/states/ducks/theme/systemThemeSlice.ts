@@ -1,18 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
-
-interface initialStateInterface {
-  theme: "dark" | "light";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+export type THEME = "dark" | "light";
+export interface initialStateInterface {
+  theme: THEME;
 }
 const initialState: initialStateInterface = {
   theme: "light",
 };
 
 export const systemTheme = createSlice({
-  name: "light",
+  name: "systemTheme",
   initialState,
   reducers: {
-    toggleTheme(state, { payload }) {
-      state.theme = payload;
+    toggleTheme(state, action: PayloadAction<"dark" | "light">) {
+      state.theme = action.payload;
     },
   },
 });

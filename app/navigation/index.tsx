@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import { RootStackParamList } from "interfaces";
 import * as React from "react";
+import { Appearance } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import AboutUsScreen from "screens/AboutUs";
@@ -14,7 +15,7 @@ import NotificationSettingsScreen from "screens/NotificationSettings";
 import PrivacyScreen from "screens/Privacy";
 import ROI from "screens/ROI";
 import { RootState } from "states";
-import { userPreferences } from "states/ducks";
+import { toggleTheme } from "states/ducks/theme/systemThemeSlice";
 import { Colors, ComponentsStyle } from "style";
 import { withLocalization } from "utils";
 import navigate from "./navigate";
@@ -25,7 +26,19 @@ function Navigation() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.background.default[theme] }}>
       <StatusBar style={theme == "dark" ? "light" : "dark"} />
-      <NavigationContainer>
+      <NavigationContainer
+        theme={{
+          dark: theme == "dark",
+          colors: {
+            background: Colors.background.default[theme],
+            text: Colors.text.primary[theme],
+            primary: Colors.primary.main,
+            border: Colors.text.secondary[theme],
+            card: Colors.background.paper[theme],
+            notification: Colors.background.paper[theme],
+          },
+        }}
+      >
         <RootNavigator />
       </NavigationContainer>
     </SafeAreaView>
@@ -43,7 +56,15 @@ const screenOptions = {
 };
 
 function RootNavigator() {
+  const dispatch = useDispatch();
+  const changeTheme = (colorScheme: Appearance.AppearancePreferences["colorScheme"]) => {
+    console.log(colorScheme);
+
+    colorScheme && dispatch(toggleTheme(colorScheme));
+  };
+  Appearance.addChangeListener(({ colorScheme }) => changeTheme(colorScheme));
   const UP = useSelector((state: RootState) => state.userPreferences);
+
   return (
     <Stack.Navigator>
       {!UP.introDone ? (

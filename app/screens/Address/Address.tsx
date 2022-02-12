@@ -20,6 +20,7 @@ import { userPreferences } from "states/ducks";
 
 const AddressScreen: NavStatelessComponent = ({ navigation }: any) => {
   const defaultData = useSelector((state: RootState) => state.userPreferences);
+  const { theme } = useSelector((state: RootState) => state.systemTheme);
   const dispatch = useDispatch();
   const navigator = navigate(navigation);
 
@@ -61,7 +62,7 @@ const AddressScreen: NavStatelessComponent = ({ navigation }: any) => {
   // console.log(defaultData.place);
 
   return (
-    <View.Background style={styles.container}>
+    <View.Background style={theme === "dark" ? styles.containerDark : styles.containerLight}>
       <Button.TextButton
         style={{ marginTop: 8, marginLeft: 4 }}
         onPress={() => navigator.openSetting()}

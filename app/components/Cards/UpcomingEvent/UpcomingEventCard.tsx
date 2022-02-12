@@ -27,7 +27,6 @@ const UpcomingEventCard = (props: Props) => {
   useEffect(() => {
     const d = days_left(props.remindTime);
     const e = moment(props.remindTime).isBefore();
-    console.log(e);
 
     d && setDaysLeft(d);
   }, [props.remindTime]);

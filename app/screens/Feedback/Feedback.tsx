@@ -4,6 +4,8 @@ import { navigate } from "navigation";
 import React from "react";
 import { AirbnbRating } from "react-native-ratings";
 import Icon from "react-native-vector-icons/Ionicons";
+import { useSelector } from "react-redux";
+import { RootState } from "states";
 import { Colors } from "style";
 import { t } from "utils";
 import navigationOptions from "./Feedback.navigationOptions";
@@ -11,8 +13,9 @@ import styles from "./Feedback.styles";
 
 const FeedbackScreen: NavStatelessComponent = (props: any) => {
   const navigator = navigate(props.navigation);
+  const { theme } = useSelector((state: RootState) => state.systemTheme);
   return (
-    <View.Background style={styles.container}>
+    <View.Background style={theme === "dark" ? styles.containerDark : styles.containerLight}>
       <Button.TextButton
         style={{ marginTop: 8 }}
         onPress={() => {

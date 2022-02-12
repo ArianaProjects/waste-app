@@ -12,7 +12,7 @@ interface Props extends ViewProps {
 }
 
 export default function Background(props: Props): React.ReactElement {
-  const theme = useSelector((state: RootState) => state.systemTheme.theme);
+  const { theme } = useSelector((state: RootState) => state.systemTheme);
 
   const isDark = theme == "dark";
   const customStyle = isDark

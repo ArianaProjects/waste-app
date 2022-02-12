@@ -1,5 +1,5 @@
 import { Text, View } from "components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/MaterialIcons";
@@ -12,7 +12,7 @@ interface Props {
   text: string;
   onPress: () => void;
   switchMode?: boolean;
-  onSwitchChange?: () => void;
+  onSwitchChange?: (value: boolean) => void;
   switchValue?: boolean;
 }
 export default function SettingCard(props: Props) {
@@ -21,6 +21,10 @@ export default function SettingCard(props: Props) {
   const onPressIn = () => {
     props.onPress();
   };
+  useEffect(() => {
+    props.onSwitchChange && props.onSwitchChange(switchValue);
+  }, [switchValue]);
+
   if (props.switchMode)
     return (
       <View.Paper style={styles.container}>

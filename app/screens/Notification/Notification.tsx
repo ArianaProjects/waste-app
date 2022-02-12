@@ -17,6 +17,7 @@ import { navigate } from "navigation";
 
 const NotificationScreen: NavStatelessComponent = (props: any) => {
   const plan = useSelector((state: RootState) => state.userPreferences.appointments);
+  const { theme } = useSelector((state: RootState) => state.systemTheme);
   const [data, setData] = useState<AppointmentInterface[]>();
   const navigator = navigate(props.navigation);
   useEffect(() => {
@@ -24,7 +25,7 @@ const NotificationScreen: NavStatelessComponent = (props: any) => {
   }, [plan]);
 
   return (
-    <View.Background style={styles.container}>
+    <View.Background style={styles({ theme }).container}>
       <ScrollView scrollToOverflowEnabled scrollEnabled showsVerticalScrollIndicator={false}>
         <View.Background
           style={{ padding: 12, height: 280, justifyContent: "center", alignItems: "center" }}
@@ -44,7 +45,7 @@ const NotificationScreen: NavStatelessComponent = (props: any) => {
               <Icon
                 size={25}
                 name="settings"
-                style={{ alignSelf: "flex-end", color: Colors.text.primary.light }}
+                style={{ alignSelf: "flex-end", color: Colors.text.secondary[theme] }}
               />
             </View.Paper>
           </TouchableOpacity>

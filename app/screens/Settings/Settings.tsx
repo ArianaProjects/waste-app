@@ -5,16 +5,21 @@ import { navigate } from "navigation";
 import React from "react";
 import { Alert, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userPreferences } from "states/ducks";
+import { toggleTheme } from "states/ducks/theme/systemThemeSlice";
+import { RootState } from "states/rootReducer";
 import { t } from "utils";
 import navigationOptions from "./Settings.navigationOptions";
 import styles from "./Settings.styles";
 
 const SettingsScreen: NavStatelessComponent = (props: any) => {
   const navigator = navigate(props.navigation);
+  const { theme } = useSelector((state: RootState) => state.systemTheme);
   const dispatch = useDispatch();
-
+  const changeTheme = (mode: "dark" | "light") => {
+    dispatch(toggleTheme(mode));
+  };
   const deleteHandler = () => {
     dispatch(userPreferences.actions.changeCity(null));
     dispatch(userPreferences.actions.changePlace(null));
@@ -32,7 +37,7 @@ const SettingsScreen: NavStatelessComponent = (props: any) => {
   };
 
   return (
-    <ScrollView style={styles.container} scrollEnabled>
+    <ScrollView style={styles({ theme }).container} scrollEnabled>
       <View.Background style={{ marginTop: 24.0 }} />
       <SettingCard
         onPress={() => navigator.openNotificationSettings()}
@@ -56,8 +61,9 @@ const SettingsScreen: NavStatelessComponent = (props: any) => {
       />
       <SettingCard
         switchMode
-        onSwitchChange={() => {}}
         onPress={() => {}}
+        switchValue={theme === "dark"}
+        onSwitchChange={(e) => (e ? changeTheme("dark") : changeTheme("light"))}
         text={t("darkMode") || ""}
         iconName="nightlight-round"
       />
@@ -77,9 +83,11 @@ const SettingsScreen: NavStatelessComponent = (props: any) => {
         iconName="info-outline"
       />
       <SettingCard onPress={() => ShowModal()} text={t("deleteData") || ""} iconName="cancel" />
-      <View.Paper style={styles.ownerContainer}>
+      {/* @ts-ignore */}
+      <View.Paper style={styles({ theme }).ownerContainer}>
         <Text.Callout style={{ marginLeft: 8 }}>Powered By:</Text.Callout>
-        <View.Paper style={styles.owner}>
+        {/* @ts-ignore */}
+        <View.Paper style={styles({ theme }).owner}>
           <Image source={require("assets/images/arianaLogo.png")} />
           <Text.Title3 style={{ marginLeft: 8 }}>Ariana Germany GMBH</Text.Title3>
         </View.Paper>

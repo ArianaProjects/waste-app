@@ -4,7 +4,12 @@ import { Colors, Layout } from "style";
 import paper from "style/components/Paper/paper";
 
 export default StyleSheet.create({
-  container: {
+  containerDark: {
+    ...Layout.containerWithPadding,
+    justifyContent: "space-between",
+    backgroundColor: Colors.background.default.dark,
+  },
+  containerLight: {
     ...Layout.containerWithPadding,
     justifyContent: "space-between",
     backgroundColor: Colors.background.default.light,

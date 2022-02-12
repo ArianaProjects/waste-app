@@ -3,10 +3,16 @@ import { Colors } from "style";
 import paper from "style/components/Paper/paper";
 
 export default StyleSheet.create({
-  container: {
+  containerLight: {
     flex: 1,
     justifyContent: "space-between",
     backgroundColor: Colors.background.default.light,
+    marginHorizontal: 8,
+  },
+  containerDark: {
+    flex: 1,
+    justifyContent: "space-between",
+    backgroundColor: Colors.background.default.dark,
     marginHorizontal: 8,
   },
   trashCardsContainer: {

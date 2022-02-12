@@ -22,15 +22,12 @@ const NotificationProvider = (props: Props) => {
   };
 
   useEffect(() => {
-    console.log("data is here ", data.ROI);
     if (!data.notificationsConfigs) {
       dispatch(userPreferences.actions.InitialNotificationsConfigs());
     }
     if (!data.ROI) {
       dispatch(userPreferences.actions.InitialROI());
     }
-    console.log("data is here ", data.ROI);
-    console.log("data is here ", data.notificationsConfigs);
     getData();
     // filter appointment base on user selected roi
     let appointments =

@@ -19,6 +19,7 @@ interface ROIProps {
 const ROIScreen = (props: ROIProps) => {
   const dispatch = useDispatch();
   const defaultData = useSelector((state: RootState) => state.userPreferences.ROI);
+  const { theme } = useSelector((state: RootState) => state.systemTheme);
   const navigator = navigate(props.navigation);
 
   const [selectedROI, setSelectedROI] = useState<WastesInterface>(defaultData);
@@ -65,7 +66,7 @@ const ROIScreen = (props: ROIProps) => {
   };
 
   return (
-    <View.Background style={ROIStyles.container}>
+    <View.Background style={theme === "dark" ? ROIStyles.containerDark : ROIStyles.containerLight}>
       <Button.TextButton
         style={{ marginTop: 8, marginLeft: 8 }}
         onPress={() => {
@@ -76,7 +77,7 @@ const ROIScreen = (props: ROIProps) => {
           name="ios-arrow-back-outline"
           style={{ marginRight: 5 }}
           size={16}
-          color={Colors.primary.main}
+          color={Colors.primary[theme]}
         />
         {t("back")}
       </Button.TextButton>

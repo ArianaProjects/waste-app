@@ -3,7 +3,6 @@ import UpcomingEventCard from "components/Cards/UpcomingEvent/UpcomingEventCard"
 import { trashColors } from "constant/ROITypes";
 import * as Notifications from "expo-notifications";
 import { AppointmentInterface, NavStatelessComponent } from "interfaces";
-import moment from "moment";
 import { getAllAppointment } from "network/Appointment";
 import React, { Suspense, useEffect, useState } from "react";
 import { Image } from "react-native";
@@ -24,6 +23,7 @@ type MarkedDatesType = {
 };
 const CalendarScreen: NavStatelessComponent = () => {
   const settings = useSelector((state: RootState) => state.userPreferences);
+  const { theme } = useSelector((state: RootState) => state.systemTheme);
   const [plan, setPlan] = useState<AppointmentInterface[]>();
   const [planList, setPlanList] = useState<MarkedDatesType>();
   const [trashCanType, setTrashCanType] = useState<WasteType>();
@@ -33,7 +33,6 @@ const CalendarScreen: NavStatelessComponent = () => {
     setTrashCanType(trashcanType);
     setShowModal(true);
   };
-
   const getPlans = async () => {
     // TODO fit it late (3)
     const plans = await getAllAppointment(1);
@@ -139,13 +138,20 @@ const CalendarScreen: NavStatelessComponent = () => {
           </View.Background>
         )}
         renderKnob={() => <View.Paper style={CalendarStyles.knob} />}
+        key={theme}
         theme={{
+          dayTextColor: Colors.text.secondary[theme],
+          backgroundColor: Colors.background.default[theme],
+          agendaDayNumColor: Colors.text.secondary[theme],
+          agendaDayTextColor: Colors.text.secondary[theme],
+          monthTextColor: Colors.text.secondary[theme],
+          textColor: Colors.text.secondary[theme],
           selectedDayBackgroundColor: Colors.primary.main,
-          dotColor: Colors.primary.dark,
-          todayTextColor: Colors.primary.dark,
+          dotColor: Colors.primary[theme],
+          todayTextColor: Colors.primary[theme],
           todayBackgroundColor: setOpacity(Colors.primary.main, 0.2),
-          agendaTodayColor: Colors.text.secondary.light,
-          calendarBackground: Colors.background.default.light,
+          agendaTodayColor: Colors.text.secondary[theme],
+          calendarBackground: Colors.background.default[theme],
           // @ts-ignore
         }}
       />

@@ -4,10 +4,15 @@ import { Colors, Font, Layout } from "style";
 import paper from "style/components/Paper/paper";
 
 export default StyleSheet.create({
-  container: {
+  containerLight: {
     ...Layout.containerWithPadding,
     justifyContent: "space-between",
     backgroundColor: Colors.background.default.light,
+  },
+  containerDark: {
+    ...Layout.containerWithPadding,
+    justifyContent: "space-between",
+    backgroundColor: Colors.background.default.dark,
   },
   content: { flex: 1, justifyContent: "center", marginBottom: 150 },
   card: {
@@ -41,16 +46,14 @@ export default StyleSheet.create({
   },
   timeContainer: {
     flexDirection: "row",
-    alignItems: "center",
-  },
-  timeAM_PM: {
+
     backgroundColor: Colors.primary.main,
-    marginLeft: 8,
+    alignItems: "center",
     paddingVertical: 8,
     paddingHorizontal: 16,
-
     borderRadius: paper.borderRadius / 2,
   },
+
   button: {
     marginBottom: 32,
   },

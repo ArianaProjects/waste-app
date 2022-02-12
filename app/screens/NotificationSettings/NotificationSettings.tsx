@@ -5,6 +5,8 @@ import { NavStatelessComponent } from "interfaces";
 import { navigate } from "navigation";
 import React, { useState } from "react";
 import { Pressable, Switch } from "react-native";
+import { TimePickerModal, en, registerTranslation } from "react-native-paper-dates";
+
 import RNPickerSelect from "react-native-picker-select";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +17,8 @@ import navigationOptions from "./NotificationSettings.navigationOptions";
 import styles from "./NotificationSettings.styles";
 
 const NotificationSettingsScreen: NavStatelessComponent = ({ navigation }: any) => {
+  registerTranslation("en", en);
+
   // get redux data
   const dispatch = useDispatch();
   const defaultData = useSelector((state: RootState) => state.userPreferences);
@@ -32,7 +36,7 @@ const NotificationSettingsScreen: NavStatelessComponent = ({ navigation }: any) 
   const theme = useSelector((state: RootState) => state.systemTheme.theme);
 
   // set values
-  const [remindTime, setRemindTime] = useState(new Date(2022, 1, 4, hour, minutes, 0, 0));
+
   const [show, setShow] = useState(false);
   const [switchValue, setSwitchValue] = useState(defaultData.activatedNotifications);
 
@@ -47,17 +51,15 @@ const NotificationSettingsScreen: NavStatelessComponent = ({ navigation }: any) 
     dispatch(userPreferences.actions.toggleNotifications(switchValue));
     navigator.goBack();
   };
-  React.useEffect(() => {
-    setShow(false);
-  }, [remindTime]);
+
   return (
-    <View.Background style={styles.container}>
+    <View.Background style={theme === "dark" ? styles.containerDark : styles.containerLight}>
       <Button.TextButton style={{ marginTop: 8, marginLeft: 4 }} onPress={() => navigator.goBack()}>
         <Icon
           name="ios-arrow-back-outline"
           style={{ marginRight: 5 }}
           size={16}
-          color={Colors.primary.main}
+          color={Colors.primary[theme]}
         />
         {t("back")}
       </Button.TextButton>
@@ -103,51 +105,24 @@ const NotificationSettingsScreen: NavStatelessComponent = ({ navigation }: any) 
           <Text.Title3>{t("RemindMeAt")}</Text.Title3>
           <Pressable onPress={() => setShow(true)}>
             <View.Paper style={styles.timeContainer}>
-              <Text.Title3>
-                {remindTime.getHours() > 13
-                  ? remindTime.getHours() - 12 + ":" + remindTime.getMinutes()
-                  : remindTime.getHours() + ":" + remindTime.getMinutes()}
-              </Text.Title3>
-              <View.Background style={styles.timeAM_PM}>
-                <Text.Title3>{remindTime.getHours() < 12 ? "AM" : "PM"}</Text.Title3>
-              </View.Background>
+              <Text.Title3>{`${hour}:${minutes}`}</Text.Title3>
             </View.Paper>
           </Pressable>
-          {show && (
-            <DateTimePicker
-              themeVariant="dark"
-              style={{ backgroundColor: "green" }}
-              testID="dateTimePicker"
-              value={remindTime}
-              mode={"time"}
-              onTouchCancel={() => {}}
-              onChange={(e: any) => {
-                e.nativeEvent.timestamp && setRemindTime(new Date(e.nativeEvent.timestamp));
-                e.nativeEvent.timestamp &&
-                  setMinutes(new Date(e.nativeEvent.timestamp).getMinutes());
-                e.nativeEvent.timestamp && setHour(new Date(e.nativeEvent.timestamp).getHours());
-                !e.nativeEvent.timestamp && setShow(false);
-              }}
-            />
-          )}
+          <TimePickerModal
+            locale="de"
+            uppercase={true}
+            visible={show}
+            animationType="fade"
+            onDismiss={() => setShow(false)}
+            hours={hour}
+            minutes={minutes}
+            onConfirm={(e) => {
+              setHour(e.hours);
+              setMinutes(e.minutes);
+              setShow(false);
+            }}
+          />
         </View.Paper>
-        {/* repeat times */}
-        {/* <View.Paper style={styles.card}>
-          <Text.Title3>{t("Repeat")}</Text.Title3>
-          <View.Background style={styles.inputContainer}>
-            <RNPickerSelect
-              value={1}
-              style={{
-                inputIOS: styles.inputTime,
-                inputAndroid: styles.inputTime,
-              }}
-              onValueChange={(e) => {
-                console.log(e);
-              }}
-              items={times}
-            />
-          </View.Background>
-        </View.Paper> */}
       </View.Background>
       <Button.Default style={styles.button} onPress={handelSave}>
         {t("save")}
@@ -167,11 +142,3 @@ const days = [
   { value: 6, label: "6 " + t("day") },
   { value: 7, label: "7 " + t("day") },
 ];
-// const times = [
-//   { value: 1, label: "1 " + t("time") },
-//   { value: 2, label: "2 " + t("time") },
-//   { value: 4, label: "4 " + t("time") },
-//   { value: 5, label: "5 " + t("time") },
-//   { value: 6, label: "6 " + t("time") },
-//   { value: 7, label: "7 " + t("time") },
-// ];

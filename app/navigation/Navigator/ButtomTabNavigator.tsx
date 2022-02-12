@@ -44,12 +44,16 @@ export function BottomTabNavigator() {
             );
           },
           tabBarItemStyle: ButtonNavigationStyle.tabBar,
-          tabBarStyle: ButtonNavigationStyle.tabBarContainer,
+          tabBarStyle:
+            theme === "dark"
+              ? ButtonNavigationStyle.tabBarContainerDark
+              : ButtonNavigationStyle.tabBarContainerLight,
           tabBarActiveBackgroundColor: "#E6FFF0",
-          tabBarInactiveBackgroundColor: Colors.background.paper[theme],
-          tabBarInactiveTintColor: setOpacity(Colors.text.secondary.light, 0.7),
-          tabBarActiveTintColor: Colors.primary.dark,
+          tabBarInactiveBackgroundColor: "red",
+          // Colors.background.default[theme],
 
+          tabBarInactiveTintColor: setOpacity(Colors.text.secondary[theme], 0.7),
+          tabBarActiveTintColor: Colors.primary.dark,
           tabBarLabelStyle: ButtonNavigationStyle.tabBarLabel,
         };
       }}

@@ -20,8 +20,6 @@ interface Props {
 
 export default function Default(props: Props): React.ReactElement {
   const theme = useSelector((state: RootState) => state.systemTheme.theme);
-
-  // console.log(props.disabled);
   const isDark = theme == "dark";
   const customStyle = isDark
     ? [props.style, styles.global, styles.defaultDark]

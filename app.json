@@ -11,7 +11,7 @@
       ]
     ],
     "name": "Abfall",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "slug": "Abfall",
     "version": "0.0.1",
     "orientation": "portrait",
@@ -26,6 +26,7 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "userInterfaceStyle": "automatic",
       "supportsTablet": true
     },
     "notification": {
@@ -33,6 +34,7 @@
       "icon": "./assets/notification.png"
     },
     "android": {
+      "userInterfaceStyle": "automatic",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

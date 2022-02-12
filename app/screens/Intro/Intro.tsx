@@ -86,12 +86,14 @@ const IntroScreen: NavStatelessComponent = () => {
     },
   ];
   const userPreferences = useSelector((state: RootState) => state.userPreferences);
+  const { theme } = useSelector((state: RootState) => state.systemTheme);
+
   const renderItem = ({ item }: any) => {
     return <View.Background>{item.page}</View.Background>;
   };
 
   return (
-    <View.Background style={styles.container}>
+    <View.Background style={theme === "dark" ? styles.containerDark : styles.containerLight}>
       <AppIntroSlider
         ref={ref}
         showNextButton={false}
