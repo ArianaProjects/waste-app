@@ -3,7 +3,7 @@ name: Expo CI CD
 
 on:
   push :
-    branches : [release]
+    branches : [release, newCalendar]
 
 jobs:
   Build-for-android:
