@@ -34,6 +34,7 @@
     "expo-status-bar": "~1.2.0",
     "expo-store-review": "~5.1.0",
     "expo-web-browser": "~10.1.0",
+    "eas-cli":"0.51.0",
     "i18n-js": "^3.9.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.3",
