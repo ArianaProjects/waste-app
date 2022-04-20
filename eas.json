@@ -1,22 +1,52 @@
 {
   "build": {
-    "preview": {
+    "base": {
       "android": {
-        "buildType": "apk"
+        "image": "ubuntu-18.04-android-30-ndk-r19c",
+        "ndk": "21.4.7075529",
+        "autoIncrement": "versionCode"
+      },
+      "ios": {
+        "image": "latest",
+        "node": "14.0",
+        "yarn": "latest",
+        "autoIncrement": "buildNumber"
       }
     },
-    "preview2": {
+    "development": {
+      "extends": "base",
+      "env": {
+        "ENVIRONMENT": "staging"
+      },
+      "android": {
+        "distribution": "internal",
+        "withoutCredentials": true,
+        "gradleCommand": ":app:assembleDebug"
+      },
+      "ios": {
+        "simulator": true,
+        "buildConfiguration": "Debug"
+      }
+    },
+    "staging": {
+      "extends": "base",
+      "env": {
+        "ENVIRONMENT": "staging"
+      },
+      "distribution": "internal",
       "android": {
         "gradleCommand": ":app:assembleRelease"
       }
     },
-    "preview3": {
-      "developmentClient": true
-    },
-    "production": {}
+    "production": {
+      "extends": "base",
+      "env": {
+        "ENVIRONMENT": "production"
+      }
+    }
   },
   "cli": {
-    "version": ">= 0.43.0",
+    "version": ">= 0.44.0",
     "requireCommit": true
   }
 }

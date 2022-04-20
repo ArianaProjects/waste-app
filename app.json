@@ -31,7 +31,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.arianagermany.waste"
+      "bundleIdentifier": "com.arianagermany.waste",
+      "buildNumber": "1.0.0"
     },
     "notification": {
       "color": "#ffffff",
@@ -42,7 +43,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.mehranml.Abfall"
+      "package": "com.arianagermany.waste",
+      "versionCode": 1
     }
   }
 }

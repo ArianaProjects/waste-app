@@ -1,0 +1,42 @@
+name: Expo CI CD
+
+on:
+  push :
+    branches : [release, newCalendar]
+
+jobs:
+  build-for-IOS:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+      - uses: expo/expo-github-action@v7
+        with:
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+          # expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
+          # expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
+      - name: Install deps
+        run: yarn install
+      - name: Build iOS app
+        run: eas build --non-interactive
+  publish-to-testflight:
+    needs: [build-for-IOS]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+      - uses: expo/expo-github-action@v7
+        with:
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+          # expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
+          # expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
+      - name: Install deps
+        run: yarn install
+      - name: Publish app
+        run: eas submit --platform ios --non-interactive
