@@ -19,7 +19,7 @@ jobs:
           # expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
           # expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
       - name: Install deps
-        run: yarn install
+        run: npm install
       - name: Build iOS app
         run: eas build --non-interactive
   publish-to-testflight:
@@ -37,6 +37,6 @@ jobs:
           # expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
           # expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
       - name: Install deps
-        run: yarn install
+        run: npm install
       - name: Publish app
         run: eas submit --platform ios --non-interactive
