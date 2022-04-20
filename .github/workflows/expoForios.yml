@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-for-IOS:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -24,7 +24,7 @@ jobs:
         run: eas build --non-interactive
   publish-to-testflight:
     needs: [build-for-IOS]
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
