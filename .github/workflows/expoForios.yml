@@ -2,7 +2,7 @@ name: Expo CI CD
 
 on:
   push :
-    branches : [release, newCalendar]
+    branches : [release, newCalendar, master]
 
 jobs:
   build-for-IOS:
