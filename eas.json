@@ -8,7 +8,7 @@
       },
       "ios": {
         "image": "latest",
-        "node": "14.0",
+        "node": "16.x",
         "yarn": "latest",
         "autoIncrement": "buildNumber"
       }
