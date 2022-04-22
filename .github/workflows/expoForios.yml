@@ -30,7 +30,7 @@ jobs:
         run: yarn install
 
       - name: Build iOS app
-        run: eas build --platform ios --profile staging --non-interactive
+        run: eas build --platform ios --non-interactive
 
   publish-to-testflight:
     needs: [build-for-IOS]
@@ -56,4 +56,4 @@ jobs:
       - name: Install deps
         run: yarn install
       - name: Publish app
-        run: eas submit --platform ios --profile staging --non-interactive
+        run: eas submit --platform ios --non-interactive
