@@ -47,6 +47,6 @@
   },
   "cli": {
     "version": ">= 0.44.0",
-    "requireCommit": true
+    "requireCommit": false
   }
 }
