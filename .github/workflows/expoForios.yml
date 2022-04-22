@@ -56,4 +56,4 @@ jobs:
       - name: Install deps
         run: yarn install
       - name: Publish app
-        run: eas submit --platform ios --non-interactive
+        run: eas submit --platform ios --non-interactive --latest

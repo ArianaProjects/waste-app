@@ -15,7 +15,7 @@
     "name": "Abfall",
     "userInterfaceStyle": "light",
     "slug": "Abfall",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
