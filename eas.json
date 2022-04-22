@@ -48,5 +48,28 @@
   "cli": {
     "version": ">= 0.44.0",
     "requireCommit": false
+  },
+  "submit": {
+    "development": {
+        "ios": {
+            "appleId": "info@arianagermany.com",
+            "ascAppId": "1607176693",
+            "appleTeamId": "6KV8B2HMAK"
+        }
+    },
+    "staging": {
+        "ios": {
+            "appleId": "info@arianagermany.com",
+            "ascAppId": "1607176693",
+            "appleTeamId": "6KV8B2HMAK"
+        }
+    },
+    "production": {
+        "ios": {
+            "appleId": "info@arianagermany.com",
+            "ascAppId": "1607176693",
+            "appleTeamId": "6KV8B2HMAK"
+        }
+    }
   }
 }
