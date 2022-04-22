@@ -2,12 +2,12 @@
   "build": {
     "base": {
       "android": {
-        "image": "ubuntu-18.04-android-30-ndk-r19c",
+        "image": "ubuntu-20.04-jdk-11-ndk-r21e",
         "ndk": "21.4.7075529",
         "autoIncrement": "versionCode"
       },
       "ios": {
-        "image": "latest",
+        "image": "macos-monterey-12.1-xcode-13.2",
         "node": "16.14.2",
         "yarn": "1.22.18",
         "autoIncrement": "buildNumber"
