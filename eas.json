@@ -1,22 +1,76 @@
 {
   "build": {
-    "preview": {
+    "base": {
       "android": {
-        "buildType": "apk"
+        "image": "ubuntu-20.04-jdk-11-ndk-r21e",
+        "ndk": "21.4.7075529",
+        "autoIncrement": "versionCode"
+      },
+      "ios": {
+        "image": "macos-monterey-12.1-xcode-13.2",
+        "node": "16.14.2",
+        "yarn": "1.22.18",
+        "autoIncrement": "buildNumber"
       }
     },
-    "preview2": {
+    "development": {
+      "extends": "base",
+      "env": {
+        "ENVIRONMENT": "staging"
+      },
+      "android": {
+        "distribution": "internal",
+        "withoutCredentials": true,
+        "gradleCommand": ":app:assembleDebug"
+      },
+      "ios": {
+        "simulator": true,
+        "buildConfiguration": "Debug"
+      }
+    },
+    "staging": {
+      "extends": "base",
+      "env": {
+        "ENVIRONMENT": "staging"
+      },
+      "distribution": "internal",
       "android": {
         "gradleCommand": ":app:assembleRelease"
       }
     },
-    "preview3": {
-      "developmentClient": true
-    },
-    "production": {}
+    "production": {
+      "extends": "base",
+      "env": {
+        "ENVIRONMENT": "production"
+      }
+    }
   },
   "cli": {
     "version": ">= 0.44.0",
-    "requireCommit": true
+    "requireCommit": false
+  },
+  "submit": {
+    "development": {
+        "ios": {
+            "appleId": "info@arianagermany.com",
+            "ascAppId": "1607176693",
+            "appleTeamId": "6KV8B2HMAK"
+        }
+    },
+    "staging": {
+        "ios": {
+            "appleId": "info@arianagermany.com",
+            "ascAppId": "1607176693",
+            "appleTeamId": "6KV8B2HMAK"
+        }
+    },
+    "production": {
+        "ios": {
+            "appleId": "info@arianagermany.com",
+            "ascAppId": "1607176693",
+            "appleTeamId": "6KV8B2HMAK"
+        }
+    }
+
   }
 }

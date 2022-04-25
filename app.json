@@ -15,7 +15,7 @@
     "name": "Abfall",
     "userInterfaceStyle": "automatic",
     "slug": "Abfall",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -30,9 +30,9 @@
       "**/*"
     ],
     "ios": {
-      "userInterfaceStyle": "automatic",
       "supportsTablet": true,
-      "bundleIdentifier": "com.mehranml.Abfall"
+      "bundleIdentifier": "com.arianagermany.waste",
+      "buildNumber": "1.0.0"
     },
     "notification": {
       "color": "#ffffff",
@@ -44,7 +44,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.mehranml.Abfall"
+      "package": "com.arianagermany.waste",
+      "versionCode": 1
     }
   }
 }
