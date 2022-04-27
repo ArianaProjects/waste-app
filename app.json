@@ -32,7 +32,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.arianagermany.waste",
-      "buildNumber": "1.0.0"
+      "buildNumber": "1.0.6"
     },
     "notification": {
       "color": "#ffffff",

@@ -51,26 +51,25 @@
   },
   "submit": {
     "development": {
-        "ios": {
-            "appleId": "info@arianagermany.com",
-            "ascAppId": "1607176693",
-            "appleTeamId": "6KV8B2HMAK"
-        }
+      "ios": {
+        "appleId": "info@arianagermany.com",
+        "ascAppId": "1607176693",
+        "appleTeamId": "6KV8B2HMAK"
+      }
     },
     "staging": {
-        "ios": {
-            "appleId": "info@arianagermany.com",
-            "ascAppId": "1607176693",
-            "appleTeamId": "6KV8B2HMAK"
-        }
+      "ios": {
+        "appleId": "info@arianagermany.com",
+        "ascAppId": "1607176693",
+        "appleTeamId": "6KV8B2HMAK"
+      }
     },
     "production": {
-        "ios": {
-            "appleId": "info@arianagermany.com",
-            "ascAppId": "1607176693",
-            "appleTeamId": "6KV8B2HMAK"
-        }
+      "ios": {
+        "appleId": "info@arianagermany.com",
+        "ascAppId": "1607176693",
+        "appleTeamId": "6KV8B2HMAK"
+      }
     }
-
   }
 }
